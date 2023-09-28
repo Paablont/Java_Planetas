@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Properties>
+        <Property name="LOG_DIR">logs</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="Console">
+            <PatternLayout pattern="%d [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+        
+        <RollingFile
+            name="rollingFile"
+            fileName="${LOG_DIR}/planeta.log"
+            filePattern="${LOG_DIR}/planeta.%i.log.gz"
+            ignoreExceptions="false">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%t] %-5p %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100MB" />
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="trace">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="rollingFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
