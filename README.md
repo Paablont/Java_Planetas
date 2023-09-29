@@ -10,7 +10,7 @@ Clases: Planeta, Satelite, Asteroides?
   <ul>Satelites.dat: Guardará en binario la información de un satélite de cada planeta RELACIONADO por su id con ese planeta (idPlaneta,nombreSatelite,densidad,anioDescubrimiento)</ul>
 </li>
 
-Miguel y Ramon se encargan de lectura y escritura de ficheros binarios y XML
+Miguel y Ramon se encargan de lectura y escritura de ficheros binarios y XML <br>
 Pablo y Jose se encargan de lectura y escritura de ficheros de texto y de acceso aleatorio
 
 
