@@ -1,6 +1,9 @@
 package com.planeta;
 
-import lecturaArchivos.LeerTXT;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import Jframes.LeerTXT;
+import Jframes.MenuPrincipal;
 
 /**
  * 
@@ -9,7 +12,11 @@ import lecturaArchivos.LeerTXT;
 public class PlanetaApp {
 
     public static void main(String[] args) {
-        LeerTXT ventana=new LeerTXT(); //Declaramos un objeto de la clase Jfram LeerTXT
-        ventana.setVisible(true);
+        MenuPrincipal menu = new MenuPrincipal();
+         //Declaramos un objeto de la clase Jfram LeerTXT
+        menu.setVisible(true);
+        
+        
+        
     }
 }
