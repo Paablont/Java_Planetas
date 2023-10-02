@@ -15,13 +15,25 @@ Pablo y Jose se encargan de lectura y escritura de ficheros de texto y de acceso
 
 TAMAÑO DE LOS REGISTROS
 
-Long: 8 bytes
-Integer: 4 bytes
-Short: 2 bytes
-Byte: 1 byte
-Double: 8 bytes
-Float: 4 bytes
-Boolean: 1 byte
-Char: 2 bytes
-String: 2 bytes por cada caracter.
+<li>
+  <ul>Long: 8 bytes</ul>
+  <ul>Integer: 4 bytes</ul>
+  <ul>Short: 2 bytes</ul>
+  <ul>Byte: 1 byte</ul>
+  <ul>Double: 8 bytes</ul>
+  <ul>Float: 4 bytes</ul>
+  <ul>Boolean: 1 byte</ul>
+  <ul>Char: 2 bytes</ul>
+  <ul>String: 2 bytes por cada caracter.</ul>
+
+</li>
+
+
+
+
+
+
+
+
+
 
