@@ -2,13 +2,13 @@ package com.planeta;
 
 /**
  * Planeta planetium planetare
- * 
+ *
  */
 public class Planeta {
-    
+
     int idPlaneta;
     String nombre;
-    double radio,distanciaSolar;
+    double radio, distanciaSolar;
     boolean vida;
 
     public Planeta(int idPlaneta, String nombre, double radio, double distanciaSolar, boolean vida) {
@@ -30,40 +30,48 @@ public class Planeta {
     public double getRadio() {
         return radio;
     }
-    
+
     public double getDistanciaSolar() {
         return distanciaSolar;
     }
-    
+
     public boolean isVida() {
         return vida;
     }
-    
+
     public void setIdPlaneta(int idPlaneta) {
         this.idPlaneta = idPlaneta;
     }
-    
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
     public void setRadio(double radio) {
         this.radio = radio;
     }
-    
+
     public void setDistanciaSolar(double distanciaSolar) {
         this.distanciaSolar = distanciaSolar;
     }
-    
+
     public void setVida(boolean vida) {
         this.vida = vida;
     }
-    
-    //Crear planeta (agregarlo a los ficheros necesarios)
-    
-    
-    
-    
+
+    /**
+     * Metodo para crear planetas nuevos
+     * @Pablo Villaseñor
+     */    
+    public Planeta crearPlaneta() {
+        Planeta p;
+        
+        
+        
+        
+        return p;
+    }
+
     
     
 }
