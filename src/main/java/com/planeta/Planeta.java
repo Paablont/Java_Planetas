@@ -64,11 +64,11 @@ public class Planeta {
      * @Pablo Villaseñor
      */    
     public Planeta crearPlaneta() {
-        Planeta p;
+        Planeta p=null;
         
         
         
-        
+        //wowo
         return p;
     }
 
