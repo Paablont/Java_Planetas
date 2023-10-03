@@ -28,6 +28,9 @@ TAMAÑO DE LOS REGISTROS
 
 </li>
 
+Podemos crear 2 clases: Una que tenga los datos(Planeta) y otro que indiique que puedes hacer con ese dato (PlanetaCRUD)
+Planeta(id,nombre...)
+PlanetaCRUD (static guardar(Planeta),static recuperarTodos() List<Planeta>, static agregarPlaneta(Planeta), static buscarPlaneta(Planeta id))
 
 
 
