@@ -195,6 +195,10 @@ public class JFrameCreador extends javax.swing.JFrame {
          
     }//GEN-LAST:event_tfNombreActionPerformed
 
+    /**
+     * El boton guarda el objeto planeta con las caracteristicas introducidas en la interfaz
+     * @author Pablo Villaseñor
+     */
     private void btnGuardarPlanetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPlanetaActionPerformed
         
         String nombre = tfNombre.getText();
