@@ -1,11 +1,13 @@
 package com.planeta;
 
+import java.io.Serializable;
+
 /**
  * Planeta planetium planetare
  *
  *
  */
-public class Planeta {
+public class Planeta implements Serializable{
 
     int idPlaneta;
     String nombre;
