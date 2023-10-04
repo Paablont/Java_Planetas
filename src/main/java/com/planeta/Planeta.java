@@ -10,11 +10,11 @@ import java.io.Serializable;
 public class Planeta implements Serializable{
 
     int idPlaneta;
-    String nombre;
-    double radio, distanciaSolar;
+    String nombre,distanciaSolar;
+    double radio;
     boolean vida;
 
-    public Planeta(int idPlaneta, String nombre, double radio, double distanciaSolar, boolean vida) {
+    public Planeta(int idPlaneta, String nombre, double radio, String distanciaSolar, boolean vida) {
         this.idPlaneta = idPlaneta;
         this.nombre = nombre;
         this.radio = radio;
@@ -34,7 +34,7 @@ public class Planeta implements Serializable{
         return radio;
     }
 
-    public double getDistanciaSolar() {
+    public String getDistanciaSolar() {
         return distanciaSolar;
     }
 
@@ -54,12 +54,23 @@ public class Planeta implements Serializable{
         this.radio = radio;
     }
 
-    public void setDistanciaSolar(double distanciaSolar) {
+    public void setDistanciaSolar(String distanciaSolar) {
         this.distanciaSolar = distanciaSolar;
     }
 
     public void setVida(boolean vida) {
         this.vida = vida;
     }
+
+    @Override
+    public String toString() {
+        return "Planeta{" + "idPlaneta=" + idPlaneta 
+                + ", nombre=" + nombre + 
+                ", distanciaSolar=" + distanciaSolar + 
+                ", radio=" + radio + 
+                ", vida=" + vida;
+    }
+    
+    
 
 }

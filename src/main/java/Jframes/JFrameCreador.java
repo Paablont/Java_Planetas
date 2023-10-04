@@ -4,6 +4,7 @@
  */
 package Jframes;
 
+import com.planeta.Planeta;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -34,6 +35,7 @@ public class JFrameCreador extends javax.swing.JFrame {
     private void initComponents() {
 
         btnGroupDistSol = new javax.swing.ButtonGroup();
+        btnGroupVida = new javax.swing.ButtonGroup();
         txtNombre = new javax.swing.JLabel();
         tfNombre = new javax.swing.JTextField();
         btnGuardarPlaneta = new javax.swing.JButton();
@@ -43,9 +45,9 @@ public class JFrameCreador extends javax.swing.JFrame {
         rbLejos = new javax.swing.JRadioButton();
         rbMuyLejos = new javax.swing.JRadioButton();
         txtRadio = new javax.swing.JLabel();
-        tfDensidad = new javax.swing.JTextField();
-        txtDensidad = new javax.swing.JLabel();
         tfRadio = new javax.swing.JTextField();
+        rbSiVida = new javax.swing.JRadioButton();
+        rbNoVida = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,48 +101,39 @@ public class JFrameCreador extends javax.swing.JFrame {
 
         txtRadio.setText("Radio (en km2)");
 
-        tfDensidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfDensidadActionPerformed(evt);
-            }
-        });
-
-        txtDensidad.setText("Densidad (en g/cm3)");
-
         tfRadio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfRadioActionPerformed(evt);
             }
         });
 
+        btnGroupVida.add(rbSiVida);
+        rbSiVida.setText("Tiene vida");
+
+        btnGroupVida.add(rbNoVida);
+        rbNoVida.setText("No tiene vida");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 31, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(122, 122, 122)
-                            .addComponent(jLabel2))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(rbCerca, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(rbLejos, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(rbMuyLejos, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(txtRadio)
-                            .addGap(18, 18, 18)
-                            .addComponent(tfRadio, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(txtDensidad)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnGuardarPlaneta)
-                                .addComponent(tfDensidad, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jButton2))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(56, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(rbCerca, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(rbLejos)
+                                .addGap(41, 41, 41)
+                                .addComponent(rbMuyLejos, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(123, 123, 123)))))
                 .addGap(39, 39, 39))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,7 +142,21 @@ public class JFrameCreador extends javax.swing.JFrame {
                         .addComponent(txtNombre))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(79, 79, 79)
-                        .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(149, 149, 149)
+                        .addComponent(txtRadio))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addComponent(tfRadio, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(rbSiVida, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbNoVida, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(148, 148, 148)
+                        .addComponent(btnGuardarPlaneta)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -159,24 +166,24 @@ public class JFrameCreador extends javax.swing.JFrame {
                 .addComponent(txtNombre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbMuyLejos)
                     .addComponent(rbLejos)
+                    .addComponent(rbMuyLejos)
                     .addComponent(rbCerca))
-                .addGap(25, 25, 25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtRadio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(tfRadio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtRadio)
-                    .addComponent(tfRadio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rbNoVida)
+                    .addComponent(rbSiVida))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDensidad)
-                    .addComponent(tfDensidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
                 .addComponent(btnGuardarPlaneta)
-                .addGap(3, 3, 3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
                 .addGap(19, 19, 19))
         );
@@ -191,10 +198,13 @@ public class JFrameCreador extends javax.swing.JFrame {
     private void btnGuardarPlanetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPlanetaActionPerformed
         
         String nombre = tfNombre.getText();
+        int id=2;
         double radio=Double.parseDouble(tfRadio.getText());
-        double densidad=Double.parseDouble(tfDensidad.getText());
         String distancia = rbCerca.getText();
-        System.out.println(nombre + radio + distancia);
+        boolean tieneVida = Boolean.parseBoolean(rbSiVida.getText());
+        Planeta p = new Planeta(id,nombre,radio,distancia,tieneVida);
+        
+        System.out.println(p.toString());
     }//GEN-LAST:event_btnGuardarPlanetaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -205,10 +215,6 @@ public class JFrameCreador extends javax.swing.JFrame {
     private void rbLejosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbLejosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rbLejosActionPerformed
-
-    private void tfDensidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDensidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfDensidadActionPerformed
 
     private void tfRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfRadioActionPerformed
         // TODO add your handling code here:
@@ -260,16 +266,17 @@ public class JFrameCreador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btnGroupDistSol;
+    private javax.swing.ButtonGroup btnGroupVida;
     private javax.swing.JButton btnGuardarPlaneta;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JRadioButton rbCerca;
     private javax.swing.JRadioButton rbLejos;
     private javax.swing.JRadioButton rbMuyLejos;
-    private javax.swing.JTextField tfDensidad;
+    private javax.swing.JRadioButton rbNoVida;
+    private javax.swing.JRadioButton rbSiVida;
     private javax.swing.JTextField tfNombre;
     private javax.swing.JTextField tfRadio;
-    private javax.swing.JLabel txtDensidad;
     private javax.swing.JLabel txtNombre;
     private javax.swing.JLabel txtRadio;
     // End of variables declaration//GEN-END:variables
