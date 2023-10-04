@@ -2,8 +2,8 @@ package com.planeta;
 
 /**
  * Planeta planetium planetare
- * 
- * 
+ *
+ *
  */
 public class Planeta {
 
@@ -60,19 +60,4 @@ public class Planeta {
         this.vida = vida;
     }
 
-    /**
-     * Metodo para crear planetas nuevos
-     * @Pablo Villaseñor
-     */    
-    public Planeta crearPlaneta() {
-        Planeta p=null;
-        
-        
-        
-        //wowo
-        return p;
-    }
-
-    
-    
 }
