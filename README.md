@@ -30,7 +30,7 @@ TAMAÑO DE LOS REGISTROS
 
 Podemos crear 2 clases: Una que tenga los datos(Planeta) y otro que indiique que puedes hacer con ese dato (PlanetaCRUD)
 Planeta(id,nombre...)
-PlanetaCRUD (static guardar(Planeta),static recuperarTodos() List<Planeta>, static agregarPlaneta(Planeta), static buscarPlaneta(Planeta id))
+PlanetaCRUD (static guardar(Planeta),static recuperarTodos() List<Planeta>, static agregarPlaneta(Planeta), static buscarPlaneta(Planeta id)). En realidad cada JFrame es una clase y los botones nos pueden servir de acciones
 
 
 
