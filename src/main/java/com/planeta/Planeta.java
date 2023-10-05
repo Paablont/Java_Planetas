@@ -10,6 +10,7 @@ import java.util.ArrayList;
  */
 public class Planeta implements Serializable{
 
+    //este comentario no vale para nada
     int idPlaneta;
     String nombre;
     double distanciaSolar;
