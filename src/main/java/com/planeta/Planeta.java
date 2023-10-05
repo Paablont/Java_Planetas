@@ -11,13 +11,14 @@ import java.util.ArrayList;
 public class Planeta implements Serializable{
 
     int idPlaneta;
-    String nombre,distanciaSolar;
+    String nombre;
+    double distanciaSolar;
     double radio;
     boolean vida;
     TipoPlaneta tipoPlaneta;
     ArrayList<Satelite> satelite;
 
-    public Planeta( String nombre, String distanciaSolar, double radio, boolean vida, TipoPlaneta tipoPlaneta, ArrayList<Satelite> satelite) {
+    public Planeta( String nombre, double distanciaSolar, double radio, boolean vida, TipoPlaneta tipoPlaneta, ArrayList<Satelite> satelite) {
         this.idPlaneta ++;
         this.nombre = nombre;
         this.distanciaSolar = distanciaSolar;
@@ -43,11 +44,11 @@ public class Planeta implements Serializable{
         this.nombre = nombre;
     }
 
-    public String getDistanciaSolar() {
+    public double getDistanciaSolar() {
         return distanciaSolar;
     }
 
-    public void setDistanciaSolar(String distanciaSolar) {
+    public void setDistanciaSolar(double distanciaSolar) {
         this.distanciaSolar = distanciaSolar;
     }
 
