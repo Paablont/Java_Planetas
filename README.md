@@ -6,7 +6,7 @@ Clases: Planeta, Satelite, Asteroides?
 
 <li>
   <ul>Planetas.txt: Guardará los ids y nombres de los planetas</ul>
-  <ul>PlanetasInfo.dat: Guardará en binario las propiedades de un planeta (radio,distanciaSolar,gravedad,tieneVida)</ul>
+  <ul>PlanetasInfo.dat: Guardará en binario las propiedades de un planeta (radio,distanciaSolar,gravedad,tieneVida,tipoPlaneta). El tipo planeta será Rocoso, Gaseoso o Helado</ul>
   <ul>Satelites.dat: Guardará en binario la información de un satélite de cada planeta RELACIONADO por su id con ese planeta (idPlaneta,nombreSatelite,densidad,anioDescubrimiento)</ul>
 </li>
 
@@ -28,6 +28,9 @@ TAMAÑO DE LOS REGISTROS
 
 </li>
 
+Podemos crear 2 clases: Una que tenga los datos(Planeta) y otro que indiique que puedes hacer con ese dato (PlanetaCRUD)
+Planeta(id,nombre...)
+PlanetaCRUD (static guardar(Planeta),static recuperarTodos() List<Planeta>, static agregarPlaneta(Planeta), static buscarPlaneta(Planeta id)). En realidad cada JFrame es una clase y los botones nos pueden servir de acciones
 
 
 

@@ -1,20 +1,24 @@
 package com.planeta;
 
+import java.io.Serializable;
+
 /**
  * Planeta planetium planetare
- * 
- * 
+ *
+ *
  */
-public class Planeta {
-    
-    int idPlaneta;
-    String nombre;
-    double radio,distanciaSolar;
-    boolean vida;
+public class Planeta implements Serializable{
 
-    public Planeta(int idPlaneta, String nombre, double radio, double distanciaSolar, boolean vida) {
+    int idPlaneta;
+    String nombre,distanciaSolar;
+    double radio;
+    boolean vida;
+    String tipoPlaneta;
+
+    public Planeta(int idPlaneta, String nombre,String tipoPlaneta, double radio, String distanciaSolar, boolean vida) {
         this.idPlaneta = idPlaneta;
         this.nombre = nombre;
+        this.tipoPlaneta = tipoPlaneta;
         this.radio = radio;
         this.distanciaSolar = distanciaSolar;
         this.vida = vida;
@@ -31,40 +35,44 @@ public class Planeta {
     public double getRadio() {
         return radio;
     }
-    
-    public double getDistanciaSolar() {
+
+    public String getDistanciaSolar() {
         return distanciaSolar;
     }
-    
+
     public boolean isVida() {
         return vida;
     }
-    
+
     public void setIdPlaneta(int idPlaneta) {
         this.idPlaneta = idPlaneta;
     }
-    
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
     public void setRadio(double radio) {
         this.radio = radio;
     }
-    
-    public void setDistanciaSolar(double distanciaSolar) {
+
+    public void setDistanciaSolar(String distanciaSolar) {
         this.distanciaSolar = distanciaSolar;
     }
-    
+
     public void setVida(boolean vida) {
         this.vida = vida;
     }
+
+    @Override
+    public String toString() {
+        return "Planeta{" + "idPlaneta=" + idPlaneta 
+                + ", nombre=" + nombre + 
+                ", distanciaSolar=" + distanciaSolar + 
+                ", radio=" + radio + 
+                ", vida=" + vida;
+    }
     
-    //Crear planeta (agregarlo a los ficheros necesarios)
     
-    
-    
-    
-    
-    
+
 }

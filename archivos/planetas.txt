@@ -1,4 +1,0 @@
-1 Mercurio
-2 Venus
-3 Tierra
-4 Marte
