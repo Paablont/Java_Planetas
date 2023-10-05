@@ -1,10 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Jframes;
 
 import com.planeta.Planeta;
+import com.planeta.TipoPlaneta;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -182,9 +180,9 @@ public class JFrameCreador extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfRadio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbSiVida)
-                    .addComponent(rbNoVida))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rbNoVida, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(rbSiVida))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -214,9 +212,9 @@ public class JFrameCreador extends javax.swing.JFrame {
         double radio=Double.parseDouble(tfRadio.getText());
         String distancia = rbCerca.getText();
         boolean tieneVida = Boolean.parseBoolean(rbSiVida.getText());
-        Planeta p = new Planeta(id,nombre,"Rocoso",radio,distancia,tieneVida);
+        //Planeta p = new Planeta(id,nombre,distancia,radio,tieneVida,TipoPlaneta.ROCOSO,Satelite);
         
-        System.out.println(p.toString());
+        //System.out.println(p.toString());
     }//GEN-LAST:event_btnGuardarPlanetaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
