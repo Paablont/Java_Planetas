@@ -13,10 +13,12 @@ public class Planeta implements Serializable{
     String nombre,distanciaSolar;
     double radio;
     boolean vida;
+    String tipoPlaneta;
 
-    public Planeta(int idPlaneta, String nombre, double radio, String distanciaSolar, boolean vida) {
+    public Planeta(int idPlaneta, String nombre,String tipoPlaneta, double radio, String distanciaSolar, boolean vida) {
         this.idPlaneta = idPlaneta;
         this.nombre = nombre;
+        this.tipoPlaneta = tipoPlaneta;
         this.radio = radio;
         this.distanciaSolar = distanciaSolar;
         this.vida = vida;

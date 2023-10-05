@@ -202,11 +202,12 @@ public class JFrameCreador extends javax.swing.JFrame {
     private void btnGuardarPlanetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPlanetaActionPerformed
         
         String nombre = tfNombre.getText();
+       // String tipoPlaneta = Recoger de un slider o algo
         int id=2;
         double radio=Double.parseDouble(tfRadio.getText());
         String distancia = rbCerca.getText();
         boolean tieneVida = Boolean.parseBoolean(rbSiVida.getText());
-        Planeta p = new Planeta(id,nombre,radio,distancia,tieneVida);
+        Planeta p = new Planeta(id,nombre,"Rocoso",radio,distancia,tieneVida);
         
         System.out.println(p.toString());
     }//GEN-LAST:event_btnGuardarPlanetaActionPerformed
