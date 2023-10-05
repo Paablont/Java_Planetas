@@ -6,7 +6,7 @@ Clases: Planeta, Satelite, Asteroides?
 
 <li>
   <ul>Planetas.txt: Guardará los ids y nombres de los planetas</ul>
-  <ul>PlanetasInfo.dat: Guardará en binario las propiedades de un planeta (radio,distanciaSolar,gravedad,tieneVida)</ul>
+  <ul>PlanetasInfo.dat: Guardará en binario las propiedades de un planeta (radio,distanciaSolar,gravedad,tieneVida,tipoPlaneta). El tipo planeta será Rocoso, Gaseoso o Helado</ul>
   <ul>Satelites.dat: Guardará en binario la información de un satélite de cada planeta RELACIONADO por su id con ese planeta (idPlaneta,nombreSatelite,densidad,anioDescubrimiento)</ul>
 </li>
 
