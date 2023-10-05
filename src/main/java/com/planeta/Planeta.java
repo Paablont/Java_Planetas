@@ -13,16 +13,16 @@ public class Planeta implements Serializable{
     //este comentario no vale para nada
     int idPlaneta;
     String nombre;
-    double distanciaSolar;
+    double distSolar;
     double radio;
     boolean vida;
     TipoPlaneta tipoPlaneta;
     ArrayList<Satelite> satelite;
 
-    public Planeta( String nombre, double distanciaSolar, double radio, boolean vida, TipoPlaneta tipoPlaneta, ArrayList<Satelite> satelite) {
+    public Planeta( String nombre, double distSolar, double radio, boolean vida, TipoPlaneta tipoPlaneta, ArrayList<Satelite> satelite) {
         this.idPlaneta ++;
         this.nombre = nombre;
-        this.distanciaSolar = distanciaSolar;
+        this.distSolar = distSolar;
         this.radio = radio;
         this.vida = vida;
         this.tipoPlaneta = tipoPlaneta;
@@ -46,11 +46,11 @@ public class Planeta implements Serializable{
     }
 
     public double getDistanciaSolar() {
-        return distanciaSolar;
+        return distSolar;
     }
 
     public void setDistanciaSolar(double distanciaSolar) {
-        this.distanciaSolar = distanciaSolar;
+        this.distSolar = distanciaSolar;
     }
 
     public double getRadio() {
@@ -88,7 +88,7 @@ public class Planeta implements Serializable{
     public String toString() {
         return "Planeta{" + "idPlaneta=" + idPlaneta 
                 + ", nombre=" + nombre + 
-                ", distanciaSolar=" + distanciaSolar + 
+                ", distanciaSolar=" + distSolar + 
                 ", radio=" + radio + 
                 ", vida=" + vida;
     }
