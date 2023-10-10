@@ -32,7 +32,7 @@ public class PlanetaApp {
         planetas.add(new Planeta(planetas.size() + 1,"Urano", 19.22, 25362.0, false, TipoPlaneta.GASEOSO, sat));
         planetas.add(new Planeta(planetas.size() + 1,"Neptuno", 30.05, 24622.0, false, TipoPlaneta.GASEOSO, sat));      
         //Forma texto
-        String archivoTexto = "planetas.txt";
+        String archivoTexto = ".\\archivos\\planetas.txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivoTexto))) {
             for (Planeta planeta : planetas) {
@@ -45,7 +45,7 @@ public class PlanetaApp {
         }
         //Forma binaria
          // Nombre del archivo binario
-        String archivoBinario = "planetas.dat";
+        String archivoBinario = ".\\archivos\\planetaPropiedades.dat";
 
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(archivoBinario))) {
             for (Planeta planeta : planetas) {
