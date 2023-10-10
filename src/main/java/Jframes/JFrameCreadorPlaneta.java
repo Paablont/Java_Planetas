@@ -294,7 +294,7 @@ public class JFrameCreadorPlaneta extends javax.swing.JFrame {
             //Cuidado con el id jeje
             Planeta p = new Planeta(144,nombre, distancia, radio, tieneVida, tipoPlaneta, listaSatelites);
             //Llamar a los metodos respectivos de guardarTXT y guardarBinario
-            
+            PabloJoseTexto.escribirTexto(p);
         }
 
 
