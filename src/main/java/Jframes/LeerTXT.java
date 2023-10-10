@@ -10,13 +10,15 @@ import java.io.FileReader;
 import java.nio.charset.Charset;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 
 /**
  *
  * @author pablo
  */
 public class LeerTXT extends javax.swing.JFrame {
-
+    private JTextArea jtaArchivo;
+    public JTextArea getTxtNombre() { return jtaArchivo; }
     /**
      * Creates new form LeerTXT
      */
@@ -38,24 +40,14 @@ public class LeerTXT extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         txaArchivo = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
-        btnSelec = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        btnMostrarInfo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         txaArchivo.setColumns(20);
         txaArchivo.setRows(5);
         jScrollPane1.setViewportView(txaArchivo);
-
-        jLabel1.setText("Lectura de un archivo");
-
-        btnSelec.setText("leer planetas.txt");
-        btnSelec.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSelecActionPerformed(evt);
-            }
-        });
 
         jButton2.setText("Salir");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -64,36 +56,36 @@ public class LeerTXT extends javax.swing.JFrame {
             }
         });
 
+        btnMostrarInfo.setText("Mostrar información  del planeta");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addGap(27, 27, 27))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
-                        .addComponent(btnSelec)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                        .addGap(78, 78, 78)
+                        .addComponent(btnMostrarInfo)
+                        .addContainerGap(37, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSelec)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addComponent(btnMostrarInfo)
+                        .addGap(114, 114, 114)
+                        .addComponent(jButton2)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -101,35 +93,6 @@ public class LeerTXT extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    //Metodo para la accion del boton
-    private void btnSelecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecActionPerformed
-        //Hacemos que al pulsar el boton se abra el explorador de archivos
-        String pathArchivoTXT = ".\\archivos\\planetas.txt";
-        //Abrir el campo de dialogo sin nada dentro para poder desplazarnos
-        
-        try{
-            //Como leeremos un archivo, objeto de tipo FileReader
-            FileReader fr = new FileReader(pathArchivoTXT);
-            
-            BufferedReader br = new BufferedReader(fr);
-            String texto="",linea="";
-            
-            //Recorremos archivo y la añadimos a texto
-            while(((linea=br.readLine()) != null)){
-                texto+=linea+"\n";
-                
-                
-            }
-            //Colocamos el texto en el area de texto
-            txaArchivo.setText(texto);
-            //Un mensaje para comprobar que se ha leido bien
-            
-            
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Archivo no encontrado" + e);
-        }
-    }//GEN-LAST:event_btnSelecActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -170,9 +133,8 @@ public class LeerTXT extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSelec;
+    private javax.swing.JButton btnMostrarInfo;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txaArchivo;
     // End of variables declaration//GEN-END:variables

@@ -1,11 +1,14 @@
 
 package Jframes;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,7 +44,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Carlito", 1, 18)); // NOI18N
         jLabel1.setText("PLANETARIO DE PLANETAS ESPACIALES");
 
-        jButton1.setText("Mostrar datos de los planetas");
+        jButton1.setText("Mostrar planetas");
         jButton1.setActionCommand("Abrir ventana lectura txt");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,11 +80,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         .addComponent(jButton2)
                         .addGap(42, 42, 42))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(108, 108, 108))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton3)
                         .addGap(128, 128, 128))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(141, 141, 141)
+                .addComponent(jButton1)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,6 +121,32 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         LeerTXT frameLectura = new LeerTXT();
         frameLectura.setVisible(true);
+         //Hacemos que al pulsar el boton se abra el explorador de archivos
+        String pathArchivoTXT = ".\\archivos\\planetas.txt";
+        //Abrir el campo de dialogo sin nada dentro para poder desplazarnos
+        
+        try{
+            //Como leeremos un archivo, objeto de tipo FileReader
+            FileReader fr = new FileReader(pathArchivoTXT);
+            
+            BufferedReader br = new BufferedReader(fr);
+            String texto="",linea="";
+            
+            //Recorremos archivo y la añadimos a texto
+            while(((linea=br.readLine()) != null)){
+                texto+=linea+"\n";
+                
+                
+            }
+            //Colocamos el texto en el area de texto
+            
+            
+            //Un mensaje para comprobar que se ha leido bien
+            
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Archivo no encontrado" + e);
+        }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
