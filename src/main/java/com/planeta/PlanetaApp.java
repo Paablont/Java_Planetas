@@ -19,6 +19,7 @@ import org.apache.logging.log4j.Logger;
  * @author @Pablo Villaseñor Ruiz
  */
 public class PlanetaApp {
+    static String archivoBinario = ".\\archivos\\planetaPropiedades.dat";
 
     public static void main(String[] args) {
 //        MenuPrincipal menu = new MenuPrincipal();
@@ -54,7 +55,7 @@ public class PlanetaApp {
             }
             //Forma binaria
             // Nombre del archivo binario
-            String archivoBinario = ".\\archivos\\planetaPropiedades.dat";
+            
 
             try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(archivoBinario))) {
                 for (Planeta planeta : planetas) {
