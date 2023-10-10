@@ -221,7 +221,7 @@ public class JFrameCreadorPlaneta extends javax.swing.JFrame {
                     .addComponent(rbHelado)
                     .addComponent(rbRocoso))
                 .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtDIstSolKM)
                     .addComponent(txtMaxSlider))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
@@ -291,7 +291,8 @@ public class JFrameCreadorPlaneta extends javax.swing.JFrame {
 
         } else {
             JOptionPane.showMessageDialog(this, "El planeta se ha creado correctamente");
-            Planeta p = new Planeta(nombre, distancia, radio, tieneVida, tipoPlaneta, listaSatelites);
+            //Cuidado con el id jeje
+            Planeta p = new Planeta(144,nombre, distancia, radio, tieneVida, tipoPlaneta, listaSatelites);
             //Llamar a los metodos respectivos de guardarTXT y guardarBinario
         }
 

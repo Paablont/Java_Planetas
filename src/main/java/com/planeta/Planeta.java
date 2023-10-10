@@ -19,8 +19,8 @@ public class Planeta implements Serializable{
     TipoPlaneta tipoPlaneta;
     ArrayList<Satelite> satelite;
 
-    public Planeta( String nombre, double distSolar, double radio, boolean vida, TipoPlaneta tipoPlaneta, ArrayList<Satelite> satelite) {
-        this.idPlaneta ++;
+    public Planeta(int idPlaneta, String nombre, double distSolar, double radio, boolean vida, TipoPlaneta tipoPlaneta, ArrayList<Satelite> satelite) {
+        this.idPlaneta = idPlaneta;
         this.nombre = nombre;
         this.distSolar = distSolar;
         this.radio = radio;
@@ -28,6 +28,8 @@ public class Planeta implements Serializable{
         this.tipoPlaneta = tipoPlaneta;
         this.satelite = satelite;
     }
+
+        
 
     public int getIdPlaneta() {
         return idPlaneta;
