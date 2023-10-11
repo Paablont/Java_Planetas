@@ -19,7 +19,7 @@ import org.apache.logging.log4j.Logger;
  * @author @Pablo Villaseñor Ruiz
  */
 public class PlanetaApp {
-    static String archivoBinario = ".\\archivos\\planetaPropiedades.dat";
+    static String archivoBinario = ".\\archivos\\planetasPropiedades\\";
     static Logger logger = LogManager.getRootLogger();
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
@@ -27,9 +27,7 @@ public class PlanetaApp {
         //Declaramos un objeto de la clase Jfram LeerTXT
 //        menu.setVisible(true);
         String archivoTexto = ".\\archivos\\planetas.txt";
-        File archivo = new File(archivoTexto);
-        File archivoBi = new File(archivoBinario);
-        
+        File archivo = new File(archivoTexto);    
 
         ArrayList<Satelite> sat = null;
         ArrayList<Planeta> planetas = new ArrayList<>();
@@ -51,7 +49,7 @@ public class PlanetaApp {
 
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivoTexto))) {
                 for (Planeta planeta : planetas) {
-                    writer.write("ID: " + planeta.getIdPlaneta() + ", Nombre: " + planeta.getNombre());
+                    writer.write(planeta.getIdPlaneta() + "," + planeta.getNombre());
                     writer.newLine();
                 }
                 System.out.println("Archivo de texto creado con éxito.");
