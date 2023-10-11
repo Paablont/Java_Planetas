@@ -7,12 +7,12 @@ package com.planeta;
 public class Satelite {
     String nombre;
     double densidad;
-    int anioDescubrimiento;
+    String fechaDescubrimiento;
 
-    public Satelite(String nombre, double densidad, int anioDescubrimiento) {
+    public Satelite(String nombre, double densidad, String fechaDescubrimiento) {
         this.nombre = nombre;
         this.densidad = densidad;
-        this.anioDescubrimiento = anioDescubrimiento;
+        this.fechaDescubrimiento = fechaDescubrimiento;
     }
 
     public String getNombre() {
@@ -31,12 +31,14 @@ public class Satelite {
         this.densidad = densidad;
     }
 
-    public int getAnioDescubrimiento() {
-        return anioDescubrimiento;
+    public String getFechaDescubrimiento() {
+        return fechaDescubrimiento;
     }
 
-    public void setAnioDescubrimiento(int anioDescubrimiento) {
-        this.anioDescubrimiento = anioDescubrimiento;
+    public void setFechaDescubrimiento(String fechaDescubrimiento) {
+        this.fechaDescubrimiento = fechaDescubrimiento;
     }
+
+    
     
 }
