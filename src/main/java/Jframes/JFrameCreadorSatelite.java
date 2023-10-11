@@ -4,12 +4,20 @@
  */
 package Jframes;
 
+import com.planeta.Satelite;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Alumno
  */
 public class JFrameCreadorSatelite extends javax.swing.JFrame {
-
+    private String nombre;
+    private double densidad;
+    private String fecha;
     /**
      * Creates new form JFrameCreadorSatelite
      */
@@ -34,6 +42,7 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
         textAnioDesSatelite = new javax.swing.JLabel();
         TextFieldAnioSatelite = new javax.swing.JTextField();
         btnCrearSatelite = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,13 +52,20 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
         txtsatelite.setText("SATELITE");
 
         txtnombresatelite.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        txtnombresatelite.setText("Nombre");
+        txtnombresatelite.setText("Nombre          ");
 
-        txtdensidad.setText("Densidad");
+        txtdensidad.setText("Densidad      g/cm3");
 
         textAnioDesSatelite.setText("Año de descubrimiento");
 
         btnCrearSatelite.setText("Crear!");
+        btnCrearSatelite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearSateliteActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("(DD/MM/YYYY)");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -58,49 +74,58 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(txtsatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(166, 166, 166)
+                        .addComponent(btnCrearSatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGap(150, 150, 150)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtsatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtnombresatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtdensidad, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(38, 38, 38)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldDensidad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cajatextonombresatelite, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(14, 14, 14)
+                                .addComponent(txtnombresatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(textAnioDesSatelite)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(TextFieldAnioSatelite)))))
-                .addContainerGap(99, Short.MAX_VALUE))
+                                .addComponent(textAnioDesSatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TextFieldAnioSatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnCrearSatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(162, 162, 162))
+                .addGap(12, 161, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cajatextonombresatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldDensidad, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtdensidad, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(128, 128, 128))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap()
                 .addComponent(txtsatelite)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtnombresatelite)
-                    .addComponent(cajatextonombresatelite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(txtnombresatelite)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cajatextonombresatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtdensidad, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextFieldDensidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtdensidad)
-                    .addComponent(jTextFieldDensidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textAnioDesSatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(TextFieldAnioSatelite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textAnioDesSatelite)
-                    .addComponent(TextFieldAnioSatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
                 .addComponent(btnCrearSatelite)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addGap(52, 52, 52))
         );
 
         txtnombresatelite.getAccessibleContext().setAccessibleName("");
@@ -108,6 +133,29 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCrearSateliteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearSateliteActionPerformed
+        // TODO add your handling code here:
+        String densidadAux;
+        String fechaAux;
+        nombre=cajatextonombresatelite.getText();
+        densidadAux=jTextFieldDensidad.getText();
+        if (esNumeroJose(densidadAux)) {
+            densidad=Double.parseDouble(densidadAux);
+        }else{
+            JOptionPane.showMessageDialog(null, "El número no es válido", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        fechaAux=TextFieldAnioSatelite.getText();
+        if (validarFechaJose(fechaAux)) {
+            fecha=fechaAux;
+            Satelite s=new Satelite(nombre,densidad,fecha);
+            System.out.println(s.toString());
+        }else{
+            JOptionPane.showMessageDialog(null, "La fecha no es valida", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+      
+    }//GEN-LAST:event_btnCrearSateliteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,11 +191,41 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
             }
         });
     }
+     public static boolean validarFechaJose(String fecha) {
+        DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        try {
+            LocalDate.parse(fecha, formatoFecha);
+            return true; // La fecha es válida
+        } catch (DateTimeParseException e) {
+            return false; // La fecha no es válida
+        }
+    }
+     public static boolean esNumeroJose(String input) {
+        try {
+            // Intenta convertir la cadena en un número double
+            Double.parseDouble(input);
+            return true; // La conversión tiene éxito, es un número válido
+        } catch (NumberFormatException e) {
+            return false; // La conversión lanza una excepción, no es un número válido
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TextFieldAnioSatelite;
     private javax.swing.JButton btnCrearSatelite;
     private javax.swing.JTextField cajatextonombresatelite;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jTextFieldDensidad;
     private javax.swing.JLabel textAnioDesSatelite;
     private javax.swing.JLabel txtdensidad;
