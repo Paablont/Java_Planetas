@@ -20,19 +20,24 @@ import org.apache.logging.log4j.Logger;
  */
 public class PlanetaApp {
     static String archivoBinario = ".\\archivos\\planetaPropiedades.dat";
+    static Logger logger = LogManager.getRootLogger();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
 //        MenuPrincipal menu = new MenuPrincipal();
         //Declaramos un objeto de la clase Jfram LeerTXT
 //        menu.setVisible(true);
         String archivoTexto = ".\\archivos\\planetas.txt";
         File archivo = new File(archivoTexto);
-        Logger logger = LogManager.getRootLogger();
+        File archivoBi = new File(archivoBinario);
+        
 
         ArrayList<Satelite> sat = null;
         ArrayList<Planeta> planetas = new ArrayList<>();
         if (archivo.exists()) {
+            planetas.add(new Planeta(11, "Caracol", 0.39, 2439.7, false, TipoPlaneta.ROCOSO, sat));
             logger.trace("Ya esta creado");
+            RamonMiguelBinario.ingresarPlaneta(planetas);
+            RamonMiguelBinario.leerPlanetaCarac();
         } else {
             planetas.add(new Planeta(1, "Mercurio", 0.39, 2439.7, false, TipoPlaneta.ROCOSO, sat));
             planetas.add(new Planeta(planetas.size() + 1, "Venus", 0.72, 6051.8, false, TipoPlaneta.ROCOSO, sat));
@@ -56,18 +61,9 @@ public class PlanetaApp {
             //Forma binaria
             // Nombre del archivo binario
             
-
-            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(archivoBinario))) {
-                for (Planeta planeta : planetas) {
-                    // Crear un nuevo objeto Planeta solo con ID y otras propiedades (sin nombre)
-                    Planeta planetaSinNombre = new Planeta(planeta.getIdPlaneta(), planeta.getNombre(), planeta.getDistanciaSolar(), planeta.getRadio(), planeta.isVida(), planeta.getTipoPlaneta(), planeta.getSatelite());
-
-                    oos.writeObject(planetaSinNombre);
-                }
-                System.out.println("Archivo binario creado con éxito.");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            RamonMiguelBinario.ingresarPlaneta(planetas);
+            RamonMiguelBinario.leerPlanetaCarac();
+            
         }
     }
 }
