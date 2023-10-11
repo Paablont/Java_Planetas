@@ -7,8 +7,11 @@ package Jframes;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.lang.System.Logger.Level;
 import java.nio.charset.Charset;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
@@ -17,8 +20,10 @@ import javax.swing.JTextArea;
  * @author pablo
  */
 public class LeerTXT extends javax.swing.JFrame {
-    private JTextArea jtaArchivo;
-    public JTextArea getTxtNombre() { return jtaArchivo; }
+   
+    public JList getJTextArea(){
+        return jlListaPlanetas;
+    }
     /**
      * Creates new form LeerTXT
      */
@@ -38,16 +43,12 @@ public class LeerTXT extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txaArchivo = new javax.swing.JTextArea();
         jButton2 = new javax.swing.JButton();
         btnMostrarInfo = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jlListaPlanetas = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        txaArchivo.setColumns(20);
-        txaArchivo.setRows(5);
-        jScrollPane1.setViewportView(txaArchivo);
 
         jButton2.setText("Salir");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -57,36 +58,49 @@ public class LeerTXT extends javax.swing.JFrame {
         });
 
         btnMostrarInfo.setText("Mostrar información  del planeta");
+        btnMostrarInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarInfoActionPerformed(evt);
+            }
+        });
+
+        jlListaPlanetas.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane3.setViewportView(jlListaPlanetas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton2)
-                        .addGap(27, 27, 27))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
+                        .addGap(23, 23, 23))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnMostrarInfo)
-                        .addContainerGap(37, Short.MAX_VALUE))))
+                        .addGap(77, 77, 77))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
                         .addComponent(btnMostrarInfo)
-                        .addGap(114, 114, 114)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(102, 102, 102))
         );
 
         pack();
@@ -96,6 +110,13 @@ public class LeerTXT extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnMostrarInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarInfoActionPerformed
+     
+         
+       
+    
+    }//GEN-LAST:event_btnMostrarInfoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -128,14 +149,16 @@ public class LeerTXT extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new LeerTXT().setVisible(true);
+                
             }
         });
     }
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMostrarInfo;
     private javax.swing.JButton jButton2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea txaArchivo;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JList<String> jlListaPlanetas;
     // End of variables declaration//GEN-END:variables
 }
