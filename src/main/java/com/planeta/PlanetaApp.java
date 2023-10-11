@@ -57,11 +57,9 @@ public class PlanetaApp {
                 e.printStackTrace();
             }
             //Forma binaria
-            // Nombre del archivo binario
-            
+            // Nombre del archivo binario   
             RamonMiguelBinario.ingresarPlaneta(planetas);
-            RamonMiguelBinario.leerPlanetaCarac();
-            
+            RamonMiguelBinario.leerPlanetaCarac(); 
         }
     }
 }

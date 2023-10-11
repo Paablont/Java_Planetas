@@ -18,37 +18,41 @@ import java.util.ArrayList;
 public class RamonMiguelBinario {
 
     public static void ingresarPlaneta1a1(Planeta p) throws IOException {
-            
+        File f = new File(PlanetaApp.archivoBinario);
+        if (!f.exists()) {
+            f.mkdirs();
+        }
+        String nombreArchivo = PlanetaApp.archivoBinario + p.getIdPlaneta() + "_" + p.getNombre() + ".bin";
+        try ( ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(nombreArchivo))) {
+            oos.writeObject(p);
+            System.out.println("Objeto Planeta agregado con éxito en el archivo " + nombreArchivo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void ingresarPlaneta(ArrayList<Planeta> planetas) throws FileNotFoundException, IOException {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(PlanetaApp.archivoBinario))) {
-                for (Planeta planeta : planetas) {
-                    // Crear un nuevo objeto Planeta solo con ID y otras propiedades (sin nombre)
-                    Planeta planetaSinNombre = new Planeta(planeta.getIdPlaneta(), planeta.getNombre(), planeta.getDistanciaSolar(), planeta.getRadio(), planeta.isVida(), planeta.getTipoPlaneta(), planeta.getSatelite());
-
-                    oos.writeObject(planetaSinNombre);
-                }
-                System.out.println("Archivo binario creado con éxito.");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        for (Planeta p : planetas) {
+            ingresarPlaneta1a1(p);
+        }
     }
 
     public static void leerPlanetaCarac() throws FileNotFoundException, IOException {
-        Planeta plane;
-        try ( ObjectInputStream oIS = new ObjectInputStream(new FileInputStream(PlanetaApp.archivoBinario))) {
-            int i = 1;
-            boolean eof = false;
-            while (!eof) {
-                try {
-                    plane = (Planeta) oIS.readObject();
-                    System.out.println(i++ + "=>" + plane);
-                } catch (IOException iOException) {
-                    eof = true;
-                } catch (ClassNotFoundException ex) {
-                    eof = true;
-                    System.out.println("El objeto leÃ­do no era del tipo esperado");
+        File directorioPlanetas = new File(PlanetaApp.archivoBinario);
+
+        if (directorioPlanetas.exists() && directorioPlanetas.isDirectory()) {
+            File[] archivos = directorioPlanetas.listFiles();
+
+            if (archivos != null) {
+                for (File archivo : archivos) {
+                    if (archivo.isFile()) {
+                        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivo))) {
+                            Planeta planeta = (Planeta) ois.readObject();
+                            System.out.println("Leyendo " + archivo.getName() + ": " + planeta);
+                        } catch (IOException | ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
             }
         }
