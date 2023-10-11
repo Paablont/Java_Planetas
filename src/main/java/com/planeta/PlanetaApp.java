@@ -31,10 +31,11 @@ public class PlanetaApp {
         
             planetas = FactoriaLista.creacion();
             if (archivo.exists()) {
-            planetas.add(new Planeta(11, "Caracol", 0.39, 2439.7, false, TipoPlaneta.ROCOSO, sat));
-            logger.trace("Ya esta creado");
-            RamonMiguelBinario.ingresarPlaneta(planetas);
-            RamonMiguelBinario.leerPlanetaCarac();
+//            planetas.add(new Planeta(11, "Caracol", 0.39, 2439.7, false, TipoPlaneta.ROCOSO, sat));
+//            logger.trace("Ya esta creado");
+//            RamonMiguelBinario.ingresarPlaneta(planetas);
+//            RamonMiguelBinario.leerPlanetaCarac();
+            RamonMiguelBinario.leerPlanetaSolo(11);
         } else {
              try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivoTexto))) {
                 for (Planeta planeta : planetas) {
@@ -47,6 +48,7 @@ public class PlanetaApp {
             }
             RamonMiguelBinario.ingresarPlaneta(planetas);
             RamonMiguelBinario.leerPlanetaCarac(); 
+            RamonMiguelBinario.leerPlanetaSolo(1);
         }
     }
 }
