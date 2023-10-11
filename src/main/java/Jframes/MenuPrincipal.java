@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -139,9 +140,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 
             }
             //Colocamos el texto en el area de texto
+            DefaultListModel<String> listModel = new DefaultListModel<>();
             
             
-            //Un mensaje para comprobar que se ha leido bien
+            
             
             
         }catch(Exception e){
