@@ -27,7 +27,7 @@ public class PlanetaApp {
 //        MenuPrincipal menu = new MenuPrincipal();
         //Declaramos un objeto de la clase Jfram LeerTXT
 //        menu.setVisible(true);
-        ArrayList<Satelite> sat = null;
+        ArrayList<Satelite> sat = new ArrayList<>();
         ArrayList<Planeta> planetas = new ArrayList<>();
         if (archivo.exists()) {
             planetas.add(new Planeta(11, "Caracol", 0.39, 2439.7, false, TipoPlaneta.ROCOSO, sat));
@@ -35,6 +35,15 @@ public class PlanetaApp {
             RamonMiguelBinario.ingresarPlaneta(planetas);
             RamonMiguelBinario.leerPlanetaCarac();
         } else {
+             try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivoTexto))) {
+                for (Planeta planeta : planetas) {
+                    writer.write(planeta.getIdPlaneta() + "," + planeta.getNombre());
+                    writer.newLine();
+                }
+                System.out.println("Archivo de texto creado con éxito.");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             planetas = FactoriaLista.creacion();
             RamonMiguelBinario.ingresarPlaneta(planetas);
             RamonMiguelBinario.leerPlanetaCarac(); 
