@@ -1,6 +1,8 @@
 
 package Jframes;
 
+import com.planeta.PabloJoseRAF;
+import com.planeta.PabloJoseTexto;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -36,20 +38,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnMostrarPlanetas = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnCrearPlaneta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Carlito", 1, 18)); // NOI18N
         jLabel1.setText("PLANETARIO DE PLANETAS ESPACIALES");
 
-        jButton1.setText("Mostrar planetas");
-        jButton1.setActionCommand("Abrir ventana lectura txt");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnMostrarPlanetas.setText("Mostrar planetas disponibles");
+        btnMostrarPlanetas.setActionCommand("Abrir ventana lectura txt");
+        btnMostrarPlanetas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnMostrarPlanetasActionPerformed(evt);
             }
         });
 
@@ -60,10 +62,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Escribir en fichero txt");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnCrearPlaneta.setText("Crear planeta");
+        btnCrearPlaneta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnCrearPlanetaActionPerformed(evt);
             }
         });
 
@@ -81,11 +83,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         .addComponent(jButton2)
                         .addGap(42, 42, 42))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton3)
-                        .addGap(128, 128, 128))))
+                        .addComponent(btnMostrarPlanetas)
+                        .addGap(103, 103, 103))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(141, 141, 141)
-                .addComponent(jButton1)
+                .addGap(130, 130, 130)
+                .addComponent(btnCrearPlaneta)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -94,10 +96,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(39, 39, 39)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                .addComponent(btnMostrarPlanetas)
+                .addGap(32, 32, 32)
+                .addComponent(btnCrearPlaneta)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(17, 17, 17))
         );
@@ -119,46 +121,34 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    /**
+     * Botón  que abre el JFrameMostrarPlanetas y muestra el contenido del planetas.txt
+     * @author Pablo
+     */
+    private void btnMostrarPlanetasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarPlanetasActionPerformed
         JFrameMostrarPlanetas frameLectura = new JFrameMostrarPlanetas();
-       
-         //Hacemos que al pulsar el boton se abra el explorador de archivos
         String pathArchivoTXT = ".\\archivos\\planetas.txt";
-        //Abrir el campo de dialogo sin nada dentro para poder desplazarnos
+        String texto="";
+        texto=PabloJoseTexto.leerFicheroTXT(pathArchivoTXT);
         
-        try{
-            //Como leeremos un archivo, objeto de tipo FileReader
-            FileReader fr = new FileReader(pathArchivoTXT);
-            
-            BufferedReader br = new BufferedReader(fr);
-            String texto="",linea="";
-            
-            //Recorremos archivo y la añadimos a texto
-            while(((linea=br.readLine()) != null)){
-                texto+=linea+"\n";
-                
-                
-            }
-            //Pasamos el conteido del archivo al textArea de la clase LeerTXT
-            frameLectura.getJTextArea().setText(texto);
-            
-            
-            frameLectura.setVisible(true);
-            
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Archivo no encontrado" + e);
-        }
+        //Pasamos el conteido del archivo al textArea de la clase JFrameMostrarPlaneta
+         frameLectura.getJTextArea().setText(texto);
+         frameLectura.setVisible(true);
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnMostrarPlanetasActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         System.exit(EXIT_ON_CLOSE);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    /**
+     * Botón que abre el JFrameCreadorPlanetas
+     * @author Pablo 
+     */
+    private void btnCrearPlanetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPlanetaActionPerformed
         JFrameCreadorPlaneta frameEscribir = new JFrameCreadorPlaneta();
         frameEscribir.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnCrearPlanetaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,9 +187,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnCrearPlaneta;
+    private javax.swing.JButton btnMostrarPlanetas;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
