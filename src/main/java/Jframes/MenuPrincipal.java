@@ -120,8 +120,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        LeerTXT frameLectura = new LeerTXT();
-        frameLectura.setVisible(true);
+        JFrameMostrarPlanetas frameLectura = new JFrameMostrarPlanetas();
+       
          //Hacemos que al pulsar el boton se abra el explorador de archivos
         String pathArchivoTXT = ".\\archivos\\planetas.txt";
         //Abrir el campo de dialogo sin nada dentro para poder desplazarnos
@@ -139,12 +139,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 
                 
             }
-            //Colocamos el texto en el area de texto
-            DefaultListModel<String> listModel = new DefaultListModel<>();
+            //Pasamos el conteido del archivo al textArea de la clase LeerTXT
+            frameLectura.getJTextArea().setText(texto);
             
             
-            
-            
+            frameLectura.setVisible(true);
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Archivo no encontrado" + e);

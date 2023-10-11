@@ -2,7 +2,6 @@ package com.planeta;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import Jframes.LeerTXT;
 import Jframes.MenuPrincipal;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -29,7 +28,9 @@ public class PlanetaApp {
 //        menu.setVisible(true);
         ArrayList<Satelite> sat = new ArrayList<>();
         ArrayList<Planeta> planetas = new ArrayList<>();
-        if (archivo.exists()) {
+        
+            planetas = FactoriaLista.creacion();
+            if (archivo.exists()) {
             planetas.add(new Planeta(11, "Caracol", 0.39, 2439.7, false, TipoPlaneta.ROCOSO, sat));
             logger.trace("Ya esta creado");
             RamonMiguelBinario.ingresarPlaneta(planetas);
@@ -44,9 +45,9 @@ public class PlanetaApp {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            planetas = FactoriaLista.creacion();
             RamonMiguelBinario.ingresarPlaneta(planetas);
             RamonMiguelBinario.leerPlanetaCarac(); 
         }
     }
 }
+
