@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><PLANETAS>
+    <PLANETA NOMBRE="Mercurio">
+        <TIPO>ROCOSO</TIPO>
+    </PLANETA>
+    <PLANETA NOMBRE="Venus">
+        <TIPO>ROCOSO</TIPO>
+    </PLANETA>
+    <PLANETA NOMBRE="Tierra">
+        <TIPO>ROCOSO</TIPO>
+    </PLANETA>
+    <PLANETA NOMBRE="Marte">
+        <TIPO>ROCOSO</TIPO>
+    </PLANETA>
+    <PLANETA NOMBRE="Júpiter">
+        <TIPO>GASEOSO</TIPO>
+    </PLANETA>
+    <PLANETA NOMBRE="Saturno">
+        <TIPO>GASEOSO</TIPO>
+    </PLANETA>
+    <PLANETA NOMBRE="Urano">
+        <TIPO>GASEOSO</TIPO>
+    </PLANETA>
+    <PLANETA NOMBRE="Neptuno">
+        <TIPO>GASEOSO</TIPO>
+    </PLANETA>
+</PLANETAS>
