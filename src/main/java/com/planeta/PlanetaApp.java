@@ -19,6 +19,7 @@ import org.apache.logging.log4j.Logger;
  */
 public class PlanetaApp {
     static String archivoBinario = ".\\archivos\\planetasPropiedades\\";
+    static String carpetaSatelites=".\\archivos\\satelites\\";
     static Logger logger = LogManager.getRootLogger();
     static String archivoTexto = ".\\archivos\\planetas.txt"; 
     static File archivo = new File(archivoTexto);  
@@ -37,19 +38,15 @@ public class PlanetaApp {
 //            RamonMiguelBinario.leerPlanetaCarac();
             RamonMiguelBinario.leerPlanetaSolo(11);
         } else {
-             try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivoTexto))) {
-                for (Planeta planeta : planetas) {
-                    writer.write(planeta.getIdPlaneta() + "," + planeta.getNombre());
-                    writer.newLine();
-                }
-                System.out.println("Archivo de texto creado con éxito.");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            PabloJoseTexto.escribirInicialesTXT(archivoTexto, planetas);
+            PabloJoseRAF.escribirIniciales(archivoTexto,archivoBinario,carpetaSatelites);
             RamonMiguelBinario.ingresarPlaneta(planetas);
             RamonMiguelBinario.leerPlanetaCarac(); 
             RamonMiguelBinario.leerPlanetaSolo(1);
+            
         }
+            
+            
     }
 }
 
