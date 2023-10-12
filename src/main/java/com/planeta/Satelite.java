@@ -1,10 +1,12 @@
 package com.planeta;
 
+import java.io.Serializable;
+
 /**
  *
  * @author @Pablo Villaseñor Ruiz
  */
-public class Satelite {
+public class Satelite implements Serializable {
     String nombre;
     double densidad;
     String fechaDescubrimiento;
