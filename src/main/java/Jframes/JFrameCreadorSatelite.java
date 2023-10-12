@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Jframes;
 
+import com.planeta.PabloJoseRAF;
 import com.planeta.Satelite;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -11,8 +8,8 @@ import java.time.format.DateTimeParseException;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author Alumno
+ * Clase grafica JFRAme para crear un objeto satelite nuevo
+ * @author Jose
  */
 public class JFrameCreadorSatelite extends javax.swing.JFrame {
     private String nombre;
@@ -136,6 +133,7 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
 
     private void btnCrearSateliteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearSateliteActionPerformed
         // TODO add your handling code here:
+        JFrameMostrarPlanetas jfMostrar = new JFrameMostrarPlanetas();
         String densidadAux;
         String fechaAux;
         nombre=cajatextonombresatelite.getText();
@@ -149,7 +147,8 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
         if (validarFechaJose(fechaAux)) {
             fecha=fechaAux;
             Satelite s=new Satelite(nombre,densidad,fecha);
-            System.out.println(s.toString());
+            System.out.println(s.toString()); 
+            //Aqui falta metodo de escribirRAF(s)
         }else{
             JOptionPane.showMessageDialog(null, "La fecha no es valida", "Error", JOptionPane.ERROR_MESSAGE);
         }

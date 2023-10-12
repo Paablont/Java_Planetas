@@ -24,12 +24,28 @@ import java.util.Random;
 public class PabloJoseRAF {
 
     /**
-     * Metodo que escribe un objeto nuevo satelite
+     * Metodo que escribe un objeto nuevo satelite (REVISAR)
      *
      * @author Pablo
      */
-    public static void escribirRAF(Satelite s) {
+    public static void escribirRAF(Satelite s,String nombrePlaneta) {
+           String carpetaSatelites=".\\archivos\\satelites\\satelite" + nombrePlaneta + ".dat";
+           try {
+            // Leer la lista de satélites actual de Júpiter desde el archivo RAF
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(carpetaSatelites));
+            ArrayList<Satelite> satelite = (ArrayList<Satelite>) ois.readObject();
+            ois.close();
 
+            // Agregar el nuevo satélite a la lista
+            satelite.add(s);
+
+            // Escribir la lista actualizada de satélites de Júpiter en el archivo RAF
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(carpetaSatelites));
+            oos.writeObject(satelite);
+            oos.close();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

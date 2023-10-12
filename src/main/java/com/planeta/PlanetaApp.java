@@ -24,9 +24,9 @@ public class PlanetaApp {
     static String archivoTexto = ".\\archivos\\planetas.txt"; 
     static File archivo = new File(archivoTexto);  
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-//        MenuPrincipal menu = new MenuPrincipal();
-        //Declaramos un objeto de la clase Jfram LeerTXT
-//        menu.setVisible(true);
+ MenuPrincipal menu = new MenuPrincipal();
+       
+      menu.setVisible(true);
         ArrayList<Satelite> sat = new ArrayList<>();
         ArrayList<Planeta> planetas = new ArrayList<>();
         
@@ -39,7 +39,7 @@ public class PlanetaApp {
             RamonMiguelBinario.leerPlanetaSolo(11);
         } else {
             PabloJoseTexto.escribirInicialesTXT(archivoTexto, planetas);
-            PabloJoseRAF.escribirIniciales(archivoTexto,archivoBinario,carpetaSatelites);
+            PabloJoseRAF.crearRAFiniciales(archivoTexto,carpetaSatelites,archivoBinario);
             RamonMiguelBinario.ingresarPlaneta(planetas);
             RamonMiguelBinario.leerPlanetaCarac(); 
             RamonMiguelBinario.leerPlanetaSolo(1);

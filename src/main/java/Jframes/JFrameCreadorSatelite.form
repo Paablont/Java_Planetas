@@ -101,9 +101,6 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="txtsatelite">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="12" style="0"/>
-        </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="Form"/>
@@ -113,9 +110,6 @@
     </Component>
     <Component class="javax.swing.JLabel" name="txtnombresatelite">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="12" style="0"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Nombre          "/>
       </Properties>
       <AccessibilityProperties>
