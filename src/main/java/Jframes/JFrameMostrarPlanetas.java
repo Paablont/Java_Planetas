@@ -4,9 +4,12 @@
  */
 package Jframes;
 
+import com.planeta.Planeta;
+import com.planeta.RamonMiguelBinario;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.lang.System.Logger.Level;
 import java.nio.charset.Charset;
 import java.util.logging.Logger;
@@ -14,6 +17,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
@@ -23,6 +27,9 @@ public class JFrameMostrarPlanetas extends javax.swing.JFrame {
    
     public JTextArea getJTextArea(){
         return txaArchivo;
+    }
+    public JTextField getJTextField(){
+          return tfID;
     }
     /**
      * Creates new form LeerTXT
@@ -127,10 +134,21 @@ public class JFrameMostrarPlanetas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnMostrarInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarInfoActionPerformed
-     
-         
-       
-    
+        JFramePropiedadesPlaneta frame = new JFramePropiedadesPlaneta();
+        Planeta planeta = null;
+        int id = Integer.parseInt(getJTextField().getText());
+        try {
+            planeta = RamonMiguelBinario.leerPlanetaSolo(id);
+            frame.getJLabel2().setText(planeta.getNombre());
+            frame.getJLabelDistSol().setText(Double.toString(planeta.getDistanciaSolar()));
+            frame.getJLabelRadio().setText(Double.toString(planeta.getRadio()));
+            frame.getJLabelVida().setText(Boolean.toString(planeta.isVida()));
+            frame.getJLabelTipo().setText(planeta.getTipoPlaneta().toString());
+        } catch (IOException ex) {
+            //Luego poner un logger
+        }
+        
+        frame.setVisible(true);
     }//GEN-LAST:event_btnMostrarInfoActionPerformed
 
     private void tfIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfIDActionPerformed

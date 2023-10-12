@@ -26,6 +26,8 @@ public class RamonMiguelBinario {
         try ( ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(nombreArchivo))) {
             oos.writeObject(p);
             System.out.println("Objeto Planeta agregado con éxito en el archivo " + nombreArchivo);
+            oos.flush();
+            oos.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -57,8 +59,9 @@ public class RamonMiguelBinario {
             }
         }
     }
-    public static void leerPlanetaSolo(int id) throws FileNotFoundException, IOException {
+    public static Planeta leerPlanetaSolo(int id) throws FileNotFoundException, IOException {
         File directorioPlanetas = new File(PlanetaApp.archivoBinario);
+        Planeta plan = null;
 
         if (directorioPlanetas.exists() && directorioPlanetas.isDirectory()) {
             File[] archivos = directorioPlanetas.listFiles();
@@ -68,8 +71,9 @@ public class RamonMiguelBinario {
                     String num = archivo.toString().substring(31,archivo.toString().indexOf('_'));
                     if (num.equals(Integer.toString(id))) {
                         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivo))) {
-                            Planeta planeta = (Planeta) ois.readObject();
-                            System.out.println("Leyendo " + archivo.getName() + ": " + planeta);
+                            plan = (Planeta) ois.readObject();
+                            System.out.println("Leyendo " + archivo.getName() + ": " + plan);
+                            ois.close();
                         } catch (IOException | ClassNotFoundException e) {
                             e.printStackTrace();
                         }
@@ -77,5 +81,6 @@ public class RamonMiguelBinario {
                 }
             }
         }
+        return plan;
     }
 }
