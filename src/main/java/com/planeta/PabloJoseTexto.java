@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -59,6 +60,18 @@ public class PabloJoseTexto {
             JOptionPane.showMessageDialog(null, "Archivo no encontrado" + e);
         }
        return texto; 
+    }
+    
+    public static void escribirInicialesTXT(String rutaArchivo,ArrayList<Planeta> planetas){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo))) {
+                for (Planeta planeta : planetas) {
+                    writer.write(planeta.getIdPlaneta() + "," + planeta.getNombre());
+                    writer.newLine();
+                }
+                System.out.println("Archivo de texto creado con éxito.");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
     }
 }
   
