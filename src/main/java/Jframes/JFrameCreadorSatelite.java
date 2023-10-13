@@ -142,8 +142,10 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
     private void btnCrearSateliteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearSateliteActionPerformed
         // TODO add your handling code here:
         JFrameMostrarPlanetas jfMostrar = new JFrameMostrarPlanetas();
+       
         try {
-            int id = 5;
+            //Falla porque el id no le llega
+            int id = Integer.parseInt(jfMostrar.getJTextField().getText());
             Planeta p = null;
             try {
                 p = RamonMiguelBinario.leerPlanetaSolo(id);
