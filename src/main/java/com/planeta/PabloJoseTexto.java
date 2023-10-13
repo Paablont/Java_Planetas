@@ -25,8 +25,8 @@ public class PabloJoseTexto {
      * @author Jose
      */
     public static void escribirTexto(Planeta p) {
-        String archivoTexto = ".\\archivos\\planetas.txt";
-        try (BufferedWriter fw = new BufferedWriter(new FileWriter(archivoTexto, StandardCharsets.UTF_8, true));) {
+        
+        try (BufferedWriter fw = new BufferedWriter(new FileWriter(Planeta.archivoTXT, StandardCharsets.UTF_8, true));) {
             fw.append(p.getIdPlaneta() + "," + p.getNombre());
             fw.newLine();
             fw.flush();

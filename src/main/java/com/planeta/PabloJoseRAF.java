@@ -29,10 +29,10 @@ public class PabloJoseRAF {
      * @author Pablo
      */
     public static void escribirRAF(Satelite s,String nombrePlaneta) {
-           String carpetaSatelites=".\\archivos\\satelites\\satelite" + nombrePlaneta + ".dat";
+           String direccionRAF = Satelite.archivoRAF + "satelite" + nombrePlaneta + ".dat";
            try {
             // Leer la lista de satélites actual de Júpiter desde el archivo RAF
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(carpetaSatelites));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(direccionRAF));
             ArrayList<Satelite> satelite = (ArrayList<Satelite>) ois.readObject();
             ois.close();
 
@@ -40,7 +40,7 @@ public class PabloJoseRAF {
             satelite.add(s);
 
             // Escribir la lista actualizada de satélites de Júpiter en el archivo RAF
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(carpetaSatelites));
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(direccionRAF));
             oos.writeObject(satelite);
             oos.close();
         } catch (IOException | ClassNotFoundException e) {

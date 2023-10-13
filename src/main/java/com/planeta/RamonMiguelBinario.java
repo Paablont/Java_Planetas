@@ -18,11 +18,11 @@ import java.util.ArrayList;
 public class RamonMiguelBinario {
 
     public static void ingresarPlaneta1a1(Planeta p) throws IOException {
-        File f = new File(PlanetaApp.archivoBinario);
+        File f = new File(Planeta.archivoBinario);
         if (!f.exists()) {
             f.mkdirs();
         }
-        String nombreArchivo = PlanetaApp.archivoBinario + p.getIdPlaneta() + "_" + p.getNombre() + ".bin";
+        String nombreArchivo = Planeta.archivoBinario + p.getIdPlaneta() + "_" + p.getNombre() + ".bin";
         try ( ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(nombreArchivo))) {
             oos.writeObject(p);
             System.out.println("Objeto Planeta agregado con éxito en el archivo " + nombreArchivo);
@@ -40,7 +40,7 @@ public class RamonMiguelBinario {
     }
 
     public static void leerPlanetaCarac() throws FileNotFoundException, IOException {
-        File directorioPlanetas = new File(PlanetaApp.archivoBinario);
+        File directorioPlanetas = new File(Planeta.archivoBinario);
 
         if (directorioPlanetas.exists() && directorioPlanetas.isDirectory()) {
             File[] archivos = directorioPlanetas.listFiles();
@@ -60,7 +60,7 @@ public class RamonMiguelBinario {
         }
     }
     public static Planeta leerPlanetaSolo(int id) throws FileNotFoundException, IOException {
-        File directorioPlanetas = new File(PlanetaApp.archivoBinario);
+        File directorioPlanetas = new File(Planeta.archivoBinario);
         Planeta plan = null;
 
         if (directorioPlanetas.exists() && directorioPlanetas.isDirectory()) {

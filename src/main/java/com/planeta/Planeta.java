@@ -1,5 +1,6 @@
 package com.planeta;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -10,6 +11,8 @@ import java.util.ArrayList;
  */
 public class Planeta implements Serializable{
 
+    static String archivoBinario = "." + File.separatorChar + "archivos" + File.separatorChar + "planetasPropiedades" + File.separatorChar;
+    static String archivoTXT = "." + File.separatorChar + "archivos" + File.separatorChar+ "planetas.txt";
     //este comentario no vale para nada
     int idPlaneta;
     String nombre;

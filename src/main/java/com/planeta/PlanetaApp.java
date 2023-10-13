@@ -18,11 +18,11 @@ import org.apache.logging.log4j.Logger;
  * @author @Pablo Villaseñor Ruiz
  */
 public class PlanetaApp {
-    static String archivoBinario = ".\\archivos\\planetasPropiedades\\";
-    static String carpetaSatelites=".\\archivos\\satelites\\";
+     
+   
     static Logger logger = LogManager.getRootLogger();
-    static String archivoTexto = ".\\archivos\\planetas.txt"; 
-    static File archivo = new File(archivoTexto);  
+    
+    static File archivo = new File(Planeta.archivoTXT);  
     public static void main(String[] args) throws IOException, ClassNotFoundException {
  MenuPrincipal menu = new MenuPrincipal();
        
@@ -38,8 +38,8 @@ public class PlanetaApp {
 //            RamonMiguelBinario.leerPlanetaCarac();
             RamonMiguelBinario.leerPlanetaSolo(11);
         } else {
-            PabloJoseTexto.escribirInicialesTXT(archivoTexto, planetas);
-            PabloJoseRAF.crearRAFiniciales(archivoTexto,carpetaSatelites,archivoBinario);
+            PabloJoseTexto.escribirInicialesTXT(Planeta.archivoTXT, planetas);
+            PabloJoseRAF.crearRAFiniciales(Planeta.archivoTXT,Satelite.archivoRAF,Planeta.archivoBinario);
             RamonMiguelBinario.ingresarPlaneta(planetas);
             RamonMiguelBinario.leerPlanetaCarac(); 
             RamonMiguelBinario.leerPlanetaSolo(1);
