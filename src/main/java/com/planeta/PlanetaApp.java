@@ -39,7 +39,7 @@ public class PlanetaApp {
             RamonMiguelBinario.leerPlanetaSolo(11);
         } else {
             PabloJoseTexto.escribirInicialesTXT(Planeta.archivoTXT, planetas);
-            PabloJoseRAF.crearRAFiniciales(Planeta.archivoTXT,Satelite.archivoRAF,Planeta.archivoBinario);
+            PabloJoseRAF.ingresarSatelite(planetas);
             RamonMiguelBinario.ingresarPlaneta(planetas);
             RamonMiguelBinario.leerPlanetaCarac(); 
             RamonMiguelBinario.leerPlanetaSolo(1);

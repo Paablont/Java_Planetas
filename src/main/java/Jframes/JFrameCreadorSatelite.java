@@ -1,20 +1,28 @@
 package Jframes;
 
 import com.planeta.PabloJoseRAF;
+import com.planeta.Planeta;
+import com.planeta.RamonMiguelBinario;
 import com.planeta.Satelite;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  * Clase grafica JFRAme para crear un objeto satelite nuevo
+ *
  * @author Jose
  */
 public class JFrameCreadorSatelite extends javax.swing.JFrame {
+
     private String nombre;
     private double densidad;
     private String fecha;
+
     /**
      * Creates new form JFrameCreadorSatelite
      */
@@ -134,26 +142,45 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
     private void btnCrearSateliteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearSateliteActionPerformed
         // TODO add your handling code here:
         JFrameMostrarPlanetas jfMostrar = new JFrameMostrarPlanetas();
-        String densidadAux;
-        String fechaAux;
-        nombre=cajatextonombresatelite.getText();
-        densidadAux=jTextFieldDensidad.getText();
-        if (esNumeroJose(densidadAux)) {
-            densidad=Double.parseDouble(densidadAux);
-        }else{
-            JOptionPane.showMessageDialog(null, "El número no es válido", "Error", JOptionPane.ERROR_MESSAGE);
+        try {
+            int id = 5;
+            Planeta p = null;
+            try {
+                p = RamonMiguelBinario.leerPlanetaSolo(id);
+                String densidadAux;
+                String fechaAux;
+                nombre = cajatextonombresatelite.getText();
+                densidadAux = jTextFieldDensidad.getText();
+                if (esNumeroJose(densidadAux)) {
+                    densidad = Double.parseDouble(densidadAux);
+                } else {
+                    JOptionPane.showMessageDialog(null, "El número no es válido", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                fechaAux = TextFieldAnioSatelite.getText();
+                if (validarFechaJose(fechaAux)) {
+                    fecha = fechaAux;
+                    Satelite s = new Satelite(nombre.toCharArray(), densidad, fecha);
+                    System.out.println(s.toString());
+
+                    try {
+                        PabloJoseRAF.escribirRAF(s, p);                        
+                    } catch (IOException ex) {
+                        Logger.getLogger(JFrameCreadorSatelite.class.getName()).log(Level.SEVERE, null, ex);
+                        System.err.println("No se ha escrito nada en el archivo");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "La fecha no es valida", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(JFrameCreadorSatelite.class.getName()).log(Level.SEVERE, null, ex);
+                System.err.println("MAL");
+            }
+
+        } catch (NumberFormatException numberFormatException) {
+            System.err.println("El valor ingresado no es un número válido.");
         }
-        fechaAux=TextFieldAnioSatelite.getText();
-        if (validarFechaJose(fechaAux)) {
-            fecha=fechaAux;
-            Satelite s=new Satelite(nombre,densidad,fecha);
-            System.out.println(s.toString()); 
-            //Aqui falta metodo de escribirRAF(s)
-        }else{
-            JOptionPane.showMessageDialog(null, "La fecha no es valida", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        
-      
+
+
     }//GEN-LAST:event_btnCrearSateliteActionPerformed
 
     /**
@@ -190,7 +217,8 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
             }
         });
     }
-     public static boolean validarFechaJose(String fecha) {
+
+    public static boolean validarFechaJose(String fecha) {
         DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         try {
@@ -200,7 +228,8 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
             return false; // La fecha no es válida
         }
     }
-     public static boolean esNumeroJose(String input) {
+
+    public static boolean esNumeroJose(String input) {
         try {
             // Intenta convertir la cadena en un número double
             Double.parseDouble(input);
@@ -209,16 +238,7 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
             return false; // La conversión lanza una excepción, no es un número válido
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TextFieldAnioSatelite;

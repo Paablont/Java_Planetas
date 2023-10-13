@@ -1,7 +1,7 @@
 package com.planeta;
 
 import java.io.BufferedReader;
-import java.io.DataInputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -11,9 +11,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
 
 /**
  * Clase con los metodos para escribir objetos en ficheros RAF de satelites y
@@ -24,56 +21,43 @@ import java.util.Random;
 public class PabloJoseRAF {
 
     /**
-     * Metodo que escribe un objeto nuevo satelite (REVISAR)
+     * Metodo para escribir un satelite en su archivo correspondiente
      *
      * @author Pablo
      */
-    public static void escribirRAF(Satelite s,String nombrePlaneta) {
-           String direccionRAF = Satelite.archivoRAF + "satelite" + nombrePlaneta + ".dat";
-           try {
-            // Leer la lista de satélites actual de Júpiter desde el archivo RAF
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(direccionRAF));
-            ArrayList<Satelite> satelite = (ArrayList<Satelite>) ois.readObject();
-            ois.close();
+    public static void escribirRAF(Satelite s, Planeta p) throws FileNotFoundException, IOException {
+        String direccionRAF = Satelite.archivoRAF + "satelite" + p.getNombre() + ".dat";
+        RandomAccessFile raf = new RandomAccessFile(new File(direccionRAF), "rw");
 
-            // Agregar el nuevo satélite a la lista
-            satelite.add(s);
+        int nuevoID = (int) (raf.length() / Satelite.TAMAÑO_REGISTRO) + 1; //calculo su nuevo ID, no el que me imponían
 
-            // Escribir la lista actualizada de satélites de Júpiter en el archivo RAF
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(direccionRAF));
-            oos.writeObject(satelite);
-            oos.close();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        //inserta el registro al final del fichero
+        long posicion = (p.getIdPlaneta() - 1) * Satelite.TAMAÑO_REGISTRO;
+        raf.seek(posicion);
+        raf.write(s.getNombreByteArray());
+        raf.writeDouble(s.getDensidad());
+        raf.writeChars(s.getFechaDescubrimiento());
+
+        raf.close();  //cerrar fichero 
     }
 
     /**
-     * Genera el .dat con los satelites iniciales de los planetas iniciales
+     * Recoge la lista de planetas y escribe cada satelite en su archivo
+     * correspondiente
      *
      * @author Pablo
      */
-    public static void crearRAFiniciales(String archivoTXT, String archivoRAF, String archivoBinario) throws ClassNotFoundException {
-        try (BufferedReader bfr = new BufferedReader(new FileReader(archivoTXT))) {
-            String linea;
-            while ((linea = bfr.readLine()) != null) {
-                String[] separador = linea.split(",");
-                if (separador.length == 2) {
-                    int idPlaneta = Integer.parseInt(separador[0]);
-                    String nombrePlaneta = separador[1].trim();
-                    String rafNombre = archivoRAF + "satelites" + nombrePlaneta + ".dat";
-                    
-                    RandomAccessFile raf = new RandomAccessFile(rafNombre, "rw");
-                    
-                    
-                }
+    public static void ingresarSatelite(ArrayList<Planeta> planetas) throws FileNotFoundException, IOException {
+        for (Planeta p : planetas) {
+            // Supongamos que tienes un ArrayList de satélites iniciales en cada objeto Planeta
+            ArrayList<Satelite> satelitesIniciales = p.getSatelite();
+
+            for (Satelite satelite : satelitesIniciales) {
+                escribirRAF(satelite, p);
             }
-            
-            
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
     }
+    
 
 }

@@ -22,14 +22,15 @@ public class FactoriaLista {
         ArrayList<Planeta> planetas = new ArrayList<>();
         if (!PlanetaApp.archivo.exists()) {
             // Satélites reales de los planetas
-            satelitesMercurio.add(new Satelite("Sin satélite", 0.0, "N/A")); // Mercurio
-            satelitesVenus.add(new Satelite("Sin satélite", 0.0, "N/A")); // Venus
-            satelitesTierra.add(new Satelite("Luna", 3.34, "20/07/1969")); // Tierra
-            satelitesMarte.add(new Satelite("Fobos", 1.88, "18/08/1877")); // Marte
-            satelitesJupiter.add(new Satelite("Ganímedes", 1.94, "11/01/1610")); // Júpiter
-            satelitesSaturno.add(new Satelite("Titán", 1.88, "25/03/1655")); // Saturno
-            satelitesUrano.add(new Satelite("Miranda", 1.20, "16/02/1948")); // Urano
-            satelitesNeptuno.add(new Satelite("Tritón", 2.05, "10/10/1846")); // Neptuno
+            satelitesMercurio.add(new Satelite("Sin satélite".toCharArray(), 0.0, "N/A")); // Mercurio
+            satelitesMercurio.add(new Satelite("WOWO".toCharArray(), 5.2, "20/01/2001")); // Mercurio
+            satelitesVenus.add(new Satelite("Sin satélite".toCharArray(), 0.0, "N/A")); // Venus
+            satelitesTierra.add(new Satelite("Luna".toCharArray(), 3.34, "20/07/1969")); // Tierra
+            satelitesMarte.add(new Satelite("Fobos".toCharArray(), 1.88, "18/08/1877")); // Marte
+            satelitesJupiter.add(new Satelite("Ganímedes".toCharArray(), 1.94, "11/01/1610")); // Júpiter
+            satelitesSaturno.add(new Satelite("Titán".toCharArray(), 1.88, "25/03/1655")); // Saturno
+            satelitesUrano.add(new Satelite("Miranda".toCharArray(), 1.20, "16/02/1948")); // Urano
+            satelitesNeptuno.add(new Satelite("Tritón".toCharArray(), 2.05, "10/10/1846")); // Neptuno
 
             planetas.add(new Planeta(1, "Mercurio", 0.39, 2439.7, false, TipoPlaneta.ROCOSO, satelitesMercurio));
             planetas.add(new Planeta(planetas.size() + 1, "Venus", 0.72, 6051.8, false, TipoPlaneta.ROCOSO, satelitesVenus));
