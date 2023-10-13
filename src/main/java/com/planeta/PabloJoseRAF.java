@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class PabloJoseRAF {
 
     /**
-     * Metodo para escribir un satelite en su archivo correspondiente
+     * Metodo para escribir un satelite en su archivo correspondiente 
      *
      * @author Pablo
      */
@@ -29,16 +29,16 @@ public class PabloJoseRAF {
         String direccionRAF = Satelite.archivoRAF + "satelite" + p.getNombre() + ".dat";
         RandomAccessFile raf = new RandomAccessFile(new File(direccionRAF), "rw");
 
-        int nuevoID = (int) (raf.length() / Satelite.TAMAÑO_REGISTRO) + 1; //calculo su nuevo ID, no el que me imponían
+    int nuevoID = (int) (raf.length() / Satelite.TAMAÑO_REGISTRO) + 1; // Calcula el nuevo ID
 
-        //inserta el registro al final del fichero
-        long posicion = (p.getIdPlaneta() - 1) * Satelite.TAMAÑO_REGISTRO;
-        raf.seek(posicion);
-        raf.write(s.getNombreByteArray());
-        raf.writeDouble(s.getDensidad());
-        raf.writeChars(s.getFechaDescubrimiento());
+    // Calcula la posición para insertar el nuevo registro
+    long posicion = (nuevoID - 1) * Satelite.TAMAÑO_REGISTRO;
+    raf.seek(posicion);
+    raf.write(s.getNombreByteArray());
+    raf.writeDouble(s.getDensidad());
+    raf.writeChars(s.getFechaDescubrimiento());
 
-        raf.close();  //cerrar fichero 
+    raf.close();  // Cierra el archivo
     }
 
     /**
