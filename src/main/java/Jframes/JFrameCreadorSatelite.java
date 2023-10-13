@@ -22,12 +22,13 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
     private String nombre;
     private double densidad;
     private String fecha;
-
+    private static int idPlaneta;
     /**
      * Creates new form JFrameCreadorSatelite
      */
-    public JFrameCreadorSatelite() {
+    public JFrameCreadorSatelite(int idPlaneta) {
         initComponents();
+        this.idPlaneta = idPlaneta;
     }
 
     /**
@@ -145,10 +146,10 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
        
         try {
             //Falla porque el id no le llega
-            int id = Integer.parseInt(jfMostrar.getJTextField().getText());
+//            int id = Integer.parseInt(jfMostrar.getJTextField().getText());
             Planeta p = null;
             try {
-                p = RamonMiguelBinario.leerPlanetaSolo(id);
+                p = RamonMiguelBinario.leerPlanetaSolo(idPlaneta);
                 String densidadAux;
                 String fechaAux;
                 nombre = cajatextonombresatelite.getText();
@@ -215,7 +216,8 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFrameCreadorSatelite().setVisible(true);
+                
+                new JFrameCreadorSatelite(idPlaneta).setVisible(true);
             }
         });
     }

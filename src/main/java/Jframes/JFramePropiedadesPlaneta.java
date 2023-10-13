@@ -11,6 +11,7 @@ import javax.swing.JLabel;
  * @author Alumno
  */
 public class JFramePropiedadesPlaneta extends javax.swing.JFrame {
+    private int idPlaneta;
     public JLabel getJLabelDistSol(){
           return jlCambDistSol;
     }
@@ -26,6 +27,9 @@ public class JFramePropiedadesPlaneta extends javax.swing.JFrame {
     public JLabel getJLabel2(){
           return jLabel2;
     }
+    public void setIdDelPlaneta(int id) {
+    this.idPlaneta = id;
+}
     
 
     /**
@@ -197,7 +201,7 @@ public class JFramePropiedadesPlaneta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSatelitesActionPerformed
 
     private void btnCrearSateliteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearSateliteActionPerformed
-        JFrameCreadorSatelite jframeSatelite = new JFrameCreadorSatelite();
+        JFrameCreadorSatelite jframeSatelite = new JFrameCreadorSatelite(idPlaneta);
         jframeSatelite.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_btnCrearSateliteActionPerformed
 

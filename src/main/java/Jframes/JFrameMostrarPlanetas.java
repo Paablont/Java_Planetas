@@ -135,9 +135,12 @@ public class JFrameMostrarPlanetas extends javax.swing.JFrame {
 
     private void btnMostrarInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarInfoActionPerformed
         JFramePropiedadesPlaneta frame = new JFramePropiedadesPlaneta();
+        
         Planeta planeta = null;
         int id = Integer.parseInt(getJTextField().getText());
+        
         try {
+            frame.setIdDelPlaneta(id);
             planeta = RamonMiguelBinario.leerPlanetaSolo(id);
             frame.getJLabel2().setText(planeta.getNombre());
             frame.getJLabelDistSol().setText(Double.toString(planeta.getDistanciaSolar()));
