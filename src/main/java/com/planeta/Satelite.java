@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class Satelite implements Serializable {
    
     public static final String archivoRAF = "." + File.separatorChar + "archivos" + File.separatorChar + "satelites" + File.separatorChar;
-    public static final int TAMAÑO_REGISTRO = 88; //30bytes al String *2bytes + 8 bytes de double + 10bytes a fechaDescubrimiento * 2 bytes) = 
+    public static final int TAMAÑO_REGISTRO = 88; //30 caracteres al String *2bytes + 8 bytes de double + 10bytes a fechaDescubrimiento * 2 bytes) = 
     public static final int TAMAÑO_NOMBRE = 30;
     
     private char[] nombre = new char[Satelite.TAMAÑO_NOMBRE];

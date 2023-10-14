@@ -4,6 +4,12 @@
  */
 package Jframes;
 
+import com.planeta.PabloJoseRAF;
+import com.planeta.Planeta;
+import com.planeta.RamonMiguelBinario;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 
 /**
@@ -196,6 +202,16 @@ public class JFramePropiedadesPlaneta extends javax.swing.JFrame {
     
     private void btnSatelitesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSatelitesActionPerformed
         JFramePropiedadesSatelite jframeSatelite = new JFramePropiedadesSatelite();
+        StringBuilder informacionSatelite=new StringBuilder("");
+        Planeta p;
+        try {
+            p = RamonMiguelBinario.leerPlanetaSolo(idPlaneta);
+            informacionSatelite=PabloJoseRAF.leerFicheroSatelite(p);
+            jframeSatelite.getjTextAreaSatelite().setText(informacionSatelite.toString());
+            jframeSatelite.setVisible(rootPaneCheckingEnabled);
+        } catch (IOException ex) {
+            Logger.getLogger(JFramePropiedadesPlaneta.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
     }//GEN-LAST:event_btnSatelitesActionPerformed
@@ -209,6 +225,7 @@ public class JFramePropiedadesPlaneta extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
