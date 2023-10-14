@@ -9,6 +9,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -23,6 +24,8 @@ import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -31,6 +34,16 @@ import org.w3c.dom.Node;
 public class RamonYMiguelXML {
      // usamos patrón singleton para tener un único objeto properties
     private static final Properties myProperties = new Properties();
+            //Declaración de constantes
+    private static final String PLANETAS = "PLANETAS";
+    private static final String PLANETA = "Planeta";
+    private static final String NOMBRE = "Nombre";
+    private static final String TIPO = "Tipo";
+    private static final String RADIO = "Radio";
+    private static final String DISTANCIA_SOLAR = "Distancia_solar";
+    private static final String VIDA = "Vida";
+    private static final String SATELITE = "Satelite";
+    private static final String ID = "Id";
 
     public static void crearXML(ArrayList<Planeta> planeta) throws Exception {
         // Recuperación del archivo de propiedades para su posterior trabajo
@@ -58,7 +71,7 @@ public class RamonYMiguelXML {
             //Lo creamos el documento,documento xml vacio
             doc = docBuilder.newDocument();
             //creamos el elemento raiz
-            Element rootElement = doc.createElement("PLANETAS");
+            Element rootElement = doc.createElement(PLANETAS);
             //agregamos el documento vacio, se corresponde con <Libros/>
             doc.appendChild(rootElement);
 
@@ -85,7 +98,7 @@ public class RamonYMiguelXML {
             Transformer transformer = transformerFactory.newTransformer();
 
             DOMSource source = new DOMSource(doc);
-            File file = new File("XML_" + fichero_original);
+            File file = new File(fichero_original);
             if (!file.exists()) {
                 file.createNewFile();
             }
@@ -108,24 +121,105 @@ public class RamonYMiguelXML {
      */
     private static Element createNodePlaneta(Document doc, Planeta planeta) throws DOMException {
         // nodo donde colgaremos todos los datos de un libro
-        Element nodeLibro = null;
+        Element nodePlaneta = null;
         try {
-            nodeLibro = doc.createElement("PLANETA");
+            nodePlaneta = doc.createElement(PLANETA);
 
             // atributo del elemento
-            Attr attr = doc.createAttribute("NOMBRE");
-            attr.setValue(planeta.getNombre());
-            nodeLibro.setAttributeNode(attr);
+            Attr attr = doc.createAttribute(ID);
+            attr.setValue(Integer.toString(planeta.getIdPlaneta()));
+            nodePlaneta.setAttributeNode(attr);
 
             // Titulo
-            Element titulo = doc.createElement("TIPO");
-            titulo.appendChild(doc.createTextNode(planeta.getTipoPlaneta().toString()));
-            nodeLibro.appendChild(titulo);
+            Element nombre = doc.createElement(NOMBRE);
+            nombre.appendChild(doc.createTextNode(planeta.getNombre()));
+            nodePlaneta.appendChild(nombre);
+            
+            Element tipoPlaneta = doc.createElement(TIPO);
+            tipoPlaneta.appendChild(doc.createTextNode(planeta.getTipoPlaneta().toString()));
+            nodePlaneta.appendChild(tipoPlaneta);
+            
+            Element radioPlaneta = doc.createElement(RADIO);
+            radioPlaneta.appendChild(doc.createTextNode(Double.toString(planeta.getRadio())));
+            nodePlaneta.appendChild(radioPlaneta);
+            
+            Element distanciaPlaneta = doc.createElement(DISTANCIA_SOLAR);
+            distanciaPlaneta.appendChild(doc.createTextNode(Double.toString(planeta.getDistanciaSolar())));
+            nodePlaneta.appendChild(distanciaPlaneta);
+            
+            Element vidaPlaneta = doc.createElement(VIDA);
+            vidaPlaneta.appendChild(doc.createTextNode(Boolean.toString(planeta.isVida())));
+            nodePlaneta.appendChild(vidaPlaneta);
+            
+            Element satelitePlaneta = doc.createElement(SATELITE);
+            satelitePlaneta.appendChild(doc.createTextNode(planeta.getSatelite().toString()));
+            nodePlaneta.appendChild(satelitePlaneta);
+            
+            
         } catch (DOMException e) {
             System.out.println(e.getLocalizedMessage());
             throw e;
         }
 
-        return nodeLibro;
+        return nodePlaneta;
     }
+
+    public static void leerXML() {
+        // Recuperación del archivo de propiedades para su posterior trabajo
+        try {
+            RamonYMiguelXML.myProperties.load(new FileInputStream("planetas.properties"));
+        } catch (IOException e) {
+            System.out.println("No se pueden cargar la inicialización del programa. Saliendo...");
+            System.exit(100);
+        }
+
+        String fichero_original = RamonYMiguelXML.myProperties.getProperty( "xml_path.old");
+
+        try {
+            Document doc = null; // doc es de tipo Document y representa el árbol DOM
+
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+            dbf.setIgnoringComments(true);
+            dbf.setIgnoringElementContentWhitespace(true);
+
+            DocumentBuilder builder = dbf.newDocumentBuilder();
+            doc = builder.parse(new File(fichero_original));
+            doc.getDocumentElement().normalize();
+
+            System.out.println("Recuperación de la información de los planetas");
+            Planeta planeta;
+            int idplane;
+            String nom; //datos a recuperar de cada libro
+            TipoPlaneta tpPlaneta;
+            Double radio,distSolar;
+            Boolean vida;
+            ArrayList<Satelite> sat = null;
+            //Obtengo la raiz hijo <Libros/>
+            Node raiz = doc.getFirstChild();
+            //Obtenemos Libro
+            NodeList listaNodosPlaneta = raiz.getChildNodes();
+
+            for (int i = 0; i < listaNodosPlaneta.getLength(); i++) {
+                
+                Node nodoPlaneta = listaNodosPlaneta.item(i);
+                if (nodoPlaneta != null && nodoPlaneta.getNodeType() == Node.ELEMENT_NODE) {
+                    Element ePlaneta = (Element) nodoPlaneta;
+                    idplane = Integer.parseInt(ePlaneta.getAttribute(RamonYMiguelXML.ID));
+                    nom = ePlaneta.getElementsByTagName(RamonYMiguelXML.NOMBRE).item(0).getTextContent();
+                    tpPlaneta =TipoPlaneta.parse(ePlaneta.getElementsByTagName(RamonYMiguelXML.TIPO).item(0).getTextContent());
+                    radio = Double.parseDouble(ePlaneta.getElementsByTagName(RamonYMiguelXML.RADIO).item(0).getTextContent());
+                    distSolar = Double.parseDouble(ePlaneta.getElementsByTagName(RamonYMiguelXML.DISTANCIA_SOLAR).item(0).getTextContent());
+                    vida = Boolean.valueOf(ePlaneta.getElementsByTagName(RamonYMiguelXML.DISTANCIA_SOLAR).item(0).getTextContent());
+                    
+                    
+                    planeta = new Planeta(idplane,nom,distSolar,radio,vida,tpPlaneta,sat);
+                    System.out.println(planeta);
+                }
+            }
+        } catch (IOException | DOMException | TransformerFactoryConfigurationError | SAXException | ParserConfigurationException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 }

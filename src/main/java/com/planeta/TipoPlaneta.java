@@ -9,5 +9,14 @@ package com.planeta;
  * @author Alumno
  */
 public enum TipoPlaneta {
-    ROCOSO,GASEOSO,HELADO
+    ROCOSO,GASEOSO,HELADO;
+    public static TipoPlaneta parse(String str){
+        if(ROCOSO.name().equalsIgnoreCase(str)){
+            return ROCOSO;
+        } else if(GASEOSO.name().equalsIgnoreCase(str)){
+            return GASEOSO;
+        }else{
+            return HELADO;
+        }
+    }
 }
