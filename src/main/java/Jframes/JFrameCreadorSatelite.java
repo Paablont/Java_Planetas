@@ -52,12 +52,10 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        txtsatelite.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         txtsatelite.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtsatelite.setLabelFor(this);
         txtsatelite.setText("SATELITE");
 
-        txtnombresatelite.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         txtnombresatelite.setText("Nombre          ");
 
         txtdensidad.setText("Densidad      g/cm3");
@@ -128,7 +126,7 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textAnioDesSatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(TextFieldAnioSatelite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TextFieldAnioSatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnCrearSatelite)
                 .addGap(52, 52, 52))
@@ -152,7 +150,7 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
                 p = RamonMiguelBinario.leerPlanetaSolo(idPlaneta);
                 String densidadAux;
                 String fechaAux;
-                nombre = cajatextonombresatelite.getText();
+                nombre = cajatextonombresatelite.getText()+" ";
                 densidadAux = jTextFieldDensidad.getText();
                 if (esNumeroJose(densidadAux)) {
                     densidad = Double.parseDouble(densidadAux);
@@ -161,7 +159,7 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
                 }
                 fechaAux = TextFieldAnioSatelite.getText();
                 if (validarFechaJose(fechaAux)) {
-                    fecha = fechaAux;
+                    fecha = " "+fechaAux;
                     Satelite s = new Satelite(nombre.toCharArray(), densidad, fecha);
                     System.out.println(s.toString());
 
