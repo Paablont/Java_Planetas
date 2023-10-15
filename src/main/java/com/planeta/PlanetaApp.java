@@ -38,11 +38,11 @@ public class PlanetaApp {
 //            RamonMiguelBinario.leerPlanetaCarac();
             RamonMiguelBinario.leerPlanetaSolo(11);
         } else {
-            PabloJoseTexto.escribirInicialesTXT(Planeta.archivoTXT, planetas);
-            PabloJoseRAF.ingresarSatelite(planetas);
+            PabloJoseTexto.escribirInicialesTXT(Planeta.archivoTXT, planetas);      
             RamonMiguelBinario.ingresarPlaneta(planetas);
             RamonMiguelBinario.leerPlanetaCarac(); 
             RamonMiguelBinario.leerPlanetaSolo(1);
+            PabloJoseRAF.ingresarSatelite(planetas);
             
         }
             
