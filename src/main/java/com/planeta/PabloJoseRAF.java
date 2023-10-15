@@ -78,10 +78,20 @@ public class PabloJoseRAF {
             byte[] leido = new byte[Satelite.TAMAÑO_REGISTRO];
             int bytesRead;
             while ((bytesRead = raf.read(leido)) != -1) {
-                resultado.append(new String(leido, 0, bytesRead, StandardCharsets.UTF_16));
-                if (bytesRead < Satelite.TAMAÑO_REGISTRO) {
+                String registro = new String(leido, 0, bytesRead, StandardCharsets.UTF_16);
+                if (bytesRead > Satelite.TAMAÑO_REGISTRO) {
                     break; // Si no se leyó el tamaño completo, salimos del bucle
                 }
+                 String[] partes = registro.split(" ");
+               
+                String nombre = partes[0];
+                String densidad = partes[1];
+                String añoDescubrimiento = partes[2];
+
+                // Formatear y agregar al resultado
+                resultado.append("Nombre: ").append(nombre).append(", Densidad:").append(densidad).append(", Año de Descubrimiento: ").append(añoDescubrimiento);
+            
+                  
                 resultado.append(System.lineSeparator()); // Agregar un salto de línea
             }
         } catch (FileNotFoundException e) {

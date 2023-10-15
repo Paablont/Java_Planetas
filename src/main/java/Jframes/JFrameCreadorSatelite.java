@@ -49,6 +49,7 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
         TextFieldAnioSatelite = new javax.swing.JTextField();
         btnCrearSatelite = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,15 +72,19 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
 
         jLabel1.setText("(DD/MM/YYYY)");
 
+        jButton2.setText("Salir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(166, 166, 166)
-                        .addComponent(btnCrearSatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(150, 150, 150)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,6 +112,12 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
                             .addComponent(jTextFieldDensidad, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtdensidad, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(128, 128, 128))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(166, 166, 166)
+                .addComponent(btnCrearSatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(44, 44, 44))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,7 +139,9 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(TextFieldAnioSatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnCrearSatelite)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCrearSatelite)
+                    .addComponent(jButton2))
                 .addGap(52, 52, 52))
         );
 
@@ -150,14 +163,15 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
                 p = RamonMiguelBinario.leerPlanetaSolo(idPlaneta);
                 String densidadAux;
                 String fechaAux;
+                nombre=cajatextonombresatelite.getText().trim();
                 nombre = cajatextonombresatelite.getText()+" ";
-                densidadAux = jTextFieldDensidad.getText();
+                densidadAux = jTextFieldDensidad.getText().trim();
                 if (esNumeroJose(densidadAux)) {
                     densidad = Double.parseDouble(densidadAux);
                 } else {
                     JOptionPane.showMessageDialog(null, "El número no es válido", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-                fechaAux = TextFieldAnioSatelite.getText();
+                fechaAux = TextFieldAnioSatelite.getText().trim();
                 if (validarFechaJose(fechaAux)) {
                     fecha = " "+fechaAux;
                     Satelite s = new Satelite(nombre.toCharArray(), densidad, fecha);
@@ -183,6 +197,10 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnCrearSateliteActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        System.exit(EXIT_ON_CLOSE);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,6 +264,7 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
     private javax.swing.JTextField TextFieldAnioSatelite;
     private javax.swing.JButton btnCrearSatelite;
     private javax.swing.JTextField cajatextonombresatelite;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jTextFieldDensidad;
     private javax.swing.JLabel textAnioDesSatelite;
