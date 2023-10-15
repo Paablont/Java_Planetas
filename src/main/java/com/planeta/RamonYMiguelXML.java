@@ -1,8 +1,12 @@
 package com.planeta;
 
+import java.awt.List;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,7 +49,7 @@ public class RamonYMiguelXML {
     private static final String SATELITE = "Satelite";
     private static final String ID = "Id";
 
-    public static void crearXML(ArrayList<Planeta> planeta) throws Exception {
+    public static void crearXML() throws Exception {
         // Recuperación del archivo de propiedades para su posterior trabajo
         try {
             //Creo uno vacio y lo cargo, el objeto no se puede cambiar porque es final
@@ -58,10 +62,7 @@ public class RamonYMiguelXML {
         String fichero_original = RamonYMiguelXML.myProperties.getProperty("xml_path.old");
 
         /*
-         * PARTE A.
-         * Creamos un Document con la raíz llamada "Libros", usando el API de
-         * DOM, y colgamos de esa raíz todos los elementos hijos que
-         * consideremos necesarios.
+         * DOM
          */
         Document doc = null;
         try {
@@ -72,8 +73,9 @@ public class RamonYMiguelXML {
             doc = docBuilder.newDocument();
             //creamos el elemento raiz
             Element rootElement = doc.createElement(PLANETAS);
-            //agregamos el documento vacio, se corresponde con <Libros/>
             doc.appendChild(rootElement);
+            RamonMiguelBinario.leerPlanetaCarac();
+            ArrayList<Planeta> planeta = crearArrayListPlaneta();
 
             Element planetaNode;
             //Creamos un nodo
@@ -88,7 +90,6 @@ public class RamonYMiguelXML {
         }
 
         /*
-         * PARTE B.
          * Escribimos el objeto Document, que tenemos en memoria, a un archivo
          */
         try {
@@ -110,12 +111,11 @@ public class RamonYMiguelXML {
     }
 
     /**
-     * Crea un nodo de tipo &lt;Libro&gt; con todos los datos que necesite, y lo
-     * devuelve en formato Element.
+     * Creamos Nodo de planeta
      *
-     * @param doc Document para ayudarnos a crear los elementos necesarios
-     * @param libro libro a considerar para su transformación a XML
-     * @return Element libro en formato XML
+     * @param doc
+     * @param planeta
+     * @return
      * @throws DOMException
      */
     private static Element createNodePlaneta(Document doc, Planeta planeta) throws DOMException {
@@ -265,4 +265,28 @@ public class RamonYMiguelXML {
         }
         return satelites;
     }
+
+    public static ArrayList<Planeta> crearArrayListPlaneta() throws IOException {
+        ArrayList<Planeta> listaObjetos = new ArrayList<>();
+        File carpeta = new File(Planeta.archivoBinario);
+
+        if (carpeta.exists() && carpeta.isDirectory()) {
+            File[] archivos = carpeta.listFiles();
+
+            for (File archivo : archivos) {
+                if (archivo.isFile() && archivo.getName().endsWith(".bin")) {
+                    try ( ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivo))) {
+                        Planeta objeto = (Planeta) ois.readObject();
+                        listaObjetos.add(objeto);
+                    } catch (IOException | ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        return listaObjetos;
+        // Ahora, listaObjetos contiene todos los objetos leídos de los archivos binarios en la carpeta.
+    }
+    // Ahora, listaObjetos contiene todos los objetos leídos del archivo.
 }
+

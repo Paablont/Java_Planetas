@@ -16,9 +16,9 @@ import java.util.ArrayList;
  * @author Alumno
  */
 public class RamonMiguelBinario {
-
+        static File f = new File(Planeta.archivoBinario);
     public static void ingresarPlaneta1a1(Planeta p) throws IOException {
-        File f = new File(Planeta.archivoBinario);
+       
         if (!f.exists()) {
             f.mkdirs();
         }
