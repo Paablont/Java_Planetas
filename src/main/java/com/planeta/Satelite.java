@@ -68,6 +68,9 @@ public class Satelite implements Serializable {
         this.fechaDescubrimiento = fechaDescubrimiento;
     }
 
-   
+    @Override
+    public String toString() {
+        return "Satelite{" + "nombre: " + String.copyValueOf(nombre) + ", densidad: " + densidad + ", fechaDescubrimiento: " + fechaDescubrimiento + '}';
+    }
     
 }
