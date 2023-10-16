@@ -32,7 +32,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 /**
- *
+ *Clase para crear y leer XML
  * @author migue
  */
 public class RamonYMiguelXML {
@@ -55,15 +55,20 @@ public class RamonYMiguelXML {
     private static final String FECHA_DESCUBRIMIENTO = "fechaDescubrimiento";
     private static final String PROPERTIES = "planetas.properties";
 
+    /**
+     * Creación de archivo XML
+     * @throws Exception 
+     */
     public static void crearXML() throws Exception {
 
         String rutaArchivoXML = "mis_planetas.xml";
         File archivoXML = new File(rutaArchivoXML);
-        if (archivoXML.exists()) {
-            if (archivoXML.delete()) {
-                PlanetaApp.logger.info("Archivo XML eliminado con éxito.");
-            }
-        }
+        //Borramos el archivo xml para actualizarlo
+//        if (archivoXML.exists()) {
+//            if (archivoXML.delete()) {
+//                PlanetaApp.logger.info("Archivo XML eliminado con éxito.");
+//            }
+//        }
         // Recuperación del archivo de propiedades para su posterior trabajo
         try {
             //Creo uno vacio y lo cargo, el objeto no se puede cambiar porque es final
@@ -195,6 +200,9 @@ public class RamonYMiguelXML {
         return nodePlaneta;
     }
 
+    /**
+     * Método para leer archivo XML
+     */
     public static void leerXML() {
         // Recuperación del archivo de propiedades para su posterior trabajo
         try {
@@ -229,6 +237,7 @@ public class RamonYMiguelXML {
             Node raiz = doc.getFirstChild();
             NodeList listaNodosPlaneta = raiz.getChildNodes();
 
+            //Vemos losplanetas que tenemos
             for (int i = 0; i < listaNodosPlaneta.getLength(); i++) {
 
                 Node nodoPlaneta = listaNodosPlaneta.item(i);
@@ -263,6 +272,11 @@ public class RamonYMiguelXML {
         }
     }
 
+    /**
+     * Métodos para pasar de Array a To String
+     * @param sat
+     * @return 
+     */
     public static String ArrayToString(ArrayList<Satelite> sat) {
         StringBuilder str = new StringBuilder();
         for (Satelite strSatelite : sat) {
@@ -271,6 +285,11 @@ public class RamonYMiguelXML {
         return str.toString();
     }
 
+    /**
+     * Método para crear lista de planetas
+     * @return
+     * @throws IOException 
+     */
     public static ArrayList<Planeta> crearArrayListPlaneta() throws IOException {
         ArrayList<Planeta> listaObjetos = new ArrayList<>();
         File carpeta = new File(Planeta.archivoBinario);

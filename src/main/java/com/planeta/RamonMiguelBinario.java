@@ -12,13 +12,20 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 
 /**
- *
- * @author Alumno
+ * Clase para Crear y leer Binario
+ * @author migue
  */
 public class RamonMiguelBinario {
-        static File f = new File(Planeta.archivoBinario);
+
+    static File f = new File(Planeta.archivoBinario);
+
+    /**
+     * Método para ingresar  un planeta
+     * @param p
+     * @throws IOException 
+     */
     public static void ingresarPlaneta1a1(Planeta p) throws IOException {
-       
+
         if (!f.exists()) {
             f.mkdirs();
         }
@@ -33,12 +40,23 @@ public class RamonMiguelBinario {
         }
     }
 
+    /**
+     * Método para ingresar una lista de planetas
+     * @param planetas
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
     public static void ingresarPlaneta(ArrayList<Planeta> planetas) throws FileNotFoundException, IOException {
         for (Planeta p : planetas) {
             ingresarPlaneta1a1(p);
         }
     }
 
+    /**
+     * Método para leer planetas
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
     public static void leerPlanetaCarac() throws FileNotFoundException, IOException {
         File directorioPlanetas = new File(Planeta.archivoBinario);
 
@@ -48,7 +66,7 @@ public class RamonMiguelBinario {
             if (archivos != null) {
                 for (File archivo : archivos) {
                     if (archivo.isFile()) {
-                        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivo))) {
+                        try ( ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivo))) {
                             Planeta planeta = (Planeta) ois.readObject();
                             PlanetaApp.logger.info("Leyendo " + archivo.getName() + ": " + planeta);
                         } catch (IOException | ClassNotFoundException e) {
@@ -59,6 +77,14 @@ public class RamonMiguelBinario {
             }
         }
     }
+
+    /**
+     * Método para leer planetas según su ID
+     * @param id
+     * @return
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
     public static Planeta leerPlanetaSolo(int id) throws FileNotFoundException, IOException {
         File directorioPlanetas = new File(Planeta.archivoBinario);
         Planeta plan = null;
@@ -68,9 +94,9 @@ public class RamonMiguelBinario {
 
             if (archivos != null) {
                 for (File archivo : archivos) {
-                    String num = archivo.toString().substring(31,archivo.toString().indexOf('_'));
+                    String num = archivo.toString().substring(31, archivo.toString().indexOf('_'));
                     if (num.equals(Integer.toString(id))) {
-                        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivo))) {
+                        try ( ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivo))) {
                             plan = (Planeta) ois.readObject();
                             PlanetaApp.logger.info("Leyendo " + archivo.getName() + ": " + plan);
                             ois.close();
