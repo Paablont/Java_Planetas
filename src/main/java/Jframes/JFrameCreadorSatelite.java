@@ -185,6 +185,7 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
                     try {
                         PabloJoseRAF.escribirRAF(s, p);
                         RamonMiguelBinario.ingresarPlaneta1a1(p);
+                        JOptionPane.showMessageDialog(null, "Se  ha agregado correctamente", "Satelite", JOptionPane.INFORMATION_MESSAGE);
                     } catch (IOException ex) {
                         
                         JOptionPane.showMessageDialog(null, "No se ha encontrado el archivo", "Mensaje", JOptionPane.ERROR_MESSAGE);

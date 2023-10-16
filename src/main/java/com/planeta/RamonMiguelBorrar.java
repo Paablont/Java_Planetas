@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -57,7 +58,7 @@ public class RamonMiguelBorrar {
 
             for (File archivo : archivos) {
                 if (archivo.delete()) {
-                    System.out.println("Archivo " + archivo.getName() + " eliminado con éxito.");
+                    JOptionPane.showMessageDialog(null, "Archivo " + archivo.getName() + "Se  ha borrado correctamente", "Satelite", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     System.out.println("No se pudo eliminar el archivo " + archivo.getName());
                 }
