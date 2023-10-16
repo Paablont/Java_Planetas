@@ -181,6 +181,7 @@ public class JFrameMostrarPlanetas extends javax.swing.JFrame {
         
         try {
             RamonMiguelBorrar.BorrarArchivoSecuencialPorId(id);
+            RamonMiguelBorrar.BorrarArchivoBinarioPorId(id);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(JFrameMostrarPlanetas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
