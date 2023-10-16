@@ -12,7 +12,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.Properties;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -32,7 +34,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 /**
- *Clase para crear y leer XML
+ * Clase para crear y leer XML
+ *
  * @author migue
  */
 public class RamonYMiguelXML {
@@ -57,29 +60,32 @@ public class RamonYMiguelXML {
 
     /**
      * Creación de archivo XML
-     * @throws Exception 
+     *
+     * @param rutaDestino
+     * @throws Exception
      */
-    public static void crearXML() throws Exception {
+    public static void crearXML(String rutaDestino) throws Exception {
 
-        String rutaArchivoXML = "mis_planetas.xml";
+        String rutaArchivoXML = rutaDestino;
         File archivoXML = new File(rutaArchivoXML);
-        //Borramos el archivo xml para actualizarlo
+
+        // Borramos el archivo XML solo si ya existe en la ubicación especificada
         if (archivoXML.exists()) {
             if (archivoXML.delete()) {
                 PlanetaApp.logger.info("Archivo XML eliminado con éxito.");
             }
         }
         // Recuperación del archivo de propiedades para su posterior trabajo
-        try {
-            //Creo uno vacio y lo cargo, el objeto no se puede cambiar porque es final
-            RamonYMiguelXML.myProperties.load(new FileInputStream(PROPERTIES));
+//        try {
+//            //Creo uno vacio y lo cargo, el objeto no se puede cambiar porque es final
+//            RamonYMiguelXML.myProperties.load(new FileInputStream(PROPERTIES));
+//
+//        } catch (IOException e) {
+//            PlanetaApp.logger.error("No se pueden cargar la inicialización del programa. Saliendo...");
+//            System.exit(100);
+//        }
 
-        } catch (IOException e) {
-            PlanetaApp.logger.error("No se pueden cargar la inicialización del programa. Saliendo...");
-            System.exit(100);
-        }
-
-        String fichero_original = RamonYMiguelXML.myProperties.getProperty("xml_path.old");
+        //String fichero_original = RamonYMiguelXML.myProperties.getProperty("xml_path.old");
 
         /*
          * DOM
@@ -118,11 +124,11 @@ public class RamonYMiguelXML {
             Transformer transformer = transformerFactory.newTransformer();
 
             DOMSource source = new DOMSource(doc);
-            File file = new File(fichero_original);
-            if (!file.exists()) {
-                file.createNewFile();
+            //File file = new File(fichero_original);
+            if (!archivoXML.exists()) {
+                archivoXML.createNewFile();
             }
-            StreamResult result = new StreamResult(file);
+            StreamResult result = new StreamResult(archivoXML);
             transformer.transform(source, result);
         } catch (TransformerFactoryConfigurationError | TransformerException | IOException e) {
             System.out.println(e.getLocalizedMessage());
@@ -203,16 +209,16 @@ public class RamonYMiguelXML {
     /**
      * Método para leer archivo XML
      */
-    public static void leerXML() {
+    public static void leerXML(String rutaImportar) {
         // Recuperación del archivo de propiedades para su posterior trabajo
-        try {
-            RamonYMiguelXML.myProperties.load(new FileInputStream(PROPERTIES));
-        } catch (IOException e) {
-            PlanetaApp.logger.error("No se pueden cargar la inicialización del programa. Saliendo...");
-            System.exit(100);
-        }
+//        try {
+//            RamonYMiguelXML.myProperties.load(new FileInputStream(PROPERTIES));
+//        } catch (IOException e) {
+//            PlanetaApp.logger.error("No se pueden cargar la inicialización del programa. Saliendo...");
+//            System.exit(100);
+//        }
 
-        String fichero_original = RamonYMiguelXML.myProperties.getProperty("xml_path.old");
+        //String fichero_original = RamonYMiguelXML.myProperties.getProperty("xml_path.old");
 
         try {
             Document doc = null; // doc es de tipo Document y representa el árbol DOM
@@ -223,7 +229,7 @@ public class RamonYMiguelXML {
             dbf.setIgnoringElementContentWhitespace(true);
 
             DocumentBuilder builder = dbf.newDocumentBuilder();
-            doc = builder.parse(new File(fichero_original));
+            doc = builder.parse(new File(rutaImportar));
             doc.getDocumentElement().normalize();
 
             PlanetaApp.logger.info("Recuperación de la información de los planetas");
@@ -277,8 +283,9 @@ public class RamonYMiguelXML {
 
     /**
      * Métodos para pasar de Array a To String
+     *
      * @param sat
-     * @return 
+     * @return
      */
     public static String ArrayToString(ArrayList<Satelite> sat) {
         StringBuilder str = new StringBuilder();
@@ -290,8 +297,9 @@ public class RamonYMiguelXML {
 
     /**
      * Método para crear lista de planetas
+     *
      * @return
-     * @throws IOException 
+     * @throws IOException
      */
     public static ArrayList<Planeta> crearArrayListPlaneta() throws IOException {
         ArrayList<Planeta> listaObjetos = new ArrayList<>();
@@ -311,5 +319,29 @@ public class RamonYMiguelXML {
             }
         }
         return listaObjetos;
+    }
+
+    public static void importarXML() {
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos XML", "xml");
+        chooser.setFileFilter(filter);
+
+        int returnVal = chooser.showOpenDialog(null); // Abre el diálogo para seleccionar un archivo
+
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File archivoSeleccionado = chooser.getSelectedFile(); // Obtiene el archivo seleccionado
+            String rutaDelArchivo = archivoSeleccionado.getAbsolutePath();
+
+            // Ahora tienes la ruta del archivo seleccionado en 'rutaDelArchivo'.
+            // Puedes usar esta ruta para cargar y procesar el archivo XML.
+            try {
+                // Llama a un método para procesar el archivo XML (por ejemplo, 'procesarXML(rutaDelArchivo)')
+                leerXML(rutaDelArchivo);
+
+                JOptionPane.showMessageDialog(null, "XML importado con éxito desde: " + rutaDelArchivo);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Error al importar el XML: " + ex.getMessage());
+            }
+        }
     }
 }
