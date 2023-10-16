@@ -65,5 +65,26 @@ public class RamonMiguelBorrar {
             }
         }
     }
+    
+    public static void BorrarArchivoDatSatelites(int id){
+        File carpeta = new File(Satelite.archivoRAF);
+
+        if (carpeta.exists() && carpeta.isDirectory()) {
+            File[] archivos = carpeta.listFiles(new FilenameFilter() {
+                @Override
+                public boolean accept(File dir, String name) {
+                    return name.matches(id +"satelite.*\\.bin");
+                }
+            });
+
+            for (File archivo : archivos) {
+                if (archivo.delete()) {
+                    JOptionPane.showMessageDialog(null, "Archivo " + archivo.getName() + "Se  ha borrado correctamente", "Satelite", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    System.out.println("No se pudo eliminar el archivo " + archivo.getName());
+                }
+            }
+        }
+    }
 
 }
