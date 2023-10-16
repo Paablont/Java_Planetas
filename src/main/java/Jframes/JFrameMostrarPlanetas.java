@@ -6,8 +6,10 @@ package Jframes;
 
 import com.planeta.Planeta;
 import com.planeta.RamonMiguelBinario;
+import com.planeta.RamonMiguelBorrar;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.System.Logger.Level;
@@ -56,6 +58,7 @@ public class JFrameMostrarPlanetas extends javax.swing.JFrame {
         txaArchivo = new javax.swing.JTextArea();
         txtID = new javax.swing.JLabel();
         tfID = new javax.swing.JTextField();
+        btnBorrarPlaneta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,6 +88,13 @@ public class JFrameMostrarPlanetas extends javax.swing.JFrame {
             }
         });
 
+        btnBorrarPlaneta.setText("Borrar Planeta");
+        btnBorrarPlaneta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarPlanetaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,7 +113,9 @@ public class JFrameMostrarPlanetas extends javax.swing.JFrame {
                         .addComponent(jButton2)
                         .addGap(34, 34, 34))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnMostrarInfo)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnBorrarPlaneta)
+                            .addComponent(btnMostrarInfo))
                         .addGap(34, 34, 34))))
         );
         layout.setVerticalGroup(
@@ -117,7 +129,9 @@ public class JFrameMostrarPlanetas extends javax.swing.JFrame {
                             .addComponent(tfID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
                         .addComponent(btnMostrarInfo)
-                        .addGap(56, 56, 56)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBorrarPlaneta)
+                        .addGap(22, 22, 22)
                         .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
@@ -159,6 +173,19 @@ public class JFrameMostrarPlanetas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfIDActionPerformed
 
+    private void btnBorrarPlanetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarPlanetaActionPerformed
+        JFramePropiedadesPlaneta frame = new JFramePropiedadesPlaneta();
+        
+        Planeta planeta = null;
+        int id = Integer.parseInt(getJTextField().getText());
+        
+        try {
+            RamonMiguelBorrar.BorrarArchivoSecuencialPorId(id);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(JFrameMostrarPlanetas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnBorrarPlanetaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -198,6 +225,7 @@ public class JFrameMostrarPlanetas extends javax.swing.JFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBorrarPlaneta;
     private javax.swing.JButton btnMostrarInfo;
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
