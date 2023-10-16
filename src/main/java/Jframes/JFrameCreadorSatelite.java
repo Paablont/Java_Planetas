@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -178,7 +179,10 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
                     fecha = " " + fechaAux;
                     Satelite s = new Satelite(nombre.toCharArray(), densidad, fecha);
                     System.out.println(s.toString());
-
+                    ArrayList<Satelite> satelites = p.getSatelite();
+                    satelites.add(s);
+                    p.setSatelite(satelites);
+                    System.out.println(satelites.toString());
                     try {
                         PabloJoseRAF.escribirRAF(s, p);
                     } catch (IOException ex) {

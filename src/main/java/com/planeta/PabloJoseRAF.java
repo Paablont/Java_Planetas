@@ -53,8 +53,8 @@ public class PabloJoseRAF {
             // Supongamos que tienes un ArrayList de satélites iniciales en cada objeto Planeta
             ArrayList<Satelite> satelitesIniciales = p.getSatelite();
 
-            for (Satelite satelite : satelitesIniciales) {
-                escribirRAF(satelite, p);
+            for (Satelite s : satelitesIniciales) {
+                escribirRAF(s, p);
             }
         }
 
