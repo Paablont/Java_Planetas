@@ -19,7 +19,6 @@ import org.apache.logging.log4j.Logger;
  */
 public class PlanetaApp {
      
-   
     static Logger logger = LogManager.getRootLogger();
     
     static File archivo = new File(Planeta.archivoTXT);  
@@ -33,7 +32,7 @@ public class PlanetaApp {
         
             planetas = FactoriaLista.creacion();
             if (archivo.exists()) {
-//            planetas.add(new Planeta(11, "Caracol", 0.39, 2439.7, false, TipoPlaneta.ROCOSO, sat));
+//           planetas.add(new Planeta(11, "Caracol", 0.39, 2439.7, false, TipoPlaneta.ROCOSO, sat));
 //            logger.trace("Ya esta creado");
 //            RamonMiguelBinario.ingresarPlaneta(planetas);
 //            RamonMiguelBinario.leerPlanetaCarac();

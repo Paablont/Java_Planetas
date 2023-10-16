@@ -25,7 +25,7 @@ public class RamonMiguelBinario {
         String nombreArchivo = Planeta.archivoBinario + p.getIdPlaneta() + "_" + p.getNombre() + ".bin";
         try ( ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(nombreArchivo))) {
             oos.writeObject(p);
-            System.out.println("Objeto Planeta agregado con éxito en el archivo " + nombreArchivo);
+            PlanetaApp.logger.info("Objeto Planeta agregado con éxito en el archivo " + nombreArchivo);
             oos.flush();
             oos.close();
         } catch (IOException e) {
@@ -50,7 +50,7 @@ public class RamonMiguelBinario {
                     if (archivo.isFile()) {
                         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivo))) {
                             Planeta planeta = (Planeta) ois.readObject();
-                            System.out.println("Leyendo " + archivo.getName() + ": " + planeta);
+                            PlanetaApp.logger.info("Leyendo " + archivo.getName() + ": " + planeta);
                         } catch (IOException | ClassNotFoundException e) {
                             e.printStackTrace();
                         }
@@ -72,7 +72,7 @@ public class RamonMiguelBinario {
                     if (num.equals(Integer.toString(id))) {
                         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivo))) {
                             plan = (Planeta) ois.readObject();
-                            System.out.println("Leyendo " + archivo.getName() + ": " + plan);
+                            PlanetaApp.logger.info("Leyendo " + archivo.getName() + ": " + plan);
                             ois.close();
                         } catch (IOException | ClassNotFoundException e) {
                             e.printStackTrace();

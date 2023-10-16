@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.Properties;
+import javax.swing.JOptionPane;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -48,14 +49,28 @@ public class RamonYMiguelXML {
     private static final String VIDA = "Vida";
     private static final String SATELITE = "Satelite";
     private static final String ID = "Id";
+    private static final String SAT = "sat";
+    private static final String NOM = "nom";
+    private static final String DENSIDAD = "densidad";
+    private static final String FECHA_DESCUBRIMIENTO = "fechaDescubrimiento";
+    private static final String PROPERTIES = "planetas.properties";
 
     public static void crearXML() throws Exception {
+
+        String rutaArchivoXML = "mis_planetas.xml";
+        File archivoXML = new File(rutaArchivoXML);
+        if (archivoXML.exists()) {
+            if (archivoXML.delete()) {
+                PlanetaApp.logger.info("Archivo XML eliminado con éxito.");
+            }
+        }
         // Recuperación del archivo de propiedades para su posterior trabajo
         try {
             //Creo uno vacio y lo cargo, el objeto no se puede cambiar porque es final
-            RamonYMiguelXML.myProperties.load(new FileInputStream("planetas.properties"));
+            RamonYMiguelXML.myProperties.load(new FileInputStream(PROPERTIES));
+
         } catch (IOException e) {
-            System.out.println("No se pueden cargar la inicialización del programa. Saliendo...");
+            PlanetaApp.logger.error("No se pueden cargar la inicialización del programa. Saliendo...");
             System.exit(100);
         }
 
@@ -149,29 +164,31 @@ public class RamonYMiguelXML {
             Element vidaPlaneta = doc.createElement(VIDA);
             vidaPlaneta.appendChild(doc.createTextNode(Boolean.toString(planeta.isVida())));
             nodePlaneta.appendChild(vidaPlaneta);
-
             Element satelitePlaneta = doc.createElement(SATELITE);
-            for (Satelite satelite : planeta.getSatelite()) {
-                Element sateliteElement = doc.createElement("sat");
+            //Importante cuando creamos planeta, lo hacemos sin satelite, si no comprobamoos antes si tiene satelites dara error
+            if (planeta.getSatelite() != null && !planeta.getSatelite().isEmpty()) {
+                for (Satelite satelite : planeta.getSatelite()) {
+                    Element sateliteElement = doc.createElement(SAT);
 
-                Element nombreSateliteElement = doc.createElement("nom");
-                nombreSateliteElement.appendChild(doc.createTextNode(String.copyValueOf(satelite.getNombreCharArray())));
-                sateliteElement.appendChild(nombreSateliteElement);
+                    Element nombreSateliteElement = doc.createElement(NOM);
+                    nombreSateliteElement.appendChild(doc.createTextNode(String.copyValueOf(satelite.getNombreCharArray())));
+                    sateliteElement.appendChild(nombreSateliteElement);
 
-                Element densidadSateliteElement = doc.createElement("densidad");
-                densidadSateliteElement.appendChild(doc.createTextNode(Double.toString(satelite.getDensidad())));
-                sateliteElement.appendChild(densidadSateliteElement);
+                    Element densidadSateliteElement = doc.createElement(DENSIDAD);
+                    densidadSateliteElement.appendChild(doc.createTextNode(Double.toString(satelite.getDensidad())));
+                    sateliteElement.appendChild(densidadSateliteElement);
 
-                Element fechaDescubrimientoSateliteElement = doc.createElement("fechaDescubrimiento");
-                fechaDescubrimientoSateliteElement.appendChild(doc.createTextNode(satelite.getFechaDescubrimiento()));
-                sateliteElement.appendChild(fechaDescubrimientoSateliteElement);
+                    Element fechaDescubrimientoSateliteElement = doc.createElement(FECHA_DESCUBRIMIENTO);
+                    fechaDescubrimientoSateliteElement.appendChild(doc.createTextNode(satelite.getFechaDescubrimiento()));
+                    sateliteElement.appendChild(fechaDescubrimientoSateliteElement);
 
-                satelitePlaneta.appendChild(sateliteElement);
+                    satelitePlaneta.appendChild(sateliteElement);
+                }
+                nodePlaneta.appendChild(satelitePlaneta);
             }
-            nodePlaneta.appendChild(satelitePlaneta);
 
         } catch (DOMException e) {
-            System.out.println(e.getLocalizedMessage());
+            PlanetaApp.logger.error(e.getLocalizedMessage());
             throw e;
         }
 
@@ -181,9 +198,9 @@ public class RamonYMiguelXML {
     public static void leerXML() {
         // Recuperación del archivo de propiedades para su posterior trabajo
         try {
-            RamonYMiguelXML.myProperties.load(new FileInputStream("planetas.properties"));
+            RamonYMiguelXML.myProperties.load(new FileInputStream(PROPERTIES));
         } catch (IOException e) {
-            System.out.println("No se pueden cargar la inicialización del programa. Saliendo...");
+            PlanetaApp.logger.error("No se pueden cargar la inicialización del programa. Saliendo...");
             System.exit(100);
         }
 
@@ -201,10 +218,10 @@ public class RamonYMiguelXML {
             doc = builder.parse(new File(fichero_original));
             doc.getDocumentElement().normalize();
 
-            System.out.println("Recuperación de la información de los planetas");
+            PlanetaApp.logger.info("Recuperación de la información de los planetas");
             Planeta planeta;
             int idplane;
-            String nom; //datos a recuperar de cada libro
+            String nom;
             TipoPlaneta tpPlaneta;
             Double radio, distSolar;
             Boolean vida;
@@ -224,22 +241,25 @@ public class RamonYMiguelXML {
                     distSolar = Double.parseDouble(ePlaneta.getElementsByTagName(RamonYMiguelXML.DISTANCIA_SOLAR).item(0).getTextContent());
                     vida = Boolean.valueOf(ePlaneta.getElementsByTagName(RamonYMiguelXML.VIDA).item(0).getTextContent());
                     ArrayList<Satelite> satelites = new ArrayList<>();
-                    NodeList listaNodosSatelite = ePlaneta.getElementsByTagName("Satelite");
-
-                    for (int j = 0; j < listaNodosSatelite.getLength(); j++) {
-                        Element elementoSatelite = (Element) listaNodosSatelite.item(j);
-                        String nombreSatelite = elementoSatelite.getElementsByTagName("nom").item(0).getTextContent();
-                        double densidad = Double.parseDouble(elementoSatelite.getElementsByTagName("densidad").item(0).getTextContent());
-                        String fechaDescubrimiento = elementoSatelite.getElementsByTagName("fechaDescubrimiento").item(0).getTextContent();
-                        Satelite satelite = new Satelite(nombreSatelite.toCharArray(), densidad, fechaDescubrimiento);
-                        satelites.add(satelite);
+                    NodeList listaNodosSatelite = ePlaneta.getElementsByTagName(SATELITE);
+                    //Importante cuando creamos planeta, lo hacemos sin satelite, si no comprobamoos antes si tiene satelites dara error
+                    if (satelites.size() > 0) {
+                        for (int j = 0; j < listaNodosSatelite.getLength(); j++) {
+                            Element elementoSatelite = (Element) listaNodosSatelite.item(j);
+                            String nombreSatelite = elementoSatelite.getElementsByTagName(NOM).item(0).getTextContent();
+                            double densidad = Double.parseDouble(elementoSatelite.getElementsByTagName(DENSIDAD).item(0).getTextContent());
+                            String fechaDescubrimiento = elementoSatelite.getElementsByTagName(FECHA_DESCUBRIMIENTO).item(0).getTextContent();
+                            Satelite satelite = new Satelite(nombreSatelite.toCharArray(), densidad, fechaDescubrimiento);
+                            satelites.add(satelite);
+                        }
                     }
+
                     planeta = new Planeta(idplane, nom, distSolar, radio, vida, tpPlaneta, satelites);
-                    System.out.println(planeta + "\n" + satelites.toString());
+                    JOptionPane.showMessageDialog(null, planeta + "\n" + satelites.toString(), "Planeta_XML", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         } catch (IOException | DOMException | TransformerFactoryConfigurationError | SAXException | ParserConfigurationException e) {
-            System.out.println(e.getMessage());
+            PlanetaApp.logger.error(e.getMessage());
         }
     }
 
@@ -249,21 +269,6 @@ public class RamonYMiguelXML {
             str.append(strSatelite);
         }
         return str.toString();
-    }
-
-    public static ArrayList<Satelite> StrinToArray(Element elementoPlaneta) {
-        ArrayList<Satelite> satelites = new ArrayList<>();
-        NodeList listaNodosSatelite = elementoPlaneta.getElementsByTagName("satelite");
-
-        for (int j = 0; j < listaNodosSatelite.getLength(); j++) {
-            Element elementoSatelite = (Element) listaNodosSatelite.item(j);
-            String nombreSatelite = elementoSatelite.getElementsByTagName("nomb").item(0).getTextContent();
-            double densidad = Double.parseDouble(elementoSatelite.getElementsByTagName("densidad").item(0).getTextContent());
-            String fechaDescubrimiento = elementoSatelite.getElementsByTagName("fechaDescubrimiento").item(0).getTextContent();
-            Satelite satelite = new Satelite(nombreSatelite.toCharArray(), densidad, fechaDescubrimiento);
-            satelites.add(satelite);
-        }
-        return satelites;
     }
 
     public static ArrayList<Planeta> crearArrayListPlaneta() throws IOException {
@@ -279,14 +284,10 @@ public class RamonYMiguelXML {
                         Planeta objeto = (Planeta) ois.readObject();
                         listaObjetos.add(objeto);
                     } catch (IOException | ClassNotFoundException e) {
-                        e.printStackTrace();
                     }
                 }
             }
         }
         return listaObjetos;
-        // Ahora, listaObjetos contiene todos los objetos leídos de los archivos binarios en la carpeta.
     }
-    // Ahora, listaObjetos contiene todos los objetos leídos del archivo.
 }
-
