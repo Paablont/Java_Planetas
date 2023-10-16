@@ -17,3 +17,13 @@ archivos/planetasPropiedades/3_Tierra.bin
 archivos/planetasPropiedades/2_Venus.bin
 archivos/planetasPropiedades/1_Mercurio.bin
 archivos/planetas.txt
+archivos/satelites/1sateliteMercurio.dat
+archivos/satelites/2sateliteVenus.dat
+archivos/satelites/3sateliteTierra.dat
+archivos/satelites/4sateliteMarte.dat
+archivos/satelites/5sateliteJúpiter.dat
+archivos/satelites/6sateliteSaturno.dat
+archivos/satelites/7sateliteUrano.dat
+archivos/satelites/8sateliteNeptuno.dat
+logs/planeta.log
+logs/planeta.log
