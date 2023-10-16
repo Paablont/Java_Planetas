@@ -23,6 +23,7 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
     private double densidad;
     private String fecha;
     private static int idPlaneta;
+
     /**
      * Creates new form JFrameCreadorSatelite
      */
@@ -154,7 +155,7 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
     private void btnCrearSateliteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearSateliteActionPerformed
         // TODO add your handling code here:
         JFrameMostrarPlanetas jfMostrar = new JFrameMostrarPlanetas();
-       
+
         try {
             //Falla porque el id no le llega
 //            int id = Integer.parseInt(jfMostrar.getJTextField().getText());
@@ -163,8 +164,8 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
                 p = RamonMiguelBinario.leerPlanetaSolo(idPlaneta);
                 String densidadAux;
                 String fechaAux;
-                nombre=cajatextonombresatelite.getText().trim();
-                nombre = cajatextonombresatelite.getText()+" ";
+                nombre = cajatextonombresatelite.getText().trim();
+                nombre = cajatextonombresatelite.getText() + " ";
                 densidadAux = jTextFieldDensidad.getText().trim();
                 if (esNumeroJose(densidadAux)) {
                     densidad = Double.parseDouble(densidadAux);
@@ -173,22 +174,23 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
                 }
                 fechaAux = TextFieldAnioSatelite.getText().trim();
                 if (validarFechaJose(fechaAux)) {
-                    fecha = " "+fechaAux;
+                    fecha = " " + fechaAux;
                     Satelite s = new Satelite(nombre.toCharArray(), densidad, fecha);
                     System.out.println(s.toString());
 
                     try {
-                        PabloJoseRAF.escribirRAF(s, p);                        
+                        PabloJoseRAF.escribirRAF(s, p);
                     } catch (IOException ex) {
-                        Logger.getLogger(JFrameCreadorSatelite.class.getName()).log(Level.SEVERE, null, ex);
-                        System.err.println("No se ha escrito nada en el archivo");
+                        
+                        JOptionPane.showMessageDialog(null, "No se ha encontrado el archivo", "Mensaje", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "La fecha no es valida", "Error", JOptionPane.ERROR_MESSAGE);
+
                 }
             } catch (IOException ex) {
-                Logger.getLogger(JFrameCreadorSatelite.class.getName()).log(Level.SEVERE, null, ex);
-                System.err.println("MAL");
+                 JOptionPane.showMessageDialog(null, "No se ha podido crear el satelite", "Mensaje", JOptionPane.ERROR_MESSAGE);
+
             }
 
         } catch (NumberFormatException numberFormatException) {
@@ -199,7 +201,7 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearSateliteActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        System.exit(EXIT_ON_CLOSE);
+        JFrameCreadorSatelite.this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -232,7 +234,7 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+
                 new JFrameCreadorSatelite(idPlaneta).setVisible(true);
             }
         });

@@ -1,14 +1,8 @@
 package com.planeta;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.RandomAccessFile;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -21,25 +15,31 @@ import java.util.ArrayList;
  */
 public class PabloJoseRAF {
 
+    static File f = new File(Satelite.archivoRAF);
+
     /**
      * Metodo para escribir un satelite en su archivo correspondiente
      *
      * @author Pablo
      */
     public static void escribirRAF(Satelite s, Planeta p) throws FileNotFoundException, IOException {
+
+        if (!f.exists()) {
+            f.mkdirs();
+        }
         String direccionRAF = Satelite.archivoRAF + "satelite" + p.getNombre() + ".dat";
-        RandomAccessFile raf = new RandomAccessFile(new File(direccionRAF), "rw");
-
-        int nuevoID = (int) (raf.length() / Satelite.TAMAÑO_REGISTRO) + 1; // Calcula el nuevo ID
-
-        // Calcula la posición para insertar el nuevo registro
-        long posicion = (nuevoID - 1) * Satelite.TAMAÑO_REGISTRO;
-        raf.seek(posicion);
-        raf.write(s.getNombreByteArray());
-        raf.writeChars(Double.toString(s.getDensidad()));
-        raf.writeChars(s.getFechaDescubrimiento());
-
-        raf.close();  // Cierra el archivo
+        try (RandomAccessFile raf = new RandomAccessFile(new File(direccionRAF), "rw")) {
+            int nuevoID = (int) (raf.length() / Satelite.TAMAÑO_REGISTRO) + 1; // Calcula el nuevo ID
+            // Calcula la posición para insertar el nuevo registro
+            long posicion = (nuevoID - 1) * Satelite.TAMAÑO_REGISTRO;
+            raf.seek(posicion);
+            raf.write(s.getNombreByteArray());
+            raf.writeChars(Double.toString(s.getDensidad()));
+            raf.writeChars(s.getFechaDescubrimiento());
+            // Cierra el archivo
+        } catch (Exception e) {
+            PlanetaApp.logger.error("No se ha encontrado el archivo");
+        }
     }
 
     /**
@@ -59,13 +59,14 @@ public class PabloJoseRAF {
         }
 
     }
+
     /**
-     * 
+     *
      * @param s
      * @param p
      * @return
      * @throws FileNotFoundException
-     * @throws IOException 
+     * @throws IOException
      * @autor Jose
      */
 
@@ -82,24 +83,18 @@ public class PabloJoseRAF {
                 if (bytesRead > Satelite.TAMAÑO_REGISTRO) {
                     break; // Si no se leyó el tamaño completo, salimos del bucle
                 }
-                 String[] partes = registro.split(" ");
-               
+                String[] partes = registro.split(" ");
+
                 String nombre = partes[0];
                 String densidad = partes[1];
                 String añoDescubrimiento = partes[2];
 
-                // Formatear y agregar al resultado
-                resultado.append("Nombre: ").append(nombre).append(", Densidad:").append(densidad).append(", Año de Descubrimiento: ").append(añoDescubrimiento);
-            
-                  
-                resultado.append(System.lineSeparator()); // Agregar un salto de línea
+                //Para mostrar bien el satelite lo formateo con stringBuilder
+                resultado.append("Nombre: ").append(nombre).append(", Densidad:").append(densidad).append(", Año de Descubrimiento: ").append(añoDescubrimiento).append(System.lineSeparator());
             }
         } catch (FileNotFoundException e) {
-            // Manejo de excepción en caso de que el archivo no se encuentre
-            e.printStackTrace();
-        } catch (IOException e) {
-            // Manejo de excepción de E/S (lectura o escritura) en el archivo
-            e.printStackTrace();
+            PlanetaApp.logger.error("Este planeta no tiene satelites");
+
         }
 
         return resultado;

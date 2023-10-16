@@ -23,6 +23,7 @@ public class PlanetaApp {
     static Logger logger = LogManager.getRootLogger();
     
     static File archivo = new File(Planeta.archivoTXT);  
+    static File carpeta = new File("." + File.separatorChar + "archivos");
     public static void main(String[] args) throws IOException, ClassNotFoundException {
  MenuPrincipal menu = new MenuPrincipal();
        
@@ -38,6 +39,9 @@ public class PlanetaApp {
 //            RamonMiguelBinario.leerPlanetaCarac();
             RamonMiguelBinario.leerPlanetaSolo(11);
         } else {
+            if(!carpeta.exists()){
+                carpeta.mkdir();
+            }
             PabloJoseTexto.escribirInicialesTXT(Planeta.archivoTXT, planetas);      
             RamonMiguelBinario.ingresarPlaneta(planetas);
             RamonMiguelBinario.leerPlanetaCarac(); 

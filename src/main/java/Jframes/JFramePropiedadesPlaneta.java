@@ -6,11 +6,13 @@ package Jframes;
 
 import com.planeta.PabloJoseRAF;
 import com.planeta.Planeta;
+import com.planeta.PlanetaApp;
 import com.planeta.RamonMiguelBinario;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -196,7 +198,7 @@ public class JFramePropiedadesPlaneta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        dispose();
+        JFramePropiedadesPlaneta.this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     
@@ -210,7 +212,8 @@ public class JFramePropiedadesPlaneta extends javax.swing.JFrame {
             jframeSatelite.getjTextAreaSatelite().setText(informacionSatelite.toString());
             jframeSatelite.setVisible(rootPaneCheckingEnabled);
         } catch (IOException ex) {
-            Logger.getLogger(JFramePropiedadesPlaneta.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "No tiene satelites", "Mensaje", JOptionPane.ERROR_MESSAGE);
+            
         }
         
         

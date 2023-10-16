@@ -130,7 +130,7 @@ public class JFrameMostrarPlanetas extends javax.swing.JFrame {
 
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        dispose();
+        JFrameMostrarPlanetas.this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnMostrarInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarInfoActionPerformed
