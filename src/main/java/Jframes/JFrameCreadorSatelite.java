@@ -182,9 +182,9 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
                     ArrayList<Satelite> satelites = p.getSatelite();
                     satelites.add(s);
                     p.setSatelite(satelites);
-                    System.out.println(satelites.toString());
                     try {
                         PabloJoseRAF.escribirRAF(s, p);
+                        RamonMiguelBinario.ingresarPlaneta1a1(p);
                     } catch (IOException ex) {
                         
                         JOptionPane.showMessageDialog(null, "No se ha encontrado el archivo", "Mensaje", JOptionPane.ERROR_MESSAGE);

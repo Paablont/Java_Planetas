@@ -64,11 +64,11 @@ public class RamonYMiguelXML {
         String rutaArchivoXML = "mis_planetas.xml";
         File archivoXML = new File(rutaArchivoXML);
         //Borramos el archivo xml para actualizarlo
-//        if (archivoXML.exists()) {
-//            if (archivoXML.delete()) {
-//                PlanetaApp.logger.info("Archivo XML eliminado con éxito.");
-//            }
-//        }
+        if (archivoXML.exists()) {
+            if (archivoXML.delete()) {
+                PlanetaApp.logger.info("Archivo XML eliminado con éxito.");
+            }
+        }
         // Recuperación del archivo de propiedades para su posterior trabajo
         try {
             //Creo uno vacio y lo cargo, el objeto no se puede cambiar porque es final
