@@ -91,7 +91,7 @@ public class Planeta implements Serializable{
     }
     @Override
     public String toString() {
-        return "Planeta{" + "idPlaneta=" + idPlaneta 
+        return "Planeta --> " + "idPlaneta=" + idPlaneta 
                 + ", nombre=" + nombre + 
                 ", distanciaSolar=" + distSolar + 
                 ", radio=" + radio + 

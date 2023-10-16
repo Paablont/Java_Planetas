@@ -70,7 +70,7 @@ public class Satelite implements Serializable {
 
     @Override
     public String toString() {
-        return "Satelite{" + "nombre: " + String.copyValueOf(nombre) + ", densidad: " + densidad + ", fechaDescubrimiento: " + fechaDescubrimiento + '}';
+        return "Satelite --> " + "nombre: " + String.copyValueOf(nombre) + ", densidad: " + densidad + ", fechaDescubrimiento: " + fechaDescubrimiento + "\n";
     }
     
 }

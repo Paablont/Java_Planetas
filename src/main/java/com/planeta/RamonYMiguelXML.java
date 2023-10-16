@@ -250,9 +250,10 @@ public class RamonYMiguelXML {
                     distSolar = Double.parseDouble(ePlaneta.getElementsByTagName(RamonYMiguelXML.DISTANCIA_SOLAR).item(0).getTextContent());
                     vida = Boolean.valueOf(ePlaneta.getElementsByTagName(RamonYMiguelXML.VIDA).item(0).getTextContent());
                     ArrayList<Satelite> satelites = new ArrayList<>();
-                    NodeList listaNodosSatelite = ePlaneta.getElementsByTagName(SATELITE);
+                    NodeList listaNodosSatelite = ePlaneta.getElementsByTagName(SAT);
                     //Importante cuando creamos planeta, lo hacemos sin satelite, si no comprobamoos antes si tiene satelites dara error
-                    if (satelites.size() > 0) {
+                    StringBuilder satelitesSat = new StringBuilder();
+                    if (ePlaneta.getElementsByTagName(SAT).getLength() > 0) {
                         for (int j = 0; j < listaNodosSatelite.getLength(); j++) {
                             Element elementoSatelite = (Element) listaNodosSatelite.item(j);
                             String nombreSatelite = elementoSatelite.getElementsByTagName(NOM).item(0).getTextContent();
@@ -260,11 +261,13 @@ public class RamonYMiguelXML {
                             String fechaDescubrimiento = elementoSatelite.getElementsByTagName(FECHA_DESCUBRIMIENTO).item(0).getTextContent();
                             Satelite satelite = new Satelite(nombreSatelite.toCharArray(), densidad, fechaDescubrimiento);
                             satelites.add(satelite);
+                            //Lo hago para que quede más bonito pero con satelites.ToString valdria
+                            satelitesSat.append(satelite);
+                            satelitesSat.append("\n");
                         }
                     }
-
                     planeta = new Planeta(idplane, nom, distSolar, radio, vida, tpPlaneta, satelites);
-                    JOptionPane.showMessageDialog(null, planeta + "\n" + satelites.toString(), "Planeta_XML", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, planeta + "\n" + satelitesSat.toString(), "Planeta_XML", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         } catch (IOException | DOMException | TransformerFactoryConfigurationError | SAXException | ParserConfigurationException e) {
