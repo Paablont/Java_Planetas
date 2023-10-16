@@ -27,7 +27,7 @@ public class PabloJoseRAF {
         if (!f.exists()) {
             f.mkdirs();
         }
-        String direccionRAF = Satelite.archivoRAF + "satelite" + p.getNombre() + ".dat";
+        String direccionRAF = Satelite.archivoRAF + p.getIdPlaneta() + "satelite" + p.getNombre() + ".dat";
         try (RandomAccessFile raf = new RandomAccessFile(new File(direccionRAF), "rw")) {
             int nuevoID = (int) (raf.length() / Satelite.TAMAÑO_REGISTRO) + 1; // Calcula el nuevo ID
             // Calcula la posición para insertar el nuevo registro
