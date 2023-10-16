@@ -27,7 +27,7 @@ public class RamonMiguelBorrar {
             String linea;
 
             while ((linea = br.readLine()) != null) {
-                if (!linea.startsWith("ID: " + Integer.toString(idBorrar))) {
+                if (!linea.startsWith(Integer.toString(idBorrar)+",")) {
                     texto.append(linea).append("\n");
                 }
             }
