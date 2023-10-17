@@ -21,7 +21,7 @@ public class PabloJoseRAF {
     /**
      * Metodo para escribir un satelite en su archivo correspondiente
      *
-     * @author Pablo
+     * @author Pablo y Jose
      */
     public static void escribirRAF(Satelite s, Planeta p) throws FileNotFoundException, IOException {
 
@@ -30,11 +30,12 @@ public class PabloJoseRAF {
         }
         String direccionRAF = Satelite.archivoRAF + p.getIdPlaneta() + "satelite" + p.getNombre() + ".dat";
         try (RandomAccessFile raf = new RandomAccessFile(new File(direccionRAF), "rw")) {
-            long rafi;
             int nuevoID;
             if (raf.length()==0) {
+                //en el primero se suma uno porque raf.legth es cero ya que no hay nada
                  nuevoID = (int) (raf.length() / Satelite.TAMAÑO_REGISTRO) + 1;
             }else{
+                //Se suma dos porque solo se coge la parte entera
                 nuevoID = (int) (raf.length() / Satelite.TAMAÑO_REGISTRO) + 2; // Calcula el nuevo ID
             }
            
@@ -55,7 +56,7 @@ public class PabloJoseRAF {
      * Recoge la lista de planetas y escribe cada satelite en su archivo
      * correspondiente
      *
-     * @author Pablo
+     * @author Pablo 
      */
     public static void ingresarSatelite(ArrayList<Planeta> planetas) throws FileNotFoundException, IOException {
         for (Planeta p : planetas) {
@@ -71,9 +72,7 @@ public class PabloJoseRAF {
 
     /**
      *
-     * @param s
-     * @param p
-     * @return
+     * Metodo que lee un array de objetos ya predefinidos y crea sus nrespectivos satelites por defectos
      * @throws FileNotFoundException
      * @throws IOException
      * @autor Jose
@@ -83,14 +82,17 @@ public class PabloJoseRAF {
         StringBuilder resultado = new StringBuilder();
 
         try (RandomAccessFile raf = new RandomAccessFile(new File(direccionRAF), "rw")) {
+            //Nos posicionamos en la posicion cero pues que hay un nombre distinto para cada satelite y siempre va haber que leerlo todo
             raf.seek(0); // Me posiciono al inicio del archivo
             byte[] leido = new byte[Satelite.TAMAÑO_REGISTRO];
             int bytesRead;
             while ((bytesRead = raf.read(leido)) != -1) {
                 String registro = new String(leido, 0, bytesRead, StandardCharsets.UTF_16);
+                //Si es un nombre muy largo no escribira nada
                 if (bytesRead > Satelite.TAMAÑO_REGISTRO) {
-                    break; // Si no se leyó el tamaño completo, salimos del bucle
+                    break; 
                 }
+                //Dividos en 3 para dar formato a las 3 caracteristicas de los satelites
                 String[] partes = registro.split(" ");
 
                 String nombre = partes[0];
@@ -107,6 +109,13 @@ public class PabloJoseRAF {
 
         return resultado;
     }
+    /**
+     * Metodo que lee un array de objetos ya predefinidos y crea sus nrespectivos satelites por defectos
+     * @param planetas
+     * @return
+     * @throws IOException 
+     * @author Jose
+     */
 
     public static StringBuilder leerFicheroSateliteArray(ArrayList<Planeta> planetas) throws IOException {
         StringBuilder resultado = new StringBuilder("");
