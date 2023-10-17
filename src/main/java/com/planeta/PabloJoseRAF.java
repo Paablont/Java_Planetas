@@ -30,7 +30,7 @@ public class PabloJoseRAF {
         }
         String direccionRAF = Satelite.archivoRAF + p.getIdPlaneta() + "satelite" + p.getNombre() + ".dat";
         try (RandomAccessFile raf = new RandomAccessFile(new File(direccionRAF), "rw")) {
-            int nuevoID = (int) (raf.length() / Satelite.TAMAÑO_REGISTRO) + 1; // Calcula el nuevo ID
+            int nuevoID = (int) (raf.length() / Satelite.TAMAÑO_REGISTRO) + 2; // Calcula el nuevo ID
             // Calcula la posición para insertar el nuevo registro
             long posicion = (nuevoID - 1) * Satelite.TAMAÑO_REGISTRO;
             raf.seek(posicion);
