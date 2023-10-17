@@ -1,5 +1,6 @@
 package Jframes;
 
+import com.planeta.CopiarMoverArchivos;
 import com.planeta.PabloJoseRAF;
 import com.planeta.PabloJoseTexto;
 import com.planeta.RamonYMiguelXML;
@@ -253,82 +254,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btnCopiSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCopiSActionPerformed
-        // TODO add your handling code here:
-        // Ruta de la carpeta "archivos" en la raíz del programa
-        File carpetaOrigen = new File("archivos");
-
-        // Obtener la carpeta "Documentos" del sistema operativo (en Windows)
-        File carpetaDestino = FileSystemView.getFileSystemView().getDefaultDirectory();
-
-        // Agregar un nombre de subcarpeta en "Documentos" si lo deseas
-        String subcarpetaNombre = "CopiaSeguridad";
-
-        if (subcarpetaNombre != null && !subcarpetaNombre.isEmpty()) {
-            carpetaDestino = new File(carpetaDestino, subcarpetaNombre);
-        }
-
-        try {
-            // Verificar si la carpeta de destino (Documentos o subcarpeta en Documentos) existe, si no, crearla
-            if (!carpetaDestino.exists()) {
-                carpetaDestino.mkdirs();
-            }
-
-            // Obtener la lista de archivos y subcarpetas en la carpeta de origen
-            File[] archivos = carpetaOrigen.listFiles();
-
-            // Copiar cada archivo/subcarpeta al directorio de destino (Documentos o subcarpeta en Documentos)
-            for (File archivo : archivos) {
-                Path origen = archivo.toPath();
-                Path destino = new File(carpetaDestino, archivo.getName()).toPath();
-
-                Files.copy(origen, destino, StandardCopyOption.REPLACE_EXISTING);
-            }
-
-            JOptionPane.showMessageDialog(this, "Copia de seguridad completa en la carpeta 'Documentos'.");
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "Error al realizar la copia de seguridad.");
-            ex.printStackTrace();
-        }
+        
+        CopiarMoverArchivos.copiaSeguridadADocumentos();
+        
     }//GEN-LAST:event_btnCopiSActionPerformed
 
-    /**
-     * Metodo que copia la carpeta de archivos donde 
-     * 
-     * author Rmaon
-     * @param evt 
-     */
     private void btnCopiaSelectivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCopiaSelectivaActionPerformed
         
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-
-        int resultado = fileChooser.showDialog(this, "Seleccionar Carpeta de Destino");
-
-        if (resultado == JFileChooser.APPROVE_OPTION) {
-            File carpetaDestino = fileChooser.getSelectedFile();
-            File carpetaOrigen = new File("archivos"); // Ruta de la carpeta "archivos" en la raíz del programa
-
-            try {
-                // Verificar si la carpeta de destino existe, si no, crearla
-                if (!carpetaDestino.exists()) {
-                    carpetaDestino.mkdirs();
-                }
-                // Obtener la lista de archivos y subcarpetas en la carpeta de origen
-                File[] archivos = carpetaOrigen.listFiles();
-
-                // Copiar cada archivo/subcarpeta al directorio de destino
-                for (File archivo : archivos) {
-                    Path origen = archivo.toPath();
-                    Path destino = new File(carpetaDestino, archivo.getName()).toPath();
-
-                    Files.copy(origen, destino, StandardCopyOption.REPLACE_EXISTING);
-                }
-                JOptionPane.showMessageDialog(this, "Copia selectiva completa en la carpeta de destino.");
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Error al realizar la copia selectiva.");
-                ex.printStackTrace();
-            }
-        }
+        CopiarMoverArchivos.copiaSeguridadADirectorio();
     }//GEN-LAST:event_btnCopiaSelectivaActionPerformed
 
     /**
