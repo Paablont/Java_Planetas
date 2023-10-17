@@ -182,15 +182,17 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
                     Satelite s = new Satelite(nombre.toCharArray(), densidad, fecha);
                     System.out.println(s.toString());
                     ArrayList<Satelite> satelites = p.getSatelite();
-                    satelites.add(s);
-                    
-                    p.setSatelite(satelites);
+                    if (satelites != null) {
+                        satelites.add(s);
+                        p.setSatelite(satelites);
+                    }
+
                     try {
                         PabloJoseRAF.escribirRAF(s, p);
                         RamonMiguelBinario.ingresarPlaneta1a1(p);
                         JOptionPane.showMessageDialog(null, "Se  ha agregado correctamente", "Satelite", JOptionPane.INFORMATION_MESSAGE);
                     } catch (IOException ex) {
-                        
+
                         JOptionPane.showMessageDialog(null, "No se ha encontrado el archivo", "Mensaje", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
@@ -198,7 +200,7 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
 
                 }
             } catch (IOException ex) {
-                 JOptionPane.showMessageDialog(null, "No se ha podido crear el satelite", "Mensaje", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "No se ha podido crear el satelite", "Mensaje", JOptionPane.ERROR_MESSAGE);
 
             }
 
