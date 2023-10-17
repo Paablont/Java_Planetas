@@ -73,6 +73,19 @@ public class PabloJoseTexto {
                 e.printStackTrace();
             }
     }
+        public static void escribirID(int num) {
+        
+        try (BufferedWriter fw = new BufferedWriter(new FileWriter(Planeta.numeroIDTXT, StandardCharsets.UTF_8,false));) {
+            String numStr = Integer.toString(num);
+            fw.write(numStr);
+            fw.flush();
+            fw.close();
+        } catch (FileNotFoundException fn) {
+            System.out.println("No se encuentra el fichero en la ruta indicada");
+        } catch (IOException io) {
+            System.out.println("Error de E/S ");
+        }
+    }
 }
   
 

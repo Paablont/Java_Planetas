@@ -42,6 +42,7 @@ public class PlanetaApp {
             if (!carpeta.exists()) {
                 carpeta.mkdir();
             }
+            PabloJoseTexto.escribirID(9);
             PabloJoseTexto.escribirInicialesTXT(Planeta.archivoTXT, planetas);            
             RamonMiguelBinario.ingresarPlaneta(planetas);
             RamonMiguelBinario.leerPlanetaCarac();            

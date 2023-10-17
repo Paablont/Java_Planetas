@@ -13,6 +13,7 @@ public class Planeta implements Serializable{
 
     static String archivoBinario = "." + File.separatorChar + "archivos" + File.separatorChar + "planetasPropiedades" + File.separatorChar;
     static String archivoTXT = "." + File.separatorChar + "archivos" + File.separatorChar+ "planetas.txt";
+    static String numeroIDTXT = "." + File.separatorChar + "archivos" + File.separatorChar+ "numeroID.txt";
     //este comentario no vale para nada
     int idPlaneta;
     String nombre;

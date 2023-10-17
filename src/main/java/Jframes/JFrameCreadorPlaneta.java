@@ -1,5 +1,6 @@
 package Jframes;
 
+
 import com.planeta.*;
 import com.planeta.TipoPlaneta;
 import java.io.BufferedWriter;
@@ -293,7 +294,10 @@ public class JFrameCreadorPlaneta extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "El planeta se ha creado correctamente");
             //Cuidado con el id jeje
-            Planeta p = new Planeta(144,nombre, distancia, radio, tieneVida, tipoPlaneta, listaSatelites);
+            String numID = PabloJoseTexto.leerFicheroTXT("." + File.separatorChar + "archivos" + File.separatorChar+ "numeroID.txt").trim();
+            int numeroID = Integer.parseInt(numID);
+            Planeta p = new Planeta(numeroID,nombre, distancia, radio, tieneVida, tipoPlaneta, listaSatelites);
+            PabloJoseTexto.escribirID(numeroID + 1);
             //Llamar a los metodos respectivos de guardarTXT y guardarBinario
             PabloJoseTexto.escribirTexto(p);
             try {
