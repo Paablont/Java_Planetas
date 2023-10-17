@@ -15,13 +15,13 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author jose1
+ * Clase con los metodos para lectura y escritura con TXT
+ * @author Pablo,Jose
  */
 public class PabloJoseTexto {
 
     /**
-     *
+     * Escribe los planetas en el TXT
      * @author Jose
      */
     public static void escribirTexto(Planeta p) {
@@ -40,7 +40,7 @@ public class PabloJoseTexto {
 
     /**
      * Metodo para leer el archivo de TXT con los ids y nombres de los planetas
-     * @author Pablo Villaseñor
+     * @author Pablo
      */
     public static String leerFicheroTXT(String rutaArchivo) {
        
@@ -62,6 +62,10 @@ public class PabloJoseTexto {
        return texto; 
     }
     
+    /**
+     * Metodos para cargar los planetas iniciales en el TXT
+     *  @author Jose
+     */
     public static void escribirInicialesTXT(String rutaArchivo,ArrayList<Planeta> planetas){
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo))) {
                 for (Planeta planeta : planetas) {

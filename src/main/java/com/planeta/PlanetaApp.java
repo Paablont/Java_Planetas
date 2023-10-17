@@ -12,8 +12,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- *
- * @author @Pablo Villaseñor Ruiz
+ * Clase con el main que ejecuta la app
+ * @author Pablo,Miguel,Jose,Ramon
  */
 public class PlanetaApp {
     

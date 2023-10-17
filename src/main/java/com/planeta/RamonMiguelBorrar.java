@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  * Clase para borrar los ficheros segun se elija el id del planeta 
- * @author ramon y migue
+ * @author Ramon y Miguel
  */
 public class RamonMiguelBorrar {
 

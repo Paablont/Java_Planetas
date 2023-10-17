@@ -12,7 +12,7 @@ import java.util.Arrays;
  * Clase con los metodos para escribir objetos en ficheros RAF de satelites y
  * lectura del fichero RAF con los satelites de cada planeta
  *
- * @author @Pablo Villaseñor Ruiz y Jose
+ * @author Pablo y Jose
  */
 public class PabloJoseRAF {
 
@@ -21,7 +21,7 @@ public class PabloJoseRAF {
     /**
      * Metodo para escribir un satelite en su archivo correspondiente
      *
-     * @author Pablo y Jose
+     * @author Pablo
      */
     public static void escribirRAF(Satelite s, Planeta p) throws FileNotFoundException, IOException {
 
@@ -73,8 +73,7 @@ public class PabloJoseRAF {
     /**
      *
      * Metodo que lee un array de objetos ya predefinidos y crea sus nrespectivos satelites por defectos
-     * @throws FileNotFoundException
-     * @throws IOException
+     *
      * @autor Jose
      */
     public static StringBuilder leerFicheroSatelite(Planeta p) throws FileNotFoundException, IOException {
@@ -89,7 +88,7 @@ public class PabloJoseRAF {
             while ((bytesRead = raf.read(leido)) != -1) {
                 String registro = new String(leido, 0, bytesRead, StandardCharsets.UTF_16);
                 //Si es un nombre muy largo no escribira nada
-                if (bytesRead > Satelite.TAMAÑO_REGISTRO) {
+                if (bytesRead > Satelite.TAMAÑO_NOMBRE) {
                     break; 
                 }
                 //Dividos en 3 para dar formato a las 3 caracteristicas de los satelites
@@ -111,9 +110,7 @@ public class PabloJoseRAF {
     }
     /**
      * Metodo que lee un array de objetos ya predefinidos y crea sus nrespectivos satelites por defectos
-     * @param planetas
-     * @return
-     * @throws IOException 
+     *
      * @author Jose
      */
 
@@ -149,46 +146,4 @@ public class PabloJoseRAF {
         }
         return resultado;
     }
-    
-    
-//        public static void escribirNuevoSateliteRAF(Satelite s, Planeta p,int contsate) throws FileNotFoundException, IOException {
-//        int x;
-//        long posicion;
-//        if (!f.exists()) {
-//            f.mkdirs();
-//        }
-//        String direccionRAF = Satelite.archivoRAF + p.getIdPlaneta() + "satelite" + p.getNombre() + ".dat";
-//        try (RandomAccessFile raf = new RandomAccessFile(new File(direccionRAF), "rw")) {
-//           //multiplicamos el numero de satelites por el tamaño del registro
-//           x=contsate*Satelite.TAMAÑO_REGISTRO;
-//           //restamos ese numero por el read y lo dividimos entre satelite para que de entero
-//            int nuevoID = (int) ((raf.length()+x) / Satelite.TAMAÑO_REGISTRO) + 1; // Calcula el nuevo ID
-//            long rafi=raf.length();
-//            System.out.println(rafi);
-//            // Calcula la posición para insertar el nuevo registro
-//            if (nuevoID==1) {
-//                posicion = (nuevoID+1 - 1) * Satelite.TAMAÑO_REGISTRO;
-//            }else{
-//                posicion = (nuevoID - 1) * Satelite.TAMAÑO_REGISTRO;
-//            }
-//            
-//            raf.seek(posicion);
-//            raf.write(s.getNombreByteArray());
-//            String densidadAsString = Double.toString(s.getDensidad()); // Convierte el double a una cadena
-//            raf.writeChars(densidadAsString);
-//            raf.writeChars(s.getFechaDescubrimiento());
-//            // Cierra el archivo
-//        } catch (Exception e) {
-//            PlanetaApp.logger.error("No se ha encontrado el archivo");
-//        }
-//    }
-//        public static int contarSatelites(  ArrayList<Planeta> planetas,Planeta p){
-//            int cont=0;
-//            for (Planeta pl : planetas) {
-//                if (pl.getIdPlaneta()==p.getIdPlaneta()) {
-//                    cont++;
-//                }
-//            }
-//            
-//        return cont;}
 }

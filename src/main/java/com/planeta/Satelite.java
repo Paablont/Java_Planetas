@@ -5,8 +5,8 @@ import java.io.Serializable;
 import java.util.Arrays;
 
 /**
- *
- * @author @Pablo Villaseñor Ruiz
+ * Clase Satelite
+ * @author Pablo, Jose
  */
 public class Satelite implements Serializable {
    

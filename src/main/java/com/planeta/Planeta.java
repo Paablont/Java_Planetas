@@ -5,9 +5,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Planeta planetium planetare
+ * Clase de Planeta
  *
- *
+ * @author Miguel,Ramon
  */
 public class Planeta implements Serializable{
 

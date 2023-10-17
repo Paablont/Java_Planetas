@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- *
- * @author migue
+ * Clase que crea una lista con los Planetas iniciales que cargara el programa
+ * @author Miguel y Ramon
  */
 public class FactoriaLista {
 

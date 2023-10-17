@@ -2,8 +2,8 @@
 package com.planeta;
 
 /**
- * Enumerado 
- * @author migue
+ * Enumerado de los tipos de planetas que puede haber
+ * @author Miguel
  */
 public enum TipoPlaneta {
     ROCOSO,GASEOSO,HELADO;

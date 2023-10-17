@@ -10,8 +10,8 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileSystemView;
 
 /**
- *
- * @author pablo y Ramon
+ * Clase que contiene los metodos para copiar y mover archivos y directorios
+ * @author Pablo, Ramon
  */
 public class CopiarMoverArchivos {
     
