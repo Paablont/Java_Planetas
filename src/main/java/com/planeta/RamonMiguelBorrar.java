@@ -11,11 +11,15 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Clase para borrar los ficheros segun se elija el id del planeta 
  * @author ramon y migue
  */
 public class RamonMiguelBorrar {
 
+    /**
+     * Metodo que borra el planeta en el fichero TXT
+     * @Ramon
+     */
     public static void BorrarArchivoSecuencialPorId(int idBorrar) throws FileNotFoundException {
         String rutaArchivo = Planeta.archivoTXT;
 
@@ -45,6 +49,10 @@ public class RamonMiguelBorrar {
 
     }
 
+    /**
+     * Metodo que borra el fochero BINARIO de propiedades del planeta segun su ID
+     * @author Ramon
+     */
     public static void BorrarArchivoBinarioPorId(int idBorrar) {
         File carpeta = new File(Planeta.archivoBinario);
 
@@ -66,6 +74,10 @@ public class RamonMiguelBorrar {
         }
     }
     
+    /**
+     * Metodo que borra el fichero RAF satelites del planeta segun el id
+     * @author Ramon 
+     */
     public static void BorrarArchivoDatSatelites(int id){
         File carpeta = new File(Satelite.archivoRAF);
 
@@ -73,7 +85,7 @@ public class RamonMiguelBorrar {
             File[] archivos = carpeta.listFiles(new FilenameFilter() {
                 @Override
                 public boolean accept(File dir, String name) {
-                    return name.matches(id +"satelite.*\\.bin");
+                    return name.matches(id +"satelite.*\\.dat");
                 }
             });
 
