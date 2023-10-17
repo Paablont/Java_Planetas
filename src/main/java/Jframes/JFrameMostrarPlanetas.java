@@ -4,6 +4,7 @@
  */
 package Jframes;
 
+import com.planeta.CopiarMoverArchivos;
 import com.planeta.Planeta;
 import com.planeta.RamonMiguelBinario;
 import com.planeta.RamonMiguelBorrar;
@@ -59,6 +60,7 @@ public class JFrameMostrarPlanetas extends javax.swing.JFrame {
         txtID = new javax.swing.JLabel();
         tfID = new javax.swing.JTextField();
         btnBorrarPlaneta = new javax.swing.JButton();
+        btnCopiarTXT = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,48 +97,60 @@ public class JFrameMostrarPlanetas extends javax.swing.JFrame {
             }
         });
 
+        btnCopiarTXT.setText("Copiar archivo planetas txt");
+        btnCopiarTXT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCopiarTXTActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtID)
-                        .addGap(18, 18, 18)
-                        .addComponent(tfID, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52))
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnCopiarTXT)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2)
                         .addGap(34, 34, 34))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnBorrarPlaneta)
+                        .addComponent(btnBorrarPlaneta)
+                        .addGap(98, 98, 98))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtID)
+                                .addGap(18, 18, 18)
+                                .addComponent(tfID, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(btnMostrarInfo))
-                        .addGap(34, 34, 34))))
+                        .addGap(52, 52, 52))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
+                        .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtID)
                             .addComponent(tfID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
+                        .addGap(32, 32, 32)
                         .addComponent(btnMostrarInfo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(10, 10, 10)
                         .addComponent(btnBorrarPlaneta)
-                        .addGap(22, 22, 22)
-                        .addComponent(jButton2))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton2)
+                            .addComponent(btnCopiarTXT)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -190,6 +204,10 @@ public class JFrameMostrarPlanetas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBorrarPlanetaActionPerformed
 
+    private void btnCopiarTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCopiarTXTActionPerformed
+        CopiarMoverArchivos.copiarArchivo();
+    }//GEN-LAST:event_btnCopiarTXTActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -230,6 +248,7 @@ public class JFrameMostrarPlanetas extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrarPlaneta;
+    private javax.swing.JButton btnCopiarTXT;
     private javax.swing.JButton btnMostrarInfo;
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
