@@ -4,7 +4,7 @@ package Jframes;
 import com.planeta.CopiarMoverArchivos;
 import com.planeta.Planeta;
 import com.planeta.RamonMiguelBinario;
-import com.planeta.RamonMiguelBorrar;
+import com.planeta.BorrarArchivos;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -193,9 +193,9 @@ public class JFrameMostrarPlanetas extends javax.swing.JFrame {
         int id = Integer.parseInt(getJTextField().getText());
         
         try {
-            RamonMiguelBorrar.BorrarArchivoSecuencialPorId(id);
-            RamonMiguelBorrar.BorrarArchivoBinarioPorId(id);
-            RamonMiguelBorrar.BorrarArchivoDatSatelites(id);
+            BorrarArchivos.BorrarArchivoSecuencialPorId(id);
+            BorrarArchivos.BorrarArchivoBinarioPorId(id);
+            BorrarArchivos.BorrarArchivoDatSatelites(id);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(JFrameMostrarPlanetas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
