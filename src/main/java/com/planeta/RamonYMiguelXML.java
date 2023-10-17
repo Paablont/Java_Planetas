@@ -326,16 +326,13 @@ public class RamonYMiguelXML {
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos XML", "xml");
         chooser.setFileFilter(filter);
 
-        int returnVal = chooser.showOpenDialog(null); // Abre el diálogo para seleccionar un archivo
+        int returnVal = chooser.showOpenDialog(null);
 
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File archivoSeleccionado = chooser.getSelectedFile(); // Obtiene el archivo seleccionado
+            File archivoSeleccionado = chooser.getSelectedFile();
             String rutaDelArchivo = archivoSeleccionado.getAbsolutePath();
 
-            // Ahora tienes la ruta del archivo seleccionado en 'rutaDelArchivo'.
-            // Puedes usar esta ruta para cargar y procesar el archivo XML.
             try {
-                // Llama a un método para procesar el archivo XML (por ejemplo, 'procesarXML(rutaDelArchivo)')
                 leerXML(rutaDelArchivo);
 
                 JOptionPane.showMessageDialog(null, "XML importado con éxito desde: " + rutaDelArchivo);
