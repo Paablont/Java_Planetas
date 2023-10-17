@@ -75,17 +75,6 @@ public class RamonYMiguelXML {
                 PlanetaApp.logger.info("Archivo XML eliminado con éxito.");
             }
         }
-        // Recuperación del archivo de propiedades para su posterior trabajo
-//        try {
-//            //Creo uno vacio y lo cargo, el objeto no se puede cambiar porque es final
-//            RamonYMiguelXML.myProperties.load(new FileInputStream(PROPERTIES));
-//
-//        } catch (IOException e) {
-//            PlanetaApp.logger.error("No se pueden cargar la inicialización del programa. Saliendo...");
-//            System.exit(100);
-//        }
-
-        //String fichero_original = RamonYMiguelXML.myProperties.getProperty("xml_path.old");
 
         /*
          * DOM
@@ -210,16 +199,6 @@ public class RamonYMiguelXML {
      * Método para leer archivo XML
      */
     public static void leerXML(String rutaImportar) {
-        // Recuperación del archivo de propiedades para su posterior trabajo
-//        try {
-//            RamonYMiguelXML.myProperties.load(new FileInputStream(PROPERTIES));
-//        } catch (IOException e) {
-//            PlanetaApp.logger.error("No se pueden cargar la inicialización del programa. Saliendo...");
-//            System.exit(100);
-//        }
-
-        //String fichero_original = RamonYMiguelXML.myProperties.getProperty("xml_path.old");
-
         try {
             Document doc = null; // doc es de tipo Document y representa el árbol DOM
 
@@ -273,7 +252,15 @@ public class RamonYMiguelXML {
                         }
                     }
                     planeta = new Planeta(idplane, nom, distSolar, radio, vida, tpPlaneta, satelites);
-                    JOptionPane.showMessageDialog(null, planeta + "\n" + satelitesSat.toString(), "Planeta_XML", JOptionPane.INFORMATION_MESSAGE);
+                    //En true crear el metodo
+                    if (true) {
+                        //escribir planeta
+                        JOptionPane.showMessageDialog(null, planeta + "\n" + satelitesSat.toString(), "Planeta_XML", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null,"se ha añadido el planeta :" + planeta.getNombre()+" con la nueva id "+ planeta.getIdPlaneta());
+                    }else{
+                        JOptionPane.showMessageDialog(null, planeta + "\n" + satelitesSat.toString(), "Planeta_XML", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    
                 }
             }
         } catch (IOException | DOMException | TransformerFactoryConfigurationError | SAXException | ParserConfigurationException e) {
@@ -310,7 +297,7 @@ public class RamonYMiguelXML {
 
             for (File archivo : archivos) {
                 if (archivo.isFile() && archivo.getName().endsWith(".bin")) {
-                    try ( ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivo))) {
+                    try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivo))) {
                         Planeta objeto = (Planeta) ois.readObject();
                         listaObjetos.add(objeto);
                     } catch (IOException | ClassNotFoundException e) {
