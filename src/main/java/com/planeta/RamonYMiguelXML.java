@@ -36,7 +36,7 @@ import org.xml.sax.SAXException;
 /**
  * Clase para crear y leer XML
  *
- * @author migue
+ * @author miguel
  */
 public class RamonYMiguelXML {
     // usamos patrón singleton para tener un único objeto properties
@@ -63,6 +63,7 @@ public class RamonYMiguelXML {
      *
      * @param rutaDestino
      * @throws Exception
+     * @author miguel
      */
     public static void crearXML(String rutaDestino) throws Exception {
 
@@ -132,6 +133,7 @@ public class RamonYMiguelXML {
      * @param planeta
      * @return
      * @throws DOMException
+     * @author miguel
      */
     private static Element createNodePlaneta(Document doc, Planeta planeta) throws DOMException {
         // nodo donde colgaremos todos los datos de un libro
@@ -197,6 +199,7 @@ public class RamonYMiguelXML {
 
     /**
      * Método para leer archivo XML
+     * @author miguel
      */
     public static void leerXML(String rutaImportar) {
         try {
@@ -273,6 +276,7 @@ public class RamonYMiguelXML {
      *
      * @param sat
      * @return
+     * @author miguel
      */
     public static String ArrayToString(ArrayList<Satelite> sat) {
         StringBuilder str = new StringBuilder();
@@ -287,6 +291,7 @@ public class RamonYMiguelXML {
      *
      * @return
      * @throws IOException
+     * @author miguel
      */
     public static ArrayList<Planeta> crearArrayListPlaneta() throws IOException {
         ArrayList<Planeta> listaObjetos = new ArrayList<>();
@@ -308,6 +313,9 @@ public class RamonYMiguelXML {
         return listaObjetos;
     }
 
+    /**
+     * @author miguel
+     */
     public static void importarXML() {
         JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos XML", "xml");

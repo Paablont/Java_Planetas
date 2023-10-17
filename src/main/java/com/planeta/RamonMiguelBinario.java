@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 /**
  * Clase para Crear y leer Binario
- * @author migue
+ * @author miguel y Ramon
  */
 public class RamonMiguelBinario {
 
@@ -23,6 +23,7 @@ public class RamonMiguelBinario {
      * Método para ingresar  un planeta
      * @param p
      * @throws IOException 
+     * @author miguel Y Ramon
      */
     public static void ingresarPlaneta1a1(Planeta p) throws IOException {
 
@@ -45,6 +46,7 @@ public class RamonMiguelBinario {
      * @param planetas
      * @throws FileNotFoundException
      * @throws IOException 
+     * @author miguel Y Ramon
      */
     public static void ingresarPlaneta(ArrayList<Planeta> planetas) throws FileNotFoundException, IOException {
         for (Planeta p : planetas) {
@@ -56,6 +58,7 @@ public class RamonMiguelBinario {
      * Método para leer planetas
      * @throws FileNotFoundException
      * @throws IOException 
+     * @author miguel Y Ramon
      */
     public static void leerPlanetaCarac() throws FileNotFoundException, IOException {
         File directorioPlanetas = new File(Planeta.archivoBinario);
@@ -84,6 +87,7 @@ public class RamonMiguelBinario {
      * @return
      * @throws FileNotFoundException
      * @throws IOException 
+     * @author miguel Y Ramon
      */
     public static Planeta leerPlanetaSolo(int id) throws FileNotFoundException, IOException {
         File directorioPlanetas = new File(Planeta.archivoBinario);
