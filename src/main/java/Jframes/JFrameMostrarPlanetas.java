@@ -150,23 +150,25 @@ public class JFrameMostrarPlanetas extends javax.swing.JFrame {
 
     private void btnMostrarInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarInfoActionPerformed
         JFramePropiedadesPlaneta frame = new JFramePropiedadesPlaneta();
-        
+
         Planeta planeta = null;
         int id = Integer.parseInt(getJTextField().getText());
-        
-        try {
-            frame.setIdDelPlaneta(id);
-            planeta = RamonMiguelBinario.leerPlanetaSolo(id);
-            frame.getJLabel2().setText(planeta.getNombre());
-            frame.getJLabelDistSol().setText(Double.toString(planeta.getDistanciaSolar()));
-            frame.getJLabelRadio().setText(Double.toString(planeta.getRadio()));
-            frame.getJLabelVida().setText(Boolean.toString(planeta.isVida()));
-            frame.getJLabelTipo().setText(planeta.getTipoPlaneta().toString());
-        } catch (IOException ex) {
-            //Luego poner un logger
+        if (Planeta.existePlanetaConID(id)) {
+            try {
+                frame.setIdDelPlaneta(id);
+                planeta = RamonMiguelBinario.leerPlanetaSolo(id);
+                frame.getJLabel2().setText(planeta.getNombre());
+                frame.getJLabelDistSol().setText(Double.toString(planeta.getDistanciaSolar()));
+                frame.getJLabelRadio().setText(Double.toString(planeta.getRadio()));
+                frame.getJLabelVida().setText(Boolean.toString(planeta.isVida()));
+                frame.getJLabelTipo().setText(planeta.getTipoPlaneta().toString());
+                frame.setVisible(true);
+            } catch (IOException ex) {
+                //Luego poner un logger
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Porvafor introduce un ID valido", "Mensaje ID", JOptionPane.ERROR_MESSAGE);
         }
-        
-        frame.setVisible(true);
     }//GEN-LAST:event_btnMostrarInfoActionPerformed
 
     private void tfIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfIDActionPerformed

@@ -98,7 +98,17 @@ public class Planeta implements Serializable{
                 ", radio=" + radio + 
                 ", vida=" + vida;
     }
-    
-    
+    public static boolean existePlanetaConID(int id) {
+        String archivo = PabloJoseTexto.leerFicheroTXT(archivoTXT);
+        String[] lineas = archivo.split("\n");
 
+        for (String linea : lineas) {
+            String[] partes = linea.split(",");
+            int idPlaneta = Integer.parseInt(partes[0].trim());
+            if (idPlaneta == id) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
