@@ -45,7 +45,7 @@ public class PabloJoseRAF {
             raf.write(s.getNombreByteArray());
             raf.writeChars(Double.toString(s.getDensidad()));
             raf.writeChars(s.getFechaDescubrimiento());
-            raf.writeChars("|");
+            
             // Cierra el archivo
         } catch (Exception e) {
             PlanetaApp.logger.error("No se ha encontrado el archivo");
@@ -85,11 +85,17 @@ public class PabloJoseRAF {
             raf.seek(0); // Me posiciono al inicio del archivo
             byte[] leido = new byte[Satelite.TAMAÑO_REGISTRO];
             int bytesRead;
+            long rafi=raf.length();
             while ((bytesRead = raf.read(leido)) != -1) {
                 String registro = new String(leido, 0, bytesRead, StandardCharsets.UTF_16);
                 //Si es un nombre muy largo no escribira nada
                 if (bytesRead > Satelite.TAMAÑO_REGISTRO) {
                     break;
+                }
+                System.out.print(registro);
+                System.out.println(registro.equals(""));
+                if(registro.isEmpty()){
+                    continue;
                 }
                 //Dividos en 3 para dar formato a las 3 caracteristicas de los satelites
                 String[] partes = registro.split(" ");
@@ -194,5 +200,6 @@ public class PabloJoseRAF {
         }
        
     }
+    
 
 }

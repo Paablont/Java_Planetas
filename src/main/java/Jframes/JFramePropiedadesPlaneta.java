@@ -212,7 +212,7 @@ public class JFramePropiedadesPlaneta extends javax.swing.JFrame {
 
     
     private void btnSatelitesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSatelitesActionPerformed
-        JFramePropiedadesSatelite jframeSatelite = new JFramePropiedadesSatelite();
+        JFramePropiedadesSatelite jframeSatelite = new JFramePropiedadesSatelite(idPlaneta);
         StringBuilder informacionSatelite=new StringBuilder("");
         Planeta p;
         try {

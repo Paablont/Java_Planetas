@@ -32,8 +32,9 @@ public class JFramePropiedadesSatelite extends javax.swing.JFrame {
     /**
      * Creates new form JFramePropiedadesSatelite
      */
-    public JFramePropiedadesSatelite() {
+    public JFramePropiedadesSatelite(int idPlaneta) {
         initComponents();
+        this.idPlaneta = idPlaneta;
     }
 
     /**
@@ -119,27 +120,39 @@ public class JFramePropiedadesSatelite extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
-        Planeta p = null;
+        
         try {
-            p = RamonMiguelBinario.leerPlanetaSolo(idPlaneta);
-
+          
+              Planeta p = null;
             try {
-                int pos = 0;
-                String nombre = jTextFieldnombreborrarsatelite.getText().trim();
                 p = RamonMiguelBinario.leerPlanetaSolo(idPlaneta);
-                pos = PabloJoseRAF.saberPosSatelite(p.getSatelite(), nombre);
+                int pos = 0;
+                String nombre = jTextFieldnombreborrarsatelite.getText().trim()+" "; 
+                
+                pos = PabloJoseRAF.saberPosSatelite(p.getSatelite(), nombre);                
                 PabloJoseRAF.borrarSatelite(p, pos);
+               
             } catch (IOException ex) {
 
                 JOptionPane.showMessageDialog(null, "No se ha encontrado el archivo", "Mensaje", JOptionPane.ERROR_MESSAGE);
 
             }
 
-        } catch (NumberFormatException numberFormatException) {
+        }catch (NumberFormatException numberFormatException) {
             System.err.println("El valor ingresado no es un número válido.");
-        } catch (IOException ex) {
-            Logger.getLogger(JFramePropiedadesSatelite.class.getName()).log(Level.SEVERE, null, ex);
         }
+//          Planeta p = null;
+//        try {
+//
+//            int pos = 0;
+//            String nombre = jTextFieldnombreborrarsatelite.getText().trim();
+//            p = RamonMiguelBinario.leerPlanetaSolo(idPlaneta);
+//            pos = PabloJoseRAF.saberPosSatelite(p.getSatelite(), nombre);
+//            PabloJoseRAF.borrarSatelite(p, pos);
+//        } catch (IOException ex) {
+//            Logger.getLogger(JFramePropiedadesSatelite.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        
 
 //          Planeta p = null;
 //        try {
@@ -193,7 +206,7 @@ public class JFramePropiedadesSatelite extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFramePropiedadesSatelite().setVisible(true);
+                new JFramePropiedadesSatelite(idPlaneta).setVisible(true);
             }
         });
     }
