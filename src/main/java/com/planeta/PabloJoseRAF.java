@@ -194,7 +194,9 @@ public class PabloJoseRAF {
                  for (int i = 0; i < Satelite.TAMAÑO_REGISTRO; i++) {
                 raf.write((byte) 0); // Escribe bytes en blanco
             }
-            
+            long rafi = raf.length();
+            //raf.setLength(raf.length()-Satelite.TAMAÑO_REGISTRO);
+            System.out.println("");
         } catch (FileNotFoundException e) {
             PlanetaApp.logger.error("Este planeta no tiene satelites");
         }
