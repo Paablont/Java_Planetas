@@ -202,6 +202,8 @@ public class RamonYMiguelXML {
      * @author miguel
      */
     public static void leerXML(String rutaImportar) {
+        boolean borrado = false;
+        
         try {
             Document doc = null; // doc es de tipo Document y representa el árbol DOM
 

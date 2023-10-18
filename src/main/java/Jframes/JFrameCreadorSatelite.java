@@ -24,8 +24,7 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
     private double densidad;
     private String fecha;
     private static int idPlaneta;
-    //Contador para contar los satelites
-    private static int contSate;
+ 
 
     /**
      * Creates new form JFrameCreadorSatelite
