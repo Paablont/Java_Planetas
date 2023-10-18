@@ -62,6 +62,12 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
 
         txtnombresatelite.setText("Nombre          ");
 
+        cajatextonombresatelite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cajatextonombresateliteActionPerformed(evt);
+            }
+        });
+
         txtdensidad.setText("Densidad      g/cm3");
 
         textAnioDesSatelite.setText("Año de descubrimiento");
@@ -167,7 +173,7 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
                 p = RamonMiguelBinario.leerPlanetaSolo(idPlaneta);
                 String densidadAux;
                 String fechaAux;
-                nombre = cajatextonombresatelite.getText().trim();
+                nombre = cajatextonombresatelite.getText().trim().replace(" ", "");
                 nombre = cajatextonombresatelite.getText() + " ";
                 densidadAux = jTextFieldDensidad.getText().trim();
                 if (esNumeroJose(densidadAux)) {
@@ -213,6 +219,10 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         JFrameCreadorSatelite.this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void cajatextonombresateliteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajatextonombresateliteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cajatextonombresateliteActionPerformed
 
     /**
      * @param args the command line arguments
