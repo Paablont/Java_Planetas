@@ -189,14 +189,17 @@ public class JFrameMostrarPlanetas extends javax.swing.JFrame {
     private void btnBorrarPlanetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarPlanetaActionPerformed
         JFramePropiedadesPlaneta frame = new JFramePropiedadesPlaneta();
         
-        Planeta planeta = null;
+        Planeta p = null;
         int id = Integer.parseInt(getJTextField().getText());
         
         try {
+            p = RamonMiguelBinario.leerPlanetaSolo(id);
             BorrarArchivos.BorrarArchivoSecuencialPorId(id);
             BorrarArchivos.BorrarArchivoBinarioPorId(id);
-            BorrarArchivos.BorrarArchivoDatSatelites(id);
+            CopiarMoverArchivos.moverSatelitesAlBorrarPlaneta(p);
         } catch (FileNotFoundException ex) {
+            Logger.getLogger(JFrameMostrarPlanetas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IOException ex) {
             Logger.getLogger(JFrameMostrarPlanetas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnBorrarPlanetaActionPerformed
