@@ -24,10 +24,10 @@ public class FactoriaLista {
         ArrayList<Planeta> planetas = new ArrayList<>();
         if (!PlanetaApp.archivo.exists()) {
             // Satélites reales de los planetas
-            satelitesMercurio.add(new Satelite("Sin satélite ".toCharArray(), 0.0, " N/A")); // Mercurio
+            satelitesMercurio.add(new Satelite("NULO ".toCharArray(), 0.0, " N/A")); // Mercurio
             
             satelitesMercurio.add(new Satelite("WOWO ".toCharArray(), 5.2, " 20/01/2001")); // Mercurio
-            satelitesVenus.add(new Satelite("Sin satélite ".toCharArray(), 0.0, " N/A")); // Venus
+            satelitesVenus.add(new Satelite("NULO ".toCharArray(), 0.0, " N/A")); // Venus
             satelitesTierra.add(new Satelite("Luna ".toCharArray(), 3.34, " 20/07/1969")); // Tierra
             satelitesMarte.add(new Satelite("Fobos ".toCharArray(), 1.88, " 18/08/1877")); // Marte
             satelitesJupiter.add(new Satelite("Ganímedes ".toCharArray(), 1.94, " 11/01/1610")); // Júpiter

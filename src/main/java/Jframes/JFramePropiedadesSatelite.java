@@ -131,6 +131,7 @@ public class JFramePropiedadesSatelite extends javax.swing.JFrame {
                 
                 pos = PabloJoseRAF.saberPosSatelite(p.getSatelite(), nombre);                
                 PabloJoseRAF.borrarSatelite(p, pos);
+                p.getSatelite().remove(pos-1);
                
             } catch (IOException ex) {
 
