@@ -77,6 +77,11 @@ public class PabloJoseTexto {
                 e.printStackTrace();
             }
     }
+    /**
+     * Para tener el último Id
+     * @param num 
+     * @author miguel
+     */
         public static void escribirID(int num) {
         
         try (BufferedWriter fw = new BufferedWriter(new FileWriter(Planeta.numeroIDTXT, StandardCharsets.UTF_8,false));) {
