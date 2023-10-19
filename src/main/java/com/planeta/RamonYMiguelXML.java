@@ -257,15 +257,16 @@ public class RamonYMiguelXML {
                         }
                     }
                     planeta = new Planeta(idplane, nom, distSolar, radio, vida, tpPlaneta, satelites);
-                    //En true crear el metodo
-                    if (true) {
-                        //escribir planeta
-                        JOptionPane.showMessageDialog(null, planeta + "\n" + satelitesSat.toString(), "Planeta_XML", JOptionPane.INFORMATION_MESSAGE);
-                        JOptionPane.showMessageDialog(null,"se ha añadido el planeta :" + planeta.getNombre()+" con la nueva id "+ planeta.getIdPlaneta());
+                    if (Planeta.existePlanetaConID(planeta.getIdPlaneta())) {
+                        JOptionPane.showMessageDialog(null, "Ya existe", "Planeta_XML", JOptionPane.ERROR_MESSAGE);    
                     }else{
-                        JOptionPane.showMessageDialog(null, planeta + "\n" + satelitesSat.toString(), "Planeta_XML", JOptionPane.INFORMATION_MESSAGE);
+                        PabloJoseTexto.escribirTexto(planeta);
+                        RamonMiguelBinario.ingresarPlaneta1a1(planeta);
+                        PabloJoseRAF.ingresarSatelite(planeta);
+                        PabloJoseTexto.escribirID((planeta.getIdPlaneta() +1));
+                        JOptionPane.showMessageDialog(null, "Creado correctamente", "Planeta_XML", JOptionPane.ERROR_MESSAGE);
                     }
-                    
+                                       
                 }
             }
         } catch (IOException | DOMException | TransformerFactoryConfigurationError | SAXException | ParserConfigurationException e) {
@@ -331,8 +332,8 @@ public class RamonYMiguelXML {
 
             try {
                 leerXML(rutaDelArchivo);
-
-                JOptionPane.showMessageDialog(null, "XML importado con éxito desde: " + rutaDelArchivo);
+//
+//                JOptionPane.showMessageDialog(null, "XML importado con éxito desde: " + rutaDelArchivo);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Error al importar el XML: " + ex.getMessage());
             }
