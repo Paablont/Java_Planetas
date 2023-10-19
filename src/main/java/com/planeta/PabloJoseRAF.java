@@ -68,6 +68,22 @@ public class PabloJoseRAF {
             }
         }
     }
+    
+    /**
+     * Recoge la lista de planetas y escribe cada satelite en su archivo
+     * correspondiente
+     *
+     * @author Miguel
+     * @param planeta
+     * @throws java.io.FileNotFoundException
+     */
+    public static void ingresarSatelite(Planeta planeta) throws FileNotFoundException, IOException {
+            // Supongamos que tienes un ArrayList de satélites iniciales en cada objeto Planeta
+            ArrayList<Satelite> satelitesIniciales = planeta.getSatelite();
+            for (Satelite s : satelitesIniciales) {
+                escribirRAF(s, planeta);
+            }
+    }
 
     /**
      *
