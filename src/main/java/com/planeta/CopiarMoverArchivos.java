@@ -16,9 +16,9 @@ import javax.swing.filechooser.FileSystemView;
  */
 public class CopiarMoverArchivos {
 
-    public static void copiarArchivo() {
-        File archivoOrigen = new File(Planeta.archivoTXT);
-        File archivoNuevo = new File("." + File.separatorChar + "copiaArchivoTXT.txt");
+    public static void copiarArchivo(String rutaArchivo, String rutaNuevo) {
+        File archivoOrigen = new File(rutaArchivo);
+        File archivoNuevo = new File(rutaNuevo);
 
         try {
             // Copiar el archivo
@@ -101,44 +101,41 @@ public class CopiarMoverArchivos {
             PlanetaApp.logger.error("No se ha podido realizar la copia de seguridad");
         }
     }
-    
-     public static void moverSatelitesAlBorrarPlaneta(Planeta p) {
+
+    /**
+     * Cuando se borra un planeta, el fichero de satelites correspondiente se
+     * mueve a una carpeta llamada "satelitesBorrados"
+     *
+     * @author Pablo
+     */
+    public static void moverSatelitesAlBorrarPlaneta(Planeta p) {
         // Ruta de la carpeta "archivos" en la raíz del programa
         String direccionRAF = Satelite.archivoRAF + p.getIdPlaneta() + "satelite" + p.getNombre() + ".dat";
-        File carpetaOrigen = new File(direccionRAF);
 
         // Lamamos a FileSystemView.getFileSystemView().getDefaultDirectory() para buscar la carpeta Documentos
-        File carpetaDestino = new File("." + File.separatorChar + "archivos" + File.separatorChar + "satelitesBorrados" + File.separatorChar);
+        String direccionDestino = "." + File.separatorChar + "archivos" + File.separatorChar + "satelitesBorrados" + File.separatorChar;
 
-        // Hacemos la carpeta CopiaSeguridadPlanetas
-        String subcarpetaNombre = "satelitesBorrados";
-
-        if (subcarpetaNombre != null && !subcarpetaNombre.isEmpty()) {
-            carpetaDestino = new File(carpetaDestino, subcarpetaNombre);
+        //Nuevo directorio
+        File carpetaDestino = new File(direccionDestino);
+        //Verificar si la carpeta de destino existe, si no, crearla
+        if (!carpetaDestino.exists()) {
+            carpetaDestino.mkdirs();
         }
+
+        File archivoOrigen = new File(direccionRAF);
+        File archivoDestino = new File(direccionDestino,archivoOrigen.getName());
 
         try {
-            // Verificar si la carpeta de destino existe, si no, crearla
-            if (!carpetaDestino.exists()) {
-                carpetaDestino.mkdirs();
-            }
+            // Copiar el archivo
+            Path origen = archivoOrigen.toPath();
+            Path destino = archivoDestino.toPath();
+            Files.copy(origen, destino);
 
-            // Obtener la lista de archivos y subcarpetas en la carpeta de origen
-            File[] archivos = carpetaOrigen.listFiles();
-
-            // For que recorre la lista de archivos y los va copiando
-            for (File archivo : archivos) {
-                Path origen = archivo.toPath();
-                Path destino = new File(carpetaDestino, archivo.getName()).toPath();
-
-                Files.copy(origen, destino, StandardCopyOption.REPLACE_EXISTING);
-            }
-            JOptionPane.showMessageDialog(null, "Satelites de" + p.getNombre() + " borrados correctamente");
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Error al borrar el satelite");
-            PlanetaApp.logger.error("Error al borrar el satelite");
+            JOptionPane.showMessageDialog(null, "Satelites de " + p.getNombre() + " se han movido a la carpeta satelitesBorrados");
+        } catch (IOException e) {
+            PlanetaApp.logger.error("No se ha podido mover el fichero");
         }
+
     }
-    
-    
+
 }

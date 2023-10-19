@@ -197,6 +197,8 @@ public class JFrameMostrarPlanetas extends javax.swing.JFrame {
             BorrarArchivos.BorrarArchivoSecuencialPorId(id);
             BorrarArchivos.BorrarArchivoBinarioPorId(id);
             CopiarMoverArchivos.moverSatelitesAlBorrarPlaneta(p);
+            BorrarArchivos.BorrarArchivoDatSatelites(id);
+            
         } catch (FileNotFoundException ex) {
             Logger.getLogger(JFrameMostrarPlanetas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -205,7 +207,9 @@ public class JFrameMostrarPlanetas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBorrarPlanetaActionPerformed
 
     private void btnCopiarTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCopiarTXTActionPerformed
-        CopiarMoverArchivos.copiarArchivo();
+        String rutaNuevo = "." + File.separatorChar + "copiaArchivoTXT.txt";
+        String rutaArchivo =  Planeta.archivoTXT;
+        CopiarMoverArchivos.copiarArchivo(rutaNuevo,rutaArchivo);
     }//GEN-LAST:event_btnCopiarTXTActionPerformed
 
     /**

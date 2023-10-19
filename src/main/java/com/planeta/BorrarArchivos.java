@@ -44,7 +44,7 @@ public class BorrarArchivos {
             bw.close();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            PlanetaApp.logger.error("No se ha podido borrar el archivo");
         }
 
     }
@@ -68,7 +68,7 @@ public class BorrarArchivos {
                 if (archivo.delete()) {
                     JOptionPane.showMessageDialog(null, "Archivo " + archivo.getName() + "Se  ha borrado correctamente", "Satelite", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    System.out.println("No se pudo eliminar el archivo " + archivo.getName());
+                    PlanetaApp.logger.error("No se ha encontrado el archivo");
                 }
             }
         }
@@ -91,9 +91,8 @@ public class BorrarArchivos {
 
             for (File archivo : archivos) {
                 if (archivo.delete()) {
-                    JOptionPane.showMessageDialog(null, "Archivo " + archivo.getName() + "Se  ha borrado correctamente", "Satelite", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    System.out.println("No se pudo eliminar el archivo " + archivo.getName());
+                    PlanetaApp.logger.error("No se ha encontrado el archivo");
                 }
             }
         }
