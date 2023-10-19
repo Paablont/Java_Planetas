@@ -92,42 +92,49 @@ public class PabloJoseRAF {
      *
      * @autor Jose
      */
-    public static StringBuilder leerFicheroSatelite(Planeta p) throws FileNotFoundException, IOException {
-        String direccionRAF = Satelite.archivoRAF + p.getIdPlaneta() + "satelite" + p.getNombre() + ".dat";
-        StringBuilder resultado = new StringBuilder();
+    public static StringBuilder leerFicheroSatelite(Planeta p) throws IOException {
+    String direccionRAF = Satelite.archivoRAF + p.getIdPlaneta() + "satelite" + p.getNombre() + ".dat";
+    StringBuilder resultado = new StringBuilder();
 
-        try (RandomAccessFile raf = new RandomAccessFile(new File(direccionRAF), "rw")) {
-            //Nos posicionamos en la posicion cero pues que hay un nombre distinto para cada satelite y siempre va haber que leerlo todo
-            raf.seek(0); // Me posiciono al inicio del archivo
-            byte[] leido = new byte[Satelite.TAMAÑO_REGISTRO];
-            int bytesRead;
-            long rafi=raf.length();
-            while ((bytesRead = raf.read(leido)) != -1) {
-                String registro = new String(leido, 0, bytesRead, StandardCharsets.UTF_16);
-                //Si es un nombre muy largo no escribira nada
-                if (bytesRead > Satelite.TAMAÑO_REGISTRO) {
-                    break;
-                }
-                System.out.print(registro);
-                System.out.println(registro.equals(""));
-                if(registro.isEmpty()){
-                    continue;
-                }
-                //Dividos en 3 para dar formato a las 3 caracteristicas de los satelites
-                String[] partes = registro.split(" ");
-                String nombre = partes[0];
-                String densidad = partes[1];
-                String añoDescubrimiento = partes[2];
+    try (RandomAccessFile raf = new RandomAccessFile(new File(direccionRAF), "rw")) {
+        long rafi = raf.length();
+        int tamanoRegistro = Satelite.TAMAÑO_REGISTRO;
+        byte[] leido = new byte[tamanoRegistro];
 
-                //Para mostrar bien el satelite lo formateo con stringBuilder
-                resultado.append("Nombre: ").append(nombre).append(", Densidad:").append(densidad).append(", Año de Descubrimiento: ").append(añoDescubrimiento).append(System.lineSeparator());
+        while (raf.getFilePointer() < rafi) {
+            raf.read(leido);
+            if (esRegistroVacio(leido)) {
+                continue; // Salta registros vacíos
             }
-        } catch (FileNotFoundException e) {
-            PlanetaApp.logger.error("Este planeta no tiene satelites");
-        }
-        return resultado;
-    }
 
+            String registro = new String(leido, StandardCharsets.UTF_16);
+            String[] partes = registro.split(" ");
+            String nombre = partes[0];
+            String densidad = partes[1];
+            String añoDescubrimiento = partes[2];
+
+            resultado.append("Nombre: ").append(nombre).append(", Densidad: ").append(densidad).append(", Año de Descubrimiento: ").append(añoDescubrimiento).append(System.lineSeparator());
+        }
+    } catch (FileNotFoundException e) {
+        PlanetaApp.logger.error("Este planeta no tiene satélites");
+    }
+    return resultado;
+}
+/**
+ * Metodo que comprueba si un array de byte tiene en todas sus posicones 0
+ * @param registro
+ * @return 
+ * @author Jose
+ */
+private static boolean esRegistroVacio(byte[] registro) {
+    boolean vacio=true;
+    for (byte b : registro) {
+        if (b != 0) {
+            vacio=false; // No es un registro vacío
+        }
+    }
+    return vacio; // Es un registro vacío
+}
     /**
      * Metodo que lee un array de objetos ya predefinidos y crea sus
      * nrespectivos satelites por defectos
