@@ -11,9 +11,9 @@ import java.util.ArrayList;
  */
 public class Planeta implements Serializable{
 
-    static String archivoBinario = "." + File.separatorChar + "archivos" + File.separatorChar + "planetasPropiedades" + File.separatorChar;
-    static String archivoTXT = "." + File.separatorChar + "archivos" + File.separatorChar+ "planetas.txt";
-    static String numeroIDTXT = "." + File.separatorChar + "archivos" + File.separatorChar+ "numeroID.txt";
+    public static String archivoBinario = "." + File.separatorChar + "archivos" + File.separatorChar + "planetasPropiedades" + File.separatorChar;
+    public static String archivoTXT = "." + File.separatorChar + "archivos" + File.separatorChar+ "planetas.txt";
+    public static String numeroIDTXT = "." + File.separatorChar + "archivos" + File.separatorChar+ "numeroID.txt";
     //este comentario no vale para nada
     int idPlaneta;
     String nombre;
@@ -98,6 +98,12 @@ public class Planeta implements Serializable{
                 ", radio=" + radio + 
                 ", vida=" + vida;
     }
+    /**
+     * Método para ver si exite ID
+     * @param id
+     * @return 
+     * @Miguel y Ramon
+     */
     public static boolean existePlanetaConID(int id) {
         String archivo = PabloJoseTexto.leerFicheroTXT(archivoTXT);
         String[] lineas = archivo.split("\n");
