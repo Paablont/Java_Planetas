@@ -5,6 +5,7 @@ import com.planeta.CopiarMoverArchivos;
 import com.planeta.Planeta;
 import com.planeta.RamonMiguelBinario;
 import com.planeta.BorrarArchivos;
+import com.planeta.PlanetaApp;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -175,7 +176,8 @@ public class JFrameMostrarPlanetas extends javax.swing.JFrame {
                 frame.getJLabelTipo().setText(planeta.getTipoPlaneta().toString());
                 frame.setVisible(true);
             } catch (IOException ex) {
-                //Luego poner un logger
+                JOptionPane.showMessageDialog(this, "No se ha podido mostrar la informacion de los planetas");
+                 PlanetaApp.logger.info("No se ha podido mostrar la informacion de los planetas");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Porvafor introduce un ID valido", "Mensaje ID", JOptionPane.ERROR_MESSAGE);
@@ -200,9 +202,9 @@ public class JFrameMostrarPlanetas extends javax.swing.JFrame {
             BorrarArchivos.BorrarArchivoDatSatelites(id);
             
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(JFrameMostrarPlanetas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            PlanetaApp.logger.info("No se ha encontrado el fichero");
         } catch (IOException ex) {
-            Logger.getLogger(JFrameMostrarPlanetas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            PlanetaApp.logger.info("No se ha podido borrar el planeta");
         }
     }//GEN-LAST:event_btnBorrarPlanetaActionPerformed
 

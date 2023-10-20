@@ -57,7 +57,7 @@ public class PabloJoseTexto {
             }
             
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Archivo no encontrado" + e);
+             PlanetaApp.logger.info("No se ha podido leer el txt");
         }
        return texto; 
     }
@@ -74,7 +74,7 @@ public class PabloJoseTexto {
                 }
                 System.out.println("Archivo de texto creado con éxito.");
             } catch (IOException e) {
-                e.printStackTrace();
+               PlanetaApp.logger.info("No se ha podido crear el txt con los planetas inicilaes");
             }
     }
     /**
@@ -90,9 +90,9 @@ public class PabloJoseTexto {
             fw.flush();
             fw.close();
         } catch (FileNotFoundException fn) {
-            System.out.println("No se encuentra el fichero en la ruta indicada");
+           PlanetaApp.logger.info("No se encuentra el fichero");
         } catch (IOException io) {
-            System.out.println("Error de E/S ");
+           PlanetaApp.logger.info("Error de E/S");
         }
     }
 }

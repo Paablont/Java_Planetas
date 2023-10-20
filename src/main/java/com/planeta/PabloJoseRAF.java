@@ -74,8 +74,6 @@ public class PabloJoseRAF {
      * correspondiente
      *
      * @author Miguel
-     * @param planeta
-     * @throws java.io.FileNotFoundException
      */
     public static void ingresarSatelite(Planeta planeta) throws FileNotFoundException, IOException {
             // Supongamos que tienes un ArrayList de satélites iniciales en cada objeto Planeta
@@ -113,9 +111,11 @@ public class PabloJoseRAF {
             String densidad = partes[1];
             String añoDescubrimiento = partes[2];
 
-            resultado.append("Nombre: ").append(nombre).append(", Densidad: ").append(densidad).append(", Año de Descubrimiento: ").append(añoDescubrimiento).append(System.lineSeparator());
+            resultado.append("Nombre: ").append(nombre).append(", Densidad: ").append(densidad)
+                    .append(", Año de Descubrimiento: ").append(añoDescubrimiento).append(System.lineSeparator());
         }
     } catch (FileNotFoundException e) {
+        
         PlanetaApp.logger.error("Este planeta no tiene satélites");
     }
     return resultado;

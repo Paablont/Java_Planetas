@@ -17,7 +17,7 @@ import org.apache.logging.log4j.Logger;
  */
 public class PlanetaApp {
     
-    static Logger logger = LogManager.getRootLogger();
+    public static Logger logger = LogManager.getRootLogger();
     
     static File archivo = new File(Planeta.archivoTXT);    
     static File carpeta = new File("." + File.separatorChar + "archivos");

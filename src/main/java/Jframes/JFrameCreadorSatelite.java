@@ -5,10 +5,12 @@ import com.planeta.Planeta;
 import com.planeta.RamonMiguelBinario;
 import com.planeta.Satelite;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -24,7 +26,6 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
     private double densidad;
     private String fecha;
     private static int idPlaneta;
- 
 
     /**
      * Creates new form JFrameCreadorSatelite
@@ -49,10 +50,9 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
         txtdensidad = new javax.swing.JLabel();
         jTextFieldDensidad = new javax.swing.JTextField();
         textAnioDesSatelite = new javax.swing.JLabel();
-        TextFieldAnioSatelite = new javax.swing.JTextField();
         btnCrearSatelite = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jcFecha = new com.toedter.calendar.JCalendar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,12 +79,16 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("(DD/MM/YYYY)");
-
         jButton2.setText("Salir");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        jcFecha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jcFechaPropertyChange(evt);
             }
         });
 
@@ -96,62 +100,57 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(150, 150, 150)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtsatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(txtnombresatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(txtsatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(textAnioDesSatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(TextFieldAnioSatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(12, 161, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(cajatextonombresatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldDensidad, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtdensidad, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(128, 128, 128))))
+                        .addGap(154, 154, 154)
+                        .addComponent(cajatextonombresatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(14, 259, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(166, 166, 166)
+                .addGap(213, 213, 213)
                 .addComponent(btnCrearSatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(44, 44, 44))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(6, 6, 6)
+                                    .addComponent(jTextFieldDensidad, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtdensidad, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtnombresatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(textAnioDesSatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(115, 115, 115)
+                        .addComponent(jcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(txtsatelite)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
                 .addComponent(txtnombresatelite)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cajatextonombresatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtdensidad, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextFieldDensidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textAnioDesSatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textAnioDesSatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(TextFieldAnioSatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCrearSatelite)
                     .addComponent(jButton2))
-                .addGap(52, 52, 52))
+                .addContainerGap())
         );
 
         txtnombresatelite.getAccessibleContext().setAccessibleName("");
@@ -181,29 +180,26 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(null, "El número no es válido", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-                fechaAux = TextFieldAnioSatelite.getText().trim();
-                if (validarFechaJose(fechaAux)) {
-                    fecha = " " + fechaAux;
-                    Satelite s = new Satelite(nombre.toCharArray(), densidad, fecha);
-                    System.out.println(s.toString());
-                    ArrayList<Satelite> satelites = p.getSatelite();
-                    if (satelites != null) {
-                        satelites.add(s);
-                        p.setSatelite(satelites);
-                    }
-
-                    try {
-                        PabloJoseRAF.escribirRAF(s, p);
-                        RamonMiguelBinario.ingresarPlaneta1a1(p);
-                        JOptionPane.showMessageDialog(null, "Se  ha agregado correctamente", "Satelite", JOptionPane.INFORMATION_MESSAGE);
-                    } catch (IOException ex) {
-
-                        JOptionPane.showMessageDialog(null, "No se ha encontrado el archivo", "Mensaje", JOptionPane.ERROR_MESSAGE);
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "La fecha no es valida", "Error", JOptionPane.ERROR_MESSAGE);
-
+                    
+                SimpleDateFormat fechaFormato = new SimpleDateFormat(" dd/MM/yyyy");
+                fecha = fechaFormato.format(jcFecha.getDate());
+                Satelite s = new Satelite(nombre.toCharArray(), densidad, fecha);
+                System.out.println(s.toString());
+                ArrayList<Satelite> satelites = p.getSatelite();
+                if (satelites != null) {
+                    satelites.add(s);
+                    p.setSatelite(satelites);
                 }
+
+                try {
+                    PabloJoseRAF.escribirRAF(s, p);
+                    RamonMiguelBinario.ingresarPlaneta1a1(p);
+                    JOptionPane.showMessageDialog(null, "Se  ha agregado correctamente", "Satelite", JOptionPane.INFORMATION_MESSAGE);
+                } catch (IOException ex) {
+
+                    JOptionPane.showMessageDialog(null, "No se ha encontrado el archivo", "Mensaje", JOptionPane.ERROR_MESSAGE);
+                }
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "No se ha podido crear el satelite", "Mensaje", JOptionPane.ERROR_MESSAGE);
 
@@ -223,6 +219,10 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
     private void cajatextonombresateliteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajatextonombresateliteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cajatextonombresateliteActionPerformed
+
+    private void jcFechaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jcFechaPropertyChange
+
+    }//GEN-LAST:event_jcFechaPropertyChange
 
     /**
      * @param args the command line arguments
@@ -283,12 +283,11 @@ public class JFrameCreadorSatelite extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField TextFieldAnioSatelite;
     private javax.swing.JButton btnCrearSatelite;
     private javax.swing.JTextField cajatextonombresatelite;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jTextFieldDensidad;
+    private com.toedter.calendar.JCalendar jcFecha;
     private javax.swing.JLabel textAnioDesSatelite;
     private javax.swing.JLabel txtdensidad;
     private javax.swing.JLabel txtnombresatelite;
