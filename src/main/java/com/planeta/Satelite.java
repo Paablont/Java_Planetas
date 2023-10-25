@@ -26,6 +26,10 @@ public class Satelite implements Serializable {
         this.fechaDescubrimiento = fechaDescubrimiento;
     }
 
+    public Satelite() {
+    }
+    
+
     public char[] getNombreCharArray() {
         return this.nombre;
     }

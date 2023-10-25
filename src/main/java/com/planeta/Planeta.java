@@ -33,6 +33,10 @@ public class Planeta implements Serializable{
         this.satelite = satelite;
     }
 
+    public Planeta() {
+    }
+    
+
         
 
     public int getIdPlaneta() {
