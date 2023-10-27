@@ -4,16 +4,10 @@
  */
 package Jframes;
 
-import static Jframes.JFrameCreadorSatelite.esNumeroJose;
-import static Jframes.JFrameCreadorSatelite.validarFechaJose;
 import com.planeta.PabloJoseRAF;
 import com.planeta.Planeta;
 import com.planeta.RamonMiguelBinario;
-import com.planeta.Satelite;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
@@ -51,6 +45,7 @@ public class JFramePropiedadesSatelite extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jTextFieldnombreborrarsatelite = new javax.swing.JTextField();
         jButtonBorrar = new javax.swing.JButton();
+        txtNombre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +67,8 @@ public class JFramePropiedadesSatelite extends javax.swing.JFrame {
             }
         });
 
+        txtNombre.setText("Introduce el nombre del satélite");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,8 +83,13 @@ public class JFramePropiedadesSatelite extends javax.swing.JFrame {
                         .addContainerGap(107, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextFieldnombreborrarsatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(74, 74, 74))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jTextFieldnombreborrarsatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(74, 74, 74))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(txtNombre)
+                                .addGap(61, 61, 61))))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(250, 250, 250)
                 .addComponent(jButton2)
@@ -102,7 +104,9 @@ public class JFramePropiedadesSatelite extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
                         .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
+                        .addGap(37, 37, 37)
+                        .addComponent(txtNombre)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldnombreborrarsatelite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(jButtonBorrar)
@@ -132,7 +136,8 @@ public class JFramePropiedadesSatelite extends javax.swing.JFrame {
                 pos = PabloJoseRAF.saberPosSatelite(p.getSatelite(), nombre);                
                 PabloJoseRAF.borrarSatelite(p, pos);
                 p.getSatelite().remove(pos-1);
-               
+                JOptionPane.showMessageDialog(null, "Se ha borrado el satélite", "Mensaje", JOptionPane.ERROR_MESSAGE);
+
             } catch (IOException ex) {
 
                 JOptionPane.showMessageDialog(null, "No se ha encontrado el archivo", "Mensaje", JOptionPane.ERROR_MESSAGE);
@@ -140,32 +145,9 @@ public class JFramePropiedadesSatelite extends javax.swing.JFrame {
             }
 
         }catch (NumberFormatException numberFormatException) {
-            System.err.println("El valor ingresado no es un número válido.");
-        }
-//          Planeta p = null;
-//        try {
-//
-//            int pos = 0;
-//            String nombre = jTextFieldnombreborrarsatelite.getText().trim();
-//            p = RamonMiguelBinario.leerPlanetaSolo(idPlaneta);
-//            pos = PabloJoseRAF.saberPosSatelite(p.getSatelite(), nombre);
-//            PabloJoseRAF.borrarSatelite(p, pos);
-//        } catch (IOException ex) {
-//            Logger.getLogger(JFramePropiedadesSatelite.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-        
+            JOptionPane.showMessageDialog(null, "No se ha encontrado el archivo", "Mensaje", JOptionPane.ERROR_MESSAGE);
 
-//          Planeta p = null;
-//        try {
-//          
-//            int pos = 0;
-//            String nombre = jTextFieldnombreborrarsatelite.getText().trim();
-//            p = RamonMiguelBinario.leerPlanetaSolo(idPlaneta);
-//            pos = PabloJoseRAF.saberPosSatelite(p.getSatelite(), nombre);
-//            PabloJoseRAF.borrarSatelite(p, pos);
-//        } catch (IOException ex) {
-//            Logger.getLogger(JFramePropiedadesSatelite.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        }
 
     }//GEN-LAST:event_jButtonBorrarActionPerformed
 
@@ -218,5 +200,6 @@ public class JFramePropiedadesSatelite extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextAreaSatelite;
     private javax.swing.JTextField jTextFieldnombreborrarsatelite;
+    private javax.swing.JLabel txtNombre;
     // End of variables declaration//GEN-END:variables
 }
