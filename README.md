@@ -1,5 +1,5 @@
 <h1>Java_AccDatosProyecto</h1>
-
+Simulacion de vista de informacion de los planetas del sistema solar
 Clases: Planeta, Satelite, Asteroides?
 
 <b>Archivos: </b>
