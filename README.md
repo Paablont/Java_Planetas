@@ -1,7 +1,9 @@
 <h1>Java_AccDatosProyecto</h1>
-Simulacion de vista de informacion de los planetas del sistema solar
+<p>Simulacion de vista de informacion de los planetas del sistema solar
 
-<p>Clases: Planeta, Satelite, Asteroides</p>
+Clases: Planeta, Satelite, Asteroides</p>
+
+<p></p>
 
 <b>Archivos: </b>
 
